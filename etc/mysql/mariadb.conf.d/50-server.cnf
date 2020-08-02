@@ -1,0 +1,66 @@
+[server]
+
+[mysqld]
+#datadir=/var/lib/mysql
+#socket=/var/lib/mysql/mysql.sock
+#log-error=/var/log/mariadb/mariadb.log
+#pid-file=/run/mariadb/mariadb.pid
+
+# * Fine Tuning
+#key_buffer              = 16M  
+#read_buffer             = 60K  
+#sort_buffer             = 1M  
+#innodb_buffer_pool_size = 64M  
+#tmp_table               = 8M  
+#max_allowed_packet      = 16M  
+#thread_stack            = 192K  
+#thread_cache_size       = 8  
+#myisam-recover         = BACKUP  
+#max_connections        = 25
+#
+# * Super Fine Tuning 
+performance_schema = 0
+table_cache = 1
+table_definition_cache = 400
+max-connect-errors = 10000
+query_cache_limit = 0
+#query_cache_size = 0
+#
+#
+#
+# Configuring MySQL to use minimal memory
+innodb_buffer_pool_size=5M
+innodb_log_buffer_size=256K
+query_cache_size=0
+max_connections=10
+key_buffer_size=8
+thread_cache_size=0
+host_cache_size=0
+innodb_ft_cache_size=1600000
+innodb_ft_total_cache_size=32000000
+
+# per thread or per operation settings
+thread_stack=131072
+sort_buffer_size=32K
+read_buffer_size=8200
+read_rnd_buffer_size=8200
+max_heap_table_size=16K
+tmp_table_size=1K
+bulk_insert_buffer_size=0
+join_buffer_size=128
+net_buffer_length=1K
+innodb_sort_buffer_size=64K
+
+#settings that relate to the binary log (if enabled)
+binlog_cache_size=4K
+binlog_stmt_cache_size=4K
+
+open_files_limit=10000
+
+[galera]
+
+[embedded]
+
+[mariadb]
+
+[mariadb-10.3]

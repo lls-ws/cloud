@@ -1,0 +1,10 @@
+[mysql]
+default-character-set=latin1
+[mysql_upgrade]
+[mysqladmin]
+[mysqlbinlog]
+[mysqlcheck]
+[mysqldump]
+[mysqlimport]
+[mysqlshow]
+[mysqlslap]
