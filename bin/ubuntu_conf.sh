@@ -99,7 +99,6 @@ case "$1" in
 		profile_pt_BR
 		fonts_install
 		crontab_config
-		ssmtp_install
 		;;
 	*)
 		echo "Use: $0 {all|upgrade|profile|fonts|crontab|version}"
