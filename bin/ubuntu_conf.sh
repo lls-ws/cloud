@@ -47,11 +47,9 @@ fonts_install()
 crontab_jobs()
 {
 	
-	DIR_CRON="/var/spool/cron/crontabs"
+	ARQ_CONFIG="/var/spool/cron/crontabs/root"
 	
-	ARQ_CONFIG="${DIR_CRON}/root"
-	
-	chmod -v 600 ${DIR_CRON}
+	chmod -v 0600 ${ARQ_CONFIG}
 	
 	echo "20 18 * * * bash /home/lls/addons/bin/backup_bd_lls.sh send > /dev/null 2>&1" > ${ARQ_CONFIG}
 	echo "0 5 * * * /usr/sbin/reboot" >> ${ARQ_CONFIG}

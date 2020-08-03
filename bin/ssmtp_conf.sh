@@ -1,5 +1,6 @@
 #!/bin/sh
 # Script para configurar o Ssmtp no cloud Ubuntu Server 20.04 LTS 64 bits
+#
 # Link to enable this app to send email on Google
 # https://accounts.google.com/DisplayUnlockCaptcha
 #
@@ -33,13 +34,13 @@ ssmtp_config()
 	echo "rewriteDomain="								>> ${ARQ_CONFIG}
 	echo "AuthUser=${USER}"								>> ${ARQ_CONFIG}
 	echo "AuthPass=${PASSWORD}"							>> ${ARQ_CONFIG}
-	echo "AuthMetod=plain"								>> ${ARQ_CONFIG}
+	#echo "AuthMetod=plain"								>> ${ARQ_CONFIG}
 	echo "FromLineOverride=YES"							>> ${ARQ_CONFIG}
 	echo "Mailhub=smtp.gmail.com:587"					>> ${ARQ_CONFIG}
 	echo "UseTLS=YES"									>> ${ARQ_CONFIG}
 	echo "UseSTARTTLS=YES"								>> ${ARQ_CONFIG}
 	echo "AuthMethod=LOGIN"								>> ${ARQ_CONFIG}
-	echo "TLS_CA_File=/etc/pki/tls/certs/ca-bundle.crt"	>> ${ARQ_CONFIG}
+	#echo "TLS_CA_File=/etc/pki/tls/certs/ca-bundle.crt"	>> ${ARQ_CONFIG}
 	
 	echo "Changing permissions for ssmtp conf..."
 	chown -v root.mail ${ARQ_CONFIG}
