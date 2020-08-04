@@ -29,7 +29,7 @@ mysql_secure()
 	mysql -e "GRANT ALL ON *.* TO 'admin'@'localhost' IDENTIFIED BY '${PASSWORD}' WITH GRANT OPTION; FLUSH PRIVILEGES;"
 	mysql -e "GRANT ALL ON *.* TO 'root'@'localhost' IDENTIFIED VIA unix_socket; FLUSH PRIVILEGES;"
 	
-	mysql -u root -e "SHOW databases";
+	mysql -e "SHOW databases";
 	
 }
 
@@ -69,10 +69,10 @@ mysql_database()
 	#mysql -u root -e "SHOW DATABASES"
 	
 	echo "Creating lls database..."
-	mysql -u root -e "CREATE DATABASE bd_lls"
+	mysql -e "CREATE DATABASE bd_lls"
 	
 	echo "Show lls database..."
-	mysql -u root -D bd_lls -e "SELECT @@character_set_database; \
+	mysql -D bd_lls -e "SELECT @@character_set_database; \
 								SHOW VARIABLES LIKE 'character_set_%'; \
 								SHOW DATABASES; \
 								SHOW TABLE STATUS;"
@@ -82,7 +82,7 @@ mysql_database()
 mysql_show()
 {
 	clear &&
-	mysql -u root -e "show variables; show status" | awk '  
+	mysql -e "show variables; show status" | awk '  
 {
 VAR[$1]=$2  
 }
@@ -130,7 +130,7 @@ mysql_upgrade()
 	
 	mysql_upgrade -u root --force
 	
-	mysql -u root -e "FLUSH PRIVILEGES";
+	mysql -e "FLUSH PRIVILEGES";
 	
 }
 
