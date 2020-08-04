@@ -11,7 +11,7 @@ ubuntu_upgrade()
 	apt list --upgradable
 	apt -y upgrade
 	apt autoremove
-	reboot
+	#reboot
 	
 }
 
