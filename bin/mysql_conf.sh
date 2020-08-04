@@ -128,7 +128,7 @@ printf "+------------------------------------------+--------------------+\n"
 mysql_upgrade()
 {
 	
-	mysql_upgrade -u root --force
+	/usr/bin/mysql_upgrade --force
 	
 	mysql -e "FLUSH PRIVILEGES";
 	
