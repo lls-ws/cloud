@@ -27,8 +27,9 @@ mysql_secure()
 	/usr/bin/mysql_secure_installation
 	
 	mysql -e "GRANT ALL ON *.* TO 'admin'@'localhost' IDENTIFIED BY '${PASSWORD}' WITH GRANT OPTION; FLUSH PRIVILEGES;"
+	mysql -e "GRANT ALL ON *.* TO 'root'@'localhost' IDENTIFIED VIA unix_socket; FLUSH PRIVILEGES;"
 	
-	mysql -u admin --password=${PASSWORD} -e "SHOW databases";
+	mysql -u root -e "SHOW databases";
 	
 }
 
@@ -64,25 +65,24 @@ mysql_database()
 {
 	
 	#echo "Deleting lls database..."
-	#mysql -u root --password=${PASSWORD} -e "DROP DATABASE bd_lls; SHOW DATABASES"
-	#mysql -u root --password=${PASSWORD} -e "SHOW DATABASES"
+	#mysql -u root -e "DROP DATABASE bd_lls; SHOW DATABASES"
+	#mysql -u root -e "SHOW DATABASES"
 	
 	echo "Creating lls database..."
-	mysql -u admin --password=${PASSWORD} -e "CREATE DATABASE bd_lls; \
-		GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY '${PASSWORD}' WITH GRANT OPTION;"
+	mysql -u root -e "CREATE DATABASE bd_lls"
 	
 	echo "Show lls database..."
-	mysql -u admin --password=${PASSWORD} -D bd_lls -e "SELECT @@character_set_database; \
-													 SHOW VARIABLES LIKE 'character_set_%'; \
-													 SHOW DATABASES; \
-													 SHOW TABLE STATUS;"
+	mysql -u root -D bd_lls -e "SELECT @@character_set_database; \
+								SHOW VARIABLES LIKE 'character_set_%'; \
+								SHOW DATABASES; \
+								SHOW TABLE STATUS;"
 	
 }
 
 mysql_show()
 {
 	clear &&
-	mysql -u admin --password=${PASSWORD} -e "show variables; show status" | awk '  
+	mysql -u root -e "show variables; show status" | awk '  
 {
 VAR[$1]=$2  
 }
@@ -125,10 +125,20 @@ printf "+------------------------------------------+--------------------+\n"
 	systemctl status mariadb
 }
 
-mysql_atualizar()
+mysql_upgrade()
 {
-	mysql_upgrade -u admin --password="${PASSWORD}" --force
+	
+	mysql_upgrade -u root --force
+	
+	mysql -u root -e "FLUSH PRIVILEGES";
+	
 }
+
+if [ "$EUID" -ne 0 ]; then
+	echo "Rodar script como root"
+	exit 1
+  
+fi
 
 case "$1" in
 	install)
@@ -147,7 +157,7 @@ case "$1" in
 		mysql_show
 		;;	
 	upgrade)
-		mysql_atualizar
+		mysql_upgrade
 		;;
 	all)
 		mysql_install
