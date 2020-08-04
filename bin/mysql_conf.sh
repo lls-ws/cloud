@@ -125,7 +125,7 @@ printf "+------------------------------------------+--------------------+\n"
 	systemctl status mariadb
 }
 
-mysql_upgrade()
+mysql_update()
 {
 	
 	/usr/bin/mysql_upgrade --force
@@ -157,7 +157,7 @@ case "$1" in
 		mysql_show
 		;;	
 	upgrade)
-		mysql_upgrade
+		mysql_update
 		;;
 	all)
 		mysql_install
