@@ -97,7 +97,7 @@ ssh_create_remote()
 	echo "Deleting public key file..."
 	sudo rm -rfv cloud/ id_rsa.pub
 	
-	logout
+	exit
 	
 }
 
