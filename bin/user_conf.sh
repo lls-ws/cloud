@@ -29,6 +29,8 @@ change_hostname()
 	echo "Restarting hostname..."
 	sudo systemctl restart systemd-hostnamed
 	
+	sudo reboot
+	
 }
 
 add_user()
@@ -105,8 +107,6 @@ HOST="lls.net.br"
 HOSTNAME="$2"
 
 YEAR=`date +%Y`
-
-echo "${YEAR}"
 
 case "$1" in
 	root)
