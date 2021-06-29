@@ -7,8 +7,6 @@
 root_new_password()
 {
 	
-	#PASSWORD_ROOT="Lls#739200"
-	
 	echo "Change root password..."
 	sudo passwd root
 	
@@ -36,8 +34,6 @@ change_hostname()
 add_user()
 {
 	
-	#PASSWORD_USER="${HOSTNAME}#739200"
-	
 	echo "Adding user ${USER}"
 	sudo adduser ${USER}
 	
@@ -49,18 +45,16 @@ add_user()
 ssh_create_local()
 {
 	
-	HOST="lls.net.br"
-	
 	if [ "${HOSTNAME}" != "lls" ]; then
 
 		HOST="${HOSTNAME}.${HOST}"
 
 	fi
 	
-	KEY="/home/lls/.ssh/${USER}-${HOSTNAME}-2020.pem"
+	KEY="/home/lls/.ssh/${USER}-${HOSTNAME}-${YEAR}.pem"
 	USER="ubuntu"
 	
-	#echo "Creating key pair on user local..."
+	echo "Creating key pair on user local..."
 	#ssh-keygen -t rsa
 	
 	chmod -v 400 ${KEY}
@@ -107,7 +101,12 @@ USER="lls"
 DIR_SSH="/home/${USER}/.ssh"
 ARQ_AUTHORIZED_KEYS="${DIR_SSH}/authorized_keys"
 
+HOST="lls.net.br"
 HOSTNAME="$2"
+
+YEAR=`date +%Y`
+
+echo "${YEAR}"
 
 case "$1" in
 	root)
