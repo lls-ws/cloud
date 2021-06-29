@@ -57,7 +57,7 @@ ssh_create_local()
 	USER="ubuntu"
 	
 	echo "Creating key pair on user local..."
-	#ssh-keygen -t rsa
+	ssh-keygen -t rsa
 	
 	chmod -v 400 ${KEY}
 	
@@ -95,7 +95,9 @@ ssh_create_remote()
 	sudo cat ${ARQ_AUTHORIZED_KEYS}
 	
 	echo "Deleting public key file..."
-	sudo rm -fv id_rsa.pub *.sh
+	sudo rm -rfv cloud/ id_rsa.pub
+	
+	logout
 	
 }
 
