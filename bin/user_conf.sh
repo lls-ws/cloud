@@ -95,7 +95,7 @@ ssh_create_remote()
 	sudo cat ${ARQ_AUTHORIZED_KEYS}
 	
 	echo "Deleting public key file..."
-	sudo rm -rfv cloud/ id_rsa.pub
+	sudo rm -rf cloud/ id_rsa.pub
 	
 	exit
 	
