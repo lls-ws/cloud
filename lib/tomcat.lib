@@ -9,6 +9,7 @@ PASSWORD="Lls#739200"
 DIR_USER="/home/${USER}"
 DIR_TOMCAT="/usr/share/tomcat"
 DIR_TOMCAT_CONF="${DIR_TOMCAT}/conf"
+
 ARQ_TOMCAT_USERS="${DIR_TOMCAT_CONF}/tomcat-users.xml"
 ARQ_TOMCAT_SERVER="${DIR_TOMCAT_CONF}/server.xml"
 ARQ_CATALINA_OPTS="${DIR_TOMCAT_CONF}/conf.d/catalina_opts.conf"

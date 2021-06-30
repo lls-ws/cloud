@@ -101,7 +101,7 @@ ssh_create_remote()
 	
 }
 
-USER="lls"
+USER=`git config user.name`
 DIR_SSH="/home/${USER}/.ssh"
 ARQ_AUTHORIZED_KEYS="${DIR_SSH}/authorized_keys"
 
