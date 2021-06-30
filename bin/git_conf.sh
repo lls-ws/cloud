@@ -7,6 +7,7 @@ git_update()
 {
 	
 	echo "Updating a local repository with changes from a GitHub repository..."
+	git config pull.ff only
 	git pull origin master
 	
 }
