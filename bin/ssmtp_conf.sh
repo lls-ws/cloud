@@ -1,11 +1,10 @@
 #!/bin/sh
 # Script para configurar o Ssmtp no cloud Ubuntu Server 20.04 LTS 64 bits
-#
-# With the following Google settings:
+# Change this Google settings:
 # IMAP enabled
 # Allow less secure apps is ON
 # Turn on 2-Step Verification
-# Set an app-password for ssmtp and save it 
+# Set an app-password for ssmtp
 #
 # Autor: Leandro Luiz
 # email: lls.homeoffice@gmail.com
@@ -32,12 +31,10 @@ ssmtp_config()
 	
 	echo "root=${EMAIL}"		  						> ${ARQ_CONFIG}
 	echo "hostname=${HOSTNAME}"							>> ${ARQ_CONFIG}
-	#echo "#rewriteDomain="								>> ${ARQ_CONFIG}
 	echo "AuthUser=${EMAIL}"							>> ${ARQ_CONFIG}
 	echo "AuthPass=${SSMTP_APP_PASSWORD}"				>> ${ARQ_CONFIG}
 	echo "FromLineOverride=YES"							>> ${ARQ_CONFIG}
 	echo "Mailhub=smtp.gmail.com:587"					>> ${ARQ_CONFIG}
-	#echo "#UseTLS=YES"									>> ${ARQ_CONFIG}
 	echo "UseSTARTTLS=YES"								>> ${ARQ_CONFIG}
 	echo "AuthMethod=LOGIN"								>> ${ARQ_CONFIG}
 	

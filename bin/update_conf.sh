@@ -31,6 +31,7 @@ JULHO(2021){
  (  ) 
  (ok) iptables_config.sh
  (ok) ssmtp_config.sh
+ (ok) ssmtp_app_password.doc
  }
 }
 
