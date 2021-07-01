@@ -42,9 +42,13 @@ iptables_rules()
 	
 	iptables-restore -n < ${RULES}
 	
+	cat ${RULES}
+	
 	RULES="/etc/sysctl.conf"
 	
 	echo "net.ipv4.ip_forward=1"													>> ${RULES}
+	
+	cat ${RULES}
 	
 	/usr/sbin/netfilter-persistent save
 	/usr/sbin/netfilter-persistent reload
