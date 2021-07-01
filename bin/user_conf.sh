@@ -111,6 +111,7 @@ USER=`git config user.name`
 
 if [ -z "${USER}" ]; then
 		
+	echo "Not found a user name!"
 	echo "Use: git_conf.sh name {NAME}"
 	exit 1
 	

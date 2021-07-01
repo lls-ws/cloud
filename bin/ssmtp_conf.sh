@@ -68,6 +68,7 @@ EMAIL=`git config user.email`
 
 if [ -z "${EMAIL}" ]; then
 		
+	echo "Not found a email!"
 	echo "Use: git_conf.sh email {EMAIL}"
 	exit 1
 	
