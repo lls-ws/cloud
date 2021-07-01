@@ -30,15 +30,14 @@ ssmtp_config()
 	
 	ARQ_CONFIG="/etc/ssmtp/ssmtp.conf"
 	
-	#echo "root=postmaster"		  						> ${ARQ_CONFIG}
 	echo "root=${EMAIL}"		  						> ${ARQ_CONFIG}
 	echo "hostname=${HOSTNAME}"							>> ${ARQ_CONFIG}
-	echo "#rewriteDomain="								>> ${ARQ_CONFIG}
+	#echo "#rewriteDomain="								>> ${ARQ_CONFIG}
 	echo "AuthUser=${EMAIL}"							>> ${ARQ_CONFIG}
 	echo "AuthPass=${PASSWORD}"							>> ${ARQ_CONFIG}
 	echo "FromLineOverride=YES"							>> ${ARQ_CONFIG}
 	echo "Mailhub=smtp.gmail.com:587"					>> ${ARQ_CONFIG}
-	echo "#UseTLS=YES"									>> ${ARQ_CONFIG}
+	#echo "#UseTLS=YES"									>> ${ARQ_CONFIG}
 	echo "UseSTARTTLS=YES"								>> ${ARQ_CONFIG}
 	echo "AuthMethod=LOGIN"								>> ${ARQ_CONFIG}
 	
@@ -64,11 +63,26 @@ if [ "$EUID" -ne 0 ]; then
   
 fi
 
-EMAIL=`git config user.email`
-USER=${EMAIL%@*}
-#PASSWORD=`git config user.password`
-PASSWORD="hwbuotzztpotepxv"
 HOSTNAME=`hostname`
+EMAIL=`git config user.email`
+
+if [ -z "${EMAIL}" ]; then
+		
+	echo "Use: git_conf.sh email {EMAIL}"
+	exit 1
+	
+fi
+
+USER=${EMAIL%@*}
+
+PASSWORD=`git config user.ssmtp`
+
+if [ -z "${PASSWORD}" ]; then
+		
+	echo "Use: git_conf.sh ssmtp {SSMTP_APP_PASSWORD}"
+	exit 1
+	
+fi
 
 case "$1" in
 	install)

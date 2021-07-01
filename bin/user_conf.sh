@@ -101,14 +101,20 @@ ssh_create_remote()
 	
 }
 
-USER=`git config user.name`
 DIR_SSH="/home/${USER}/.ssh"
 ARQ_AUTHORIZED_KEYS="${DIR_SSH}/authorized_keys"
-
 HOST="lls.net.br"
+YEAR=`date +%Y`
 HOSTNAME="$2"
 
-YEAR=`date +%Y`
+USER=`git config user.name`
+
+if [ -z "${USER}" ]; then
+		
+	echo "Use: git_conf.sh name {NAME}"
+	exit 1
+	
+fi
 
 case "$1" in
 	root)

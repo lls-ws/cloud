@@ -128,8 +128,11 @@ case "$1" in
 	token)    	
 		git_conf "token" "$2"
 		;;
+	ssmtp)    	
+		git_conf "ssmtp" "$2"
+		;;
 	*)
-		echo "Use: $(basename $0) {name|email|password|token|show|local|clone|remote}"
+		echo "Use: $(basename $0) {name|email|password|token|ssmtp|show|local|clone|remote}"
 		exit 1
 		;;
 esac
