@@ -20,7 +20,7 @@ ssmtp_config()
 	
 	ARQ_CONFIG="/etc/ssmtp/revaliases"
 	
-	echo "root:${EMAIL}:smtp.gmail.com:587" 			>> ${ARQ_CONFIG}
+	echo "root:${EMAIL}:smtp.gmail.com:587" 			> ${ARQ_CONFIG}
 	
 	echo "Changing permissions for revaliases..."
 	chown -v root.mail ${ARQ_CONFIG}
