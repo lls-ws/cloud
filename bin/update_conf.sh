@@ -28,7 +28,7 @@ JULHO(2021){
  (ok) ubuntu_conf.sh
  (ok) iptables_config.sh
  (ok) ssmtp_config.sh
- (ok) GoogleDrive:_ssmtp_app_password.doc
+ (ok) GoogleDrive: ssmtp_app_password.doc
  }
 }
 (02/07/2021){
