@@ -34,7 +34,7 @@ ssmtp_config()
 	echo "hostname=${HOSTNAME}"							>> ${ARQ_CONFIG}
 	#echo "#rewriteDomain="								>> ${ARQ_CONFIG}
 	echo "AuthUser=${EMAIL}"							>> ${ARQ_CONFIG}
-	echo "AuthPass=${PASSWORD}"							>> ${ARQ_CONFIG}
+	echo "AuthPass=${SSMTP_APP_PASSWORD}"				>> ${ARQ_CONFIG}
 	echo "FromLineOverride=YES"							>> ${ARQ_CONFIG}
 	echo "Mailhub=smtp.gmail.com:587"					>> ${ARQ_CONFIG}
 	#echo "#UseTLS=YES"									>> ${ARQ_CONFIG}
@@ -76,10 +76,11 @@ fi
 
 USER=${EMAIL%@*}
 
-PASSWORD=`git config user.ssmtp`
+SSMTP_APP_PASSWORD=`git config user.ssmtp`
 
-if [ -z "${PASSWORD}" ]; then
-		
+if [ -z "${SSMTP_APP_PASSWORD}" ]; then
+	
+	echo "Not found a ssmtp app password!"
 	echo "Use: git_conf.sh ssmtp {SSMTP_APP_PASSWORD}"
 	exit 1
 	
@@ -90,15 +91,6 @@ case "$1" in
 		ssmtp_install
 		;;
 	config)
-		
-		if [ -z "${USER}" -o -z "${EMAIL}" -o -z "${PASSWORD}" ]; then
-		
-			echo "Usuário, Email ou Senha não informado!"
-			echo "Use: git_conf.sh {name|email|password} [NAME|EMAIL|PASSWORD]"
-			exit 1
-		
-		fi
-		
 		ssmtp_config
 		;;
 	all)
