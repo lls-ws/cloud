@@ -27,6 +27,7 @@ JULHO(2021){
 (  ) Configurar Ubuntu pelo GitHub {
  (ok) ubuntu_conf.sh
  (ok) ssmtp_config.sh
+ (  ) 
  (  ) iptables_config.sh
  (  ) 
  }

@@ -27,7 +27,6 @@ iptables_rules()
 	RULES="/etc/iptables/rules.v4"
 	
 	echo "*filter"																	> ${RULES}
-	echo "*filter"																	> ${RULES}
 	echo ":INPUT ACCEPT [0:0]"														>> ${RULES}
 	echo ":FORWARD ACCEPT [0:0]"													>> ${RULES}
 	echo ":OUTPUT ACCEPT [0:0]"														>> ${RULES}
