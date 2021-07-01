@@ -5,9 +5,7 @@
 # IMAP enabled
 # Allow less secure apps is ON
 # Turn on 2-Step Verification
-#
-# Link to enable this app to send email on Google
-# https://accounts.google.com/DisplayUnlockCaptcha
+# Set an app-password for ssmtp and save it 
 #
 # Autor: Leandro Luiz
 # email: lls.homeoffice@gmail.com
@@ -28,14 +26,12 @@ ssmtp_config()
 	echo "root:${EMAIL}:smtp.gmail.com:587" 			> ${ARQ_CONFIG}
 	
 	echo "Changing permissions for revaliases..."
-	chown -v root.mail ${ARQ_CONFIG}
-	chmod -v 640 ${ARQ_CONFIG}
-	cat ${ARQ_CONFIG}
+	ssmtp_change
 	
 	ARQ_CONFIG="/etc/ssmtp/ssmtp.conf"
 	
-	echo "root=postmaster"		  						> ${ARQ_CONFIG}
-	echo "root=${EMAIL}"		  						>> ${ARQ_CONFIG}
+	#echo "root=postmaster"		  						> ${ARQ_CONFIG}
+	echo "root=${EMAIL}"		  						> ${ARQ_CONFIG}
 	echo "hostname=${HOSTNAME}"							>> ${ARQ_CONFIG}
 	echo "#rewriteDomain="								>> ${ARQ_CONFIG}
 	echo "AuthUser=${EMAIL}"							>> ${ARQ_CONFIG}
@@ -47,8 +43,17 @@ ssmtp_config()
 	echo "AuthMethod=LOGIN"								>> ${ARQ_CONFIG}
 	
 	echo "Changing permissions for ssmtp conf..."
+	ssmtp_change
+	
+}
+
+ssmtp_change()
+{
+	
 	chown -v root.mail ${ARQ_CONFIG}
+	
 	chmod -v 640 ${ARQ_CONFIG}
+	
 	cat ${ARQ_CONFIG}
 	
 }
