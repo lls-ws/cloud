@@ -57,11 +57,6 @@ EMAIL=`git config user.email`
 USER=${EMAIL%@*}
 PASSWORD=`git config user.password`
 
-echo "${USER}"
-echo "${EMAIL}"
-echo "${PASSWORD}"
-exit 1
-
 case "$1" in
 	install)
 		ssmtp_install
