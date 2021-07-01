@@ -26,7 +26,8 @@ iptables_rules()
 	
 	RULES="/etc/iptables/rules.v4"
 	
-	echo "*filter"																	>> ${RULES}
+	echo "*filter"																	> ${RULES}
+	echo "*filter"																	> ${RULES}
 	echo ":INPUT ACCEPT [0:0]"														>> ${RULES}
 	echo ":FORWARD ACCEPT [0:0]"													>> ${RULES}
 	echo ":OUTPUT ACCEPT [0:0]"														>> ${RULES}
@@ -48,7 +49,7 @@ iptables_rules()
 	
 	echo "net.ipv4.ip_forward=1"													>> ${RULES}
 	
-	cat ${RULES}
+	cat ${RULES} | tail -2
 	
 	/usr/sbin/netfilter-persistent save
 	/usr/sbin/netfilter-persistent reload
