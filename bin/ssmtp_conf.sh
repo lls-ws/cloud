@@ -63,7 +63,7 @@ case "$1" in
 		;;
 	config)
 		
-		if [ -z "${USER}" -o -z "${EMAIL}" -o -z "${PASSWORD}"]; then
+		if [ -z "${USER}" -o -z "${EMAIL}" -o -z "${PASSWORD}" ]; then
 		
 			echo "Usuário, Email ou Senha não informado!"
 			echo "Use: git_conf.sh {name|email|password} [NAME|EMAIL|PASSWORD]"
