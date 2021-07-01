@@ -4,6 +4,7 @@
 # With the following Google settings:
 # IMAP enabled
 # Allow less secure apps is ON
+# Turn on 2-Step Verification
 #
 # Link to enable this app to send email on Google
 # https://accounts.google.com/DisplayUnlockCaptcha
@@ -41,7 +42,7 @@ ssmtp_config()
 	echo "AuthPass=${PASSWORD}"							>> ${ARQ_CONFIG}
 	echo "FromLineOverride=YES"							>> ${ARQ_CONFIG}
 	echo "Mailhub=smtp.gmail.com:587"					>> ${ARQ_CONFIG}
-	echo "UseTLS=YES"									>> ${ARQ_CONFIG}
+	echo "#UseTLS=YES"									>> ${ARQ_CONFIG}
 	echo "UseSTARTTLS=YES"								>> ${ARQ_CONFIG}
 	echo "AuthMethod=LOGIN"								>> ${ARQ_CONFIG}
 	
@@ -60,7 +61,8 @@ fi
 
 EMAIL=`git config user.email`
 USER=${EMAIL%@*}
-PASSWORD=`git config user.password`
+#PASSWORD=`git config user.password`
+PASSWORD="hwbuotzztpotepxv"
 HOSTNAME=`hostname`
 
 case "$1" in
