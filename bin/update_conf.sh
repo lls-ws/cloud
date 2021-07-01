@@ -24,14 +24,18 @@ JUNHO(2021){
 
 JULHO(2021){
 (01/07/2021){
-(  ) Configurar Ubuntu pelo GitHub {
+(OK) Configurar Ubuntu pelo GitHub {
  (ok) ubuntu_conf.sh
- (  ) 
- (  ) 
- (  ) 
  (ok) iptables_config.sh
  (ok) ssmtp_config.sh
  (ok) ssmtp_app_password.doc
+ }
+}
+(02/07/2021){
+(  ) Configurar Servidores pelo GitHub {
+ (  ) mariadb_conf.sh
+ (  ) java_conf.sh
+ (  ) tomcat_conf.sh
  }
 }
 
