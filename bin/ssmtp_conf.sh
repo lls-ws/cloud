@@ -20,7 +20,7 @@ ssmtp_config()
 	
 	ARQ_CONFIG="/etc/ssmtp/revaliases"
 	
-	echo "root:${USER}@gmail.com:smtp.gmail.com:587" >> ${ARQ_CONFIG}
+	echo "root:${EMAIL}:smtp.gmail.com:587" 			>> ${ARQ_CONFIG}
 	
 	echo "Changing permissions for revaliases..."
 	chown -v root.mail ${ARQ_CONFIG}
@@ -29,7 +29,7 @@ ssmtp_config()
 	
 	ARQ_CONFIG="/etc/ssmtp/ssmtp.conf"
 	
-	echo "root=${USER}@gmail.com"  						> ${ARQ_CONFIG}
+	echo "root=${EMAIL}"		  						> ${ARQ_CONFIG}
 	echo "hostname=localhost"							>> ${ARQ_CONFIG}
 	echo "rewriteDomain="								>> ${ARQ_CONFIG}
 	echo "AuthUser=${USER}"								>> ${ARQ_CONFIG}
@@ -53,8 +53,14 @@ if [ "$EUID" -ne 0 ]; then
   
 fi
 
-USER="$2"
-PASSWORD="$3"
+EMAIL=`git config user.email`
+USER=${EMAIL%@*}
+PASSWORD=`git config user.password`
+
+echo "${USER}"
+echo "${EMAIL}"
+echo "${PASSWORD}"
+exit 1
 
 case "$1" in
 	install)
@@ -62,10 +68,10 @@ case "$1" in
 		;;
 	config)
 		
-		if [ -z "${USER}" -o -z "${PASSWORD}" ]; then
+		if [ -z "${USER}" -o -z "${EMAIL}" -o -z "${PASSWORD}"]; then
 		
-			echo "Usuário ou Senha não informado!"
-			echo "Use: $0 {config} {user} {password}"
+			echo "Usuário, Email ou Senha não informado!"
+			echo "Use: git_conf.sh {name|email|password} [NAME|EMAIL|PASSWORD]"
 			exit 1
 		
 		fi
