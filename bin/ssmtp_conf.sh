@@ -35,8 +35,8 @@ ssmtp_config()
 	
 	echo "root=postmaster"		  						> ${ARQ_CONFIG}
 	echo "root=${EMAIL}"		  						>> ${ARQ_CONFIG}
-	echo "hostname=localhost"							>> ${ARQ_CONFIG}
-	echo "rewriteDomain="								>> ${ARQ_CONFIG}
+	echo "hostname=${HOSTNAME}"							>> ${ARQ_CONFIG}
+	echo "#rewriteDomain="								>> ${ARQ_CONFIG}
 	echo "AuthUser=${EMAIL}"							>> ${ARQ_CONFIG}
 	echo "AuthPass=${PASSWORD}"							>> ${ARQ_CONFIG}
 	echo "FromLineOverride=YES"							>> ${ARQ_CONFIG}
@@ -61,6 +61,7 @@ fi
 EMAIL=`git config user.email`
 USER=${EMAIL%@*}
 PASSWORD=`git config user.password`
+HOSTNAME=`hostname`
 
 case "$1" in
 	install)
