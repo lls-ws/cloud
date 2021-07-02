@@ -32,12 +32,15 @@ JULHO(2021){
  }
 }
 (02/07/2021){
-(  ) Configurar Servidores {
+(OK) Configurar Servidores {
  (ok) mariadb_conf.sh
  (ok) java_conf.sh
- (  ) tomcat_conf.sh
- (  ) cloud.lib
+ (ok) cloud.lib
  }
 }
-
+(03/07/2021){
+(  ) Configurar Tomcat {
+ (  ) tomcat_conf.sh
+ }
+}
 }
