@@ -101,19 +101,10 @@ ssh_create_remote()
 	
 }
 
-USER=`git config user.name`
-
-if [ -z "${USER}" ]; then
-		
-	echo "Not found a user name!"
-	echo "Use: git_conf.sh name {NAME}"
-	exit 1
-	
-fi
-
+USER="lls"
 DIR_SSH="/home/${USER}/.ssh"
 ARQ_AUTHORIZED_KEYS="${DIR_SSH}/authorized_keys"
-HOST="lls.net.br"
+HOST="${USER}.net.br"
 YEAR=`date +%Y`
 HOSTNAME="$2"
 
@@ -128,12 +119,9 @@ case "$1" in
 			echo "Use: $0 hostname {name}"
 			exit 1
 		
-		else
-		
-			change_hostname
-		
 		fi
 		
+		change_hostname
 		;;
 	user)
 		add_user

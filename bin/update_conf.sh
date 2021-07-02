@@ -10,7 +10,7 @@ JUNHO(2021){
  }
 }
 (29/06/2021){
-(OK) Configurar Usuário pelo GitHub {
+(OK) Configurar Usuário {
  (ok) user_conf.sh
  }
 }
@@ -24,7 +24,7 @@ JUNHO(2021){
 
 JULHO(2021){
 (01/07/2021){
-(OK) Configurar Ubuntu pelo GitHub {
+(OK) Configurar Ubuntu {
  (ok) ubuntu_conf.sh
  (ok) iptables_config.sh
  (ok) ssmtp_config.sh
@@ -32,7 +32,7 @@ JULHO(2021){
  }
 }
 (02/07/2021){
-(  ) Configurar Servidores pelo GitHub {
+(  ) Configurar Servidores {
  (ok) mariadb_conf.sh
  (ok) java_conf.sh
  (  ) tomcat_conf.sh
