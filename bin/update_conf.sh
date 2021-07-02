@@ -33,7 +33,7 @@ JULHO(2021){
 }
 (02/07/2021){
 (  ) Configurar Servidores pelo GitHub {
- (  ) mariadb_conf.sh
+ (ok) mariadb_conf.sh
  (  ) java_conf.sh
  (  ) tomcat_conf.sh
  }
