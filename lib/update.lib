@@ -26,3 +26,9 @@ lib_update()
 	fi
 	
 }
+
+if [ "$EUID" -ne 0 ]; then
+	echo "Rodar script como root"
+	exit 1
+  
+fi

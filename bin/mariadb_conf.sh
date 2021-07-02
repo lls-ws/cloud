@@ -148,12 +148,6 @@ mysql_uninstall()
 	
 }
 
-if [ "$EUID" -ne 0 ]; then
-	echo "Rodar script como root"
-	exit 1
-  
-fi
-
 PASSWORD=`git config user.password`
 
 if [ -z "${PASSWORD}" ]; then
