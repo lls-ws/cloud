@@ -135,8 +135,6 @@ mysql_update()
 	
 	mysql -e "FLUSH PRIVILEGES";
 	
-	mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password USING PASSWORD('${PASSWORD}');"
-	
 }
 
 mysql_uninstall()
