@@ -1,5 +1,5 @@
-#!/bin/sh
-# Biblioteca para Shell Script
+#!/bin/bash
+# Biblioteca para os Scripts de Configuração do Cloud
 #
 # Autor: Leandro Luiz
 # email: lls.homeoffice@gmail.com

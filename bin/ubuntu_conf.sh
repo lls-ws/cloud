@@ -1,8 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 # Script para configurar o cloud Ubuntu Server 20.04 LTS 64 bits
 #
 # Autor: Leandro Luiz
 # email: lls.homeoffice@gmail.com
+
+# Caminho das bibliotecas
+PATH=.:$(dirname $0):$PATH
+. lib/cloud.lib		|| exit 1
 
 ubuntu_upgrade()
 {
@@ -74,12 +78,6 @@ check_version()
 	apt-cache show mariadb
 	
 }
-
-if [ "$EUID" -ne 0 ]; then
-	echo "Rodar script como root"
-	exit 1
-  
-fi
 
 case "$1" in
 	upgrade)

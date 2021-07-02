@@ -1,8 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 # Script para configurar o Iptables no cloud Ubuntu Server 20.04 LTS 64 bits
 #
 # Autor: Leandro Luiz
 # email: lls.homeoffice@gmail.com
+
+# Caminho das bibliotecas
+PATH=.:$(dirname $0):$PATH
+. lib/cloud.lib		|| exit 1
 
 iptables_install()
 {

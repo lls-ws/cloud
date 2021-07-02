@@ -3,6 +3,10 @@
 #
 # email: lls.homeoffice@gmail.com
 
+# Caminho das bibliotecas
+PATH=.:$(dirname $0):$PATH
+. lib/cloud.lib		|| exit 1
+
 git_update()
 {
 	
@@ -96,12 +100,6 @@ git_show()
 }
 
 URL="https://github.com/lls-ws"
-
-if [ "$EUID" -ne 0 ]; then
-	echo "Rodar script como root"
-	exit 1
-  
-fi
 
 case "$1" in
 	show)    	

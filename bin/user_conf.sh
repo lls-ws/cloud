@@ -101,12 +101,6 @@ ssh_create_remote()
 	
 }
 
-DIR_SSH="/home/${USER}/.ssh"
-ARQ_AUTHORIZED_KEYS="${DIR_SSH}/authorized_keys"
-HOST="lls.net.br"
-YEAR=`date +%Y`
-HOSTNAME="$2"
-
 USER=`git config user.name`
 
 if [ -z "${USER}" ]; then
@@ -116,6 +110,12 @@ if [ -z "${USER}" ]; then
 	exit 1
 	
 fi
+
+DIR_SSH="/home/${USER}/.ssh"
+ARQ_AUTHORIZED_KEYS="${DIR_SSH}/authorized_keys"
+HOST="lls.net.br"
+YEAR=`date +%Y`
+HOSTNAME="$2"
 
 case "$1" in
 	root)

@@ -36,6 +36,7 @@ JULHO(2021){
  (ok) mariadb_conf.sh
  (ok) java_conf.sh
  (  ) tomcat_conf.sh
+ (  ) cloud.lib
  }
 }
 

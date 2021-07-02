@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Script para configurar o Ssmtp no cloud Ubuntu Server 20.04 LTS 64 bits
 # Change this Google settings:
 # IMAP enabled
@@ -8,6 +8,10 @@
 #
 # Autor: Leandro Luiz
 # email: lls.homeoffice@gmail.com
+
+# Caminho das bibliotecas
+PATH=.:$(dirname $0):$PATH
+. lib/cloud.lib		|| exit 1
 
 ssmtp_install()
 {
@@ -53,12 +57,6 @@ ssmtp_change()
 	cat ${ARQ_CONFIG}
 	
 }
-
-if [ "$EUID" -ne 0 ]; then
-	echo "Rodar script como root"
-	exit 1
-  
-fi
 
 HOSTNAME=`hostname`
 EMAIL=`git config user.email`

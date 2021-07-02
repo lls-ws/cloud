@@ -6,7 +6,7 @@
 
 # Caminho das bibliotecas
 PATH=.:$(dirname $0):$PATH
-. lib/update.lib		|| exit 1
+. lib/cloud.lib		|| exit 1
 
 mysql_install()
 {
