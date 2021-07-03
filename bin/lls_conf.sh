@@ -30,9 +30,9 @@ lls_install()
 	
 	tar -xvzf ${ARQ_LLS} -C ${DIR_TOMCAT}
 	
-	chmow -R tomcat.tomcat ${DIR_TOMCAT}/${DIR_LLS}
+	chown -R tomcat.tomcat ${DIR_TOMCAT}/${DIR_LLS}
 	
-	la -al ${DIR_TOMCAT}/${DIR_LLS}
+	ls -al ${DIR_TOMCAT}/${DIR_LLS}
 	
 	du -hsc ${DIR_TOMCAT}/${DIR_LLS}
 	
