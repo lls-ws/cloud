@@ -23,7 +23,7 @@ tomcat_config()
 	echo "Create tomcat user and group..."
 	groupadd --system tomcat
 	cat /etc/group | tail -1
-	useradd -d /usr/share/tomcat -r -s /bin/false -g tomcat tomcat
+	useradd -d ${DIR_TOMCAT} -r -s /bin/false -g tomcat tomcat
 	cat /etc/passwd | tail -1
 	
 }
@@ -42,15 +42,15 @@ tomcat_install()
 	
 	echo "Remove tomcat tar..."
 	rm -fv ${ARQ_TOMCAT}
-	rm -fv /usr/share/tomcat 2> /dev/null
+	rm -fv ${DIR_TOMCAT} 2> /dev/null
 	
 	echo "Create symlink to extracted tomcat data..."
-	ln -s /usr/share/apache-tomcat-${RELEASE}/ /usr/share/tomcat
+	ln -s /usr/share/apache-tomcat-${RELEASE}/ ${DIR_TOMCAT}
 	
-	ls -al /usr/share/tomcat
+	ls -al ${DIR_TOMCAT}
 	
 	echo "Set proper directory permissions..."
-	chown -R tomcat:tomcat /usr/share/tomcat
+	chown -R tomcat:tomcat ${DIR_TOMCAT}
 	chown -R tomcat:tomcat /usr/share/apache-tomcat-${RELEASE}/
 	
 	ls -al /usr/share/apache-tomcat-${RELEASE}/
@@ -60,7 +60,7 @@ tomcat_install()
 tomcat_users()
 {	
 	
-	ARQ_CONFIG="/usr/share/tomcat/conf/tomcat-users.xml"
+	ARQ_CONFIG="${DIR_TOMCAT}/conf/tomcat-users.xml"
 	
 	sed -i '/<\/tomcat-users>/i <role rolename="admin-gui"\/>' ${ARQ_CONFIG}
 	sed -i '/<\/tomcat-users>/i <role rolename="manager-gui"\/>' ${ARQ_CONFIG}
@@ -136,6 +136,7 @@ memory_show()
 VERSAO="7"
 RELEASE="${VERSAO}.0.109"
 ARQ_TOMCAT="apache-tomcat-${RELEASE}.tar.gz"
+DIR_TOMCAT="/usr/share/tomcat"
 
 PASSWORD=`git config user.password`
 
