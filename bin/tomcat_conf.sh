@@ -57,6 +57,31 @@ tomcat_install()
 	
 }
 
+tomcat_users()
+{	
+	
+	ARQ_CONFIG="/usr/share/tomcat/conf/tomcat-users.xml"
+	
+	sed -i '/<\/tomcat-users>/i <role rolename="admin-gui"\/>' ${ARQ_CONFIG}
+	sed -i '/<\/tomcat-users>/i <role rolename="manager-gui"\/>' ${ARQ_CONFIG}
+	sed -i '/<\/tomcat-users>/i <user username="admin" password="'${PASSWORD}'" fullName="Administrator" roles="admin-gui,manager-gui"\/>' ${ARQ_CONFIG}
+	
+	cat ${ARQ_CONFIG}
+	
+}
+
+tomcat_setenv()
+{	
+	
+	FILE_CONF="setenv.sh"
+	DIR_CONF="usr/share/tomcat/bin"
+	
+	lib_update
+	
+	chmod -v 755 /${DIR_CONF}/${FILE_CONF}
+	
+}
+
 tomcat_service()
 {
 	
@@ -82,28 +107,6 @@ tomcat_enable()
 	sleep 5
 	
 	tomcat_show
-	
-}
-
-tomcat_users()
-{	
-	
-	FILE_CONF="tomcat-users.xml"
-	DIR_CONF="usr/share/tomcat/conf"
-	
-	lib_update
-	
-}
-
-tomcat_setenv()
-{	
-	
-	FILE_CONF="setenv.sh"
-	DIR_CONF="usr/share/tomcat/bin"
-	
-	lib_update
-	
-	chmod -v 755 /${DIR_CONF}/${FILE_CONF}
 	
 }
 
@@ -133,6 +136,16 @@ memory_show()
 VERSAO="7"
 RELEASE="${VERSAO}.0.109"
 ARQ_TOMCAT="apache-tomcat-${RELEASE}.tar.gz"
+
+PASSWORD=`git config user.password`
+
+if [ -z "${PASSWORD}" ]; then
+	
+	echo "Not found a user password!"
+	echo "Use: git_conf.sh password {PASSWORD}"
+	exit 1
+	
+fi
 
 case "$1" in
 	download)
@@ -170,6 +183,8 @@ case "$1" in
 		tomcat_setenv
 		tomcat_service
 		tomcat_enable
+		tomcat_show
+		memory_show
 		;;
 	*)
 		echo "Use: $0 {all|download|config|install|service|enable|users|setenv|show|memory}"
