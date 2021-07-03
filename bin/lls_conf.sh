@@ -39,6 +39,13 @@ lls_install()
 	
 	du -hsc ${DIR_TOMCAT}/${DIR_LLS}
 	
+}
+
+lls_server()
+{
+	
+	# Configurar o server.xml
+	
 	echo "Starting tomcat..."
 	service tomcat start
 	
