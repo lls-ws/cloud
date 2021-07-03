@@ -20,6 +20,9 @@ lls_create()
 	
 	du -hsc ${ARQ_LLS}
 	
+	echo "Starting tomcat..."
+	service tomcat start
+	
 }
 
 lls_install()
@@ -35,6 +38,9 @@ lls_install()
 	ls -al ${DIR_TOMCAT}/${DIR_LLS}
 	
 	du -hsc ${DIR_TOMCAT}/${DIR_LLS}
+	
+	echo "Starting tomcat..."
+	service tomcat start
 	
 }
 
