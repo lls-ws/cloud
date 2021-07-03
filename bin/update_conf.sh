@@ -40,7 +40,8 @@ JULHO(2021){
 }
 (03/07/2021){
 (  ) Configurar Tomcat {
- (  ) tomcat_conf.sh
+ (ok) tomcat_conf.sh
+ (ok) 
  }
 }
 }

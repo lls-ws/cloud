@@ -183,7 +183,6 @@ case "$1" in
 		tomcat_setenv
 		tomcat_service
 		tomcat_enable
-		tomcat_show
 		memory_show
 		;;
 	*)
