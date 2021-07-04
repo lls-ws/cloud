@@ -49,6 +49,8 @@ lls_server()
 	
 	ARQ_CONFIG="${DIR_TOMCAT_CONF}/server.xml"
 	
+	file_backup
+	
 	sed -i '/connectionTimeout/a \	\	\	\	enableLookups="false"' ${ARQ_CONFIG}
 	sed -i '/Connector port="8443"/i \	--\>' ${ARQ_CONFIG}
 	
@@ -66,24 +68,6 @@ lls_server()
 	
 	echo "Starting tomcat..."
 	service tomcat start
-	
-}
-
-lls_crontab()
-{
-	
-	ARQ_CONFIG="/var/spool/cron/crontabs/root"
-	
-	chmod -v 0600 ${ARQ_CONFIG}
-	
-	echo "20 18 * * * bash /home/lls/addons/bin/backup_bd_lls.sh send > /dev/null 2>&1" > ${ARQ_CONFIG}
-	echo "0 5 * * * /usr/sbin/reboot" >> ${ARQ_CONFIG}
-	
-	echo "Show crontab jobs..."
-	crontab -l
-	
-	echo "Restarting crontab..."
-	service cron restart
 	
 }
 

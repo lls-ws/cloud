@@ -64,6 +64,8 @@ tomcat_users()
 	
 	ARQ_CONFIG="${DIR_TOMCAT_CONF}/tomcat-users.xml"
 	
+	file_backup
+	
 	sed -i '/<\/tomcat-users>/i <role rolename="admin-gui"\/>' ${ARQ_CONFIG}
 	sed -i '/<\/tomcat-users>/i <role rolename="manager-gui"\/>' ${ARQ_CONFIG}
 	sed -i '/<\/tomcat-users>/i <user username="admin" password="'${PASSWORD}'" fullName="Administrator" roles="admin-gui,manager-gui"\/>' ${ARQ_CONFIG}

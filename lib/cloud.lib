@@ -27,6 +27,22 @@ lib_update()
 	
 }
 
+file_backup()
+{
+	
+	if [ ! -f ${ARQ_CONFIG} ]; then
+	
+		echo "File not found!"
+		exit 1
+	
+	fi
+	
+	cp -fv ${ARQ_CONFIG} ${ARQ_CONFIG}.bak
+	
+	du -hsc ${ARQ_CONFIG}.bak
+	
+}
+
 if [ "$EUID" -ne 0 ]; then
 	echo "Rodar script como root"
 	exit 1
