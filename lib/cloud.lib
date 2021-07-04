@@ -37,7 +37,15 @@ file_backup()
 	
 	fi
 	
-	cp -fv ${ARQ_CONFIG} ${ARQ_CONFIG}.bak
+	if [ ! -f ${ARQ_CONFIG}.bak ]; then
+	
+		cp -fv ${ARQ_CONFIG} ${ARQ_CONFIG}.bak
+	
+	else
+	
+		echo "File already has a backup!"
+	
+	fi
 	
 	du -hsc ${ARQ_CONFIG}.bak
 	
