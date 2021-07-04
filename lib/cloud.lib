@@ -44,6 +44,8 @@ file_backup()
 	else
 	
 		echo "File already has a backup!"
+		
+		cp -fv ${ARQ_CONFIG}.bak ${ARQ_CONFIG}
 	
 	fi
 	
