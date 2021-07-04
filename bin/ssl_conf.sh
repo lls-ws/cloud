@@ -8,6 +8,14 @@
 PATH=.:$(dirname $0):$PATH
 . lib/cloud.lib		|| exit 1
 
+ssl_install()
+{
+
+	echo "Installing certbot..."
+	apt-get -y install certbot
+	
+}
+
 ssl_create()
 {
 	
@@ -61,6 +69,9 @@ ssl_show()
 }
 
 case "$1" in
+	install)
+		ssl_install
+		;;
 	create)
 		ssl_create
 		;;
@@ -68,7 +79,7 @@ case "$1" in
 		ssl_show
 		;;
 	*)
-		echo "Use: $0 {create|show}"
+		echo "Use: $0 {install|create|show}"
 		exit 1
 		;;
 esac
