@@ -58,19 +58,6 @@ ssmtp_change()
 	
 }
 
-HOSTNAME=`hostname`
-EMAIL=`git config user.email`
-
-if [ -z "${EMAIL}" ]; then
-		
-	echo "Not found a email!"
-	echo "Use: git_conf.sh email {EMAIL}"
-	exit 1
-	
-fi
-
-USER=${EMAIL%@*}
-
 SSMTP_APP_PASSWORD=`git config user.ssmtp`
 
 if [ -z "${SSMTP_APP_PASSWORD}" ]; then

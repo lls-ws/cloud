@@ -97,8 +97,13 @@ case "$1" in
 	show)
 		iptables_show
 		;;
+	all)
+		iptables_install
+		iptables_rules
+		iptables_show
+		;;
 	*)
-		echo "Use: $0 {install|rules|show}"
+		echo "Use: $0 {all|install|rules|show}"
 		exit 1
 		;;
 esac

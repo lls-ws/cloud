@@ -14,7 +14,7 @@ lls_create()
 	echo "Stopping tomcat..."
 	service tomcat stop
 	
-	tar -cvzf ${ARQ_LLS} -C ${DIR_WEBAPPS} ${DIR_LLS}
+	tar -cvzf ${ARQ_LLS} -C ${DIR_WEBAPPS} ${USER}
 	
 	tar -tf ${ARQ_LLS}
 	
@@ -33,38 +33,39 @@ lls_install()
 	
 	tar -xvzf ${ARQ_LLS} -C ${DIR_WEBAPPS}
 	
-	chown -R tomcat.tomcat ${DIR_WEBAPPS}/${DIR_LLS}
+	chown -R tomcat.tomcat ${DIR_LLS}
 	
-	ls -al ${DIR_WEBAPPS}/${DIR_LLS}
+	ls -al ${DIR_LLS}
 	
-	du -hsc ${DIR_WEBAPPS}/${DIR_LLS}
+	du -hsc ${DIR_LLS}
 	
 }
 
 lls_server()
 {
 	
-	#ARQ_CONFIG="${DIR_CONF}/server.xml"
+	echo "Stopping tomcat..."
+	service tomcat stop
 	
-	ARQ_CONFIG="server.xml"
+	ARQ_CONFIG="${DIR_TOMCAT_CONF}/server.xml"
 	
 	sed -i '/connectionTimeout/a \	\	\	\	enableLookups="false"' ${ARQ_CONFIG}
 	sed -i '/Connector port="8443"/i \	--\>' ${ARQ_CONFIG}
 	
-	keystoreFile="/usr/share/tomcat/webapps/lls/keystore/homeoffice_lls_net_br.pfx"
-	keystorePass="Uber#739200"
-	keyAlias="llsKey"
+	sed -i '/sslProtocol="TLS"/i \	\	\	\	keystoreFile="'${KEYSTORE}'"' ${ARQ_CONFIG}
+	sed -i '/sslProtocol="TLS"/i \	\	\	\	keystorePass="'${PASSWORD}'"' ${ARQ_CONFIG}
+	sed -i '/sslProtocol="TLS"/i \	\	\	\	keyAlias="'${ALIAS}'"' ${ARQ_CONFIG}
 	
 	sed -i '/sslProtocol="TLS"/a \	\<!--' ${ARQ_CONFIG}
-	sed -i '/sslProtocol="TLS"/a \	\<!--' ${ARQ_CONFIG}
-	sed -i '/sslProtocol="TLS"/a \	\<!--' ${ARQ_CONFIG}
 	
-	sed -i '/sslProtocol="TLS"/a \	\<!--' ${ARQ_CONFIG}
+	sed -i '/sslProtocol="TLS"/a \\n\	\<Connector protocol="AJP\/1.3" address="::1" port="8009" redirectPort="8443" \/\>' ${ARQ_CONFIG}
+	
+	sed -i '/\/Host/i \	\	\<Context path="" docBase="'${DIR_LLS}'" debug="0"\/\>' ${ARQ_CONFIG}
 	
 	cat ${ARQ_CONFIG}
 	
-	#echo "Starting tomcat..."
-	#service tomcat start
+	echo "Starting tomcat..."
+	service tomcat start
 	
 }
 
@@ -86,12 +87,7 @@ lls_crontab()
 	
 }
 
-HOSTNAME=`hostname`
-DIR_LLS="lls"
-ARQ_LLS="${DIR_LLS}-${HOSTNAME}.tar.gz"
-DIR_TOMCAT="/usr/share/tomcat"
-DIR_CONF="${DIR_TOMCAT}/conf"
-DIR_WEBAPPS="${DIR_TOMCAT}/webapps"
+ARQ_LLS="${USER}-${HOSTNAME}.tar.gz"
 
 case "$1" in
 	create)

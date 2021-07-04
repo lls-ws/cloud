@@ -62,7 +62,7 @@ tomcat_install()
 tomcat_users()
 {	
 	
-	ARQ_CONFIG="${DIR_CONF}/tomcat-users.xml"
+	ARQ_CONFIG="${DIR_TOMCAT_CONF}/tomcat-users.xml"
 	
 	sed -i '/<\/tomcat-users>/i <role rolename="admin-gui"\/>' ${ARQ_CONFIG}
 	sed -i '/<\/tomcat-users>/i <role rolename="manager-gui"\/>' ${ARQ_CONFIG}

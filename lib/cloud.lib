@@ -33,8 +33,25 @@ if [ "$EUID" -ne 0 ]; then
   
 fi
 
-DIR_TOMCAT="/usr/share/tomcat"
-DIR_CONF="${DIR_TOMCAT}/conf"
+USER=`git config user.name`
+
+if [ -z "${USER}" ]; then
+		
+	echo "Not found a user name!"
+	echo "Use: git_conf.sh name {NAME}"
+	exit 1
+	
+fi
+
+EMAIL=`git config user.email`
+
+if [ -z "${EMAIL}" ]; then
+		
+	echo "Not found a user email!"
+	echo "Use: git_conf.sh email {EMAIL}"
+	exit 1
+	
+fi
 
 PASSWORD=`git config user.password`
 
@@ -45,3 +62,24 @@ if [ -z "${PASSWORD}" ]; then
 	exit 1
 	
 fi
+
+DIR_TOMCAT="/usr/share/tomcat"
+DIR_TOMCAT_CONF="${DIR_TOMCAT}/conf"
+DIR_WEBAPPS="${DIR_TOMCAT}/webapps"
+DIR_LLS="${DIR_WEBAPPS}/${USER}"
+DIR_KEYSTORE="${DIR_LLS}/keystore"
+
+DNAME="${USER}.net.br"
+
+HOSTNAME="`hostname`"
+
+if [ "${HOSTNAME}" != "${USER}" ]; then
+
+	DNAME="${HOSTNAME}.${DNAME}"
+
+fi
+
+DOMAIN=$(echo "${DNAME}" | sed s/[.]/_/g)
+
+KEYSTORE="${DIR_KEYSTORE}/${DOMAIN}.pfx"
+ALIAS="${USER}Key"

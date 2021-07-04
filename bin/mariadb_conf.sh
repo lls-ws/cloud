@@ -151,19 +151,9 @@ mysql_uninstall()
 mysql_version()
 {
 	
-	apt-cache show mariadb
+	apt-cache show mariadb-server
 	
 }
-
-PASSWORD=`git config user.password`
-
-if [ -z "${PASSWORD}" ]; then
-	
-	echo "Not found a user password!"
-	echo "Use: git_conf.sh password {PASSWORD}"
-	exit 1
-	
-fi
 
 case "$1" in
 	install)
