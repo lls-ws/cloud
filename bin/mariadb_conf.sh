@@ -148,6 +148,13 @@ mysql_uninstall()
 	
 }
 
+mysql_version()
+{
+	
+	apt-cache show mariadb
+	
+}
+
 PASSWORD=`git config user.password`
 
 if [ -z "${PASSWORD}" ]; then
@@ -176,7 +183,10 @@ case "$1" in
 		;;
 	show)
 		mysql_show
-		;;	
+		;;
+	version)
+		mysql_version
+		;;
 	upgrade)
 		mysql_update
 		;;
@@ -189,9 +199,10 @@ case "$1" in
 		mysql_conf
 		mysql_database_create
 		mysql_show
+		mysql_version
 		;;
 	*)
-		echo "Use: $0 {all|install|secure|conf|create|delete|show|upgrade|uninstall}"
+		echo "Use: $0 {all|install|secure|conf|create|delete|show|version|upgrade|uninstall}"
 		exit 1
 		;;
 esac

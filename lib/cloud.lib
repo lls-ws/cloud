@@ -32,3 +32,16 @@ if [ "$EUID" -ne 0 ]; then
 	exit 1
   
 fi
+
+DIR_TOMCAT="/usr/share/tomcat"
+DIR_CONF="${DIR_TOMCAT}/conf"
+
+PASSWORD=`git config user.password`
+
+if [ -z "${PASSWORD}" ]; then
+	
+	echo "Not found a user password!"
+	echo "Use: git_conf.sh password {PASSWORD}"
+	exit 1
+	
+fi

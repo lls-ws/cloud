@@ -49,33 +49,12 @@ fonts_install()
 	
 }
 
-crontab_jobs()
-{
-	
-	ARQ_CONFIG="/var/spool/cron/crontabs/root"
-	
-	chmod -v 0600 ${ARQ_CONFIG}
-	
-	echo "20 18 * * * bash /home/lls/addons/bin/backup_bd_lls.sh send > /dev/null 2>&1" > ${ARQ_CONFIG}
-	echo "0 5 * * * /usr/sbin/reboot" >> ${ARQ_CONFIG}
-	
-	echo "Show crontab jobs..."
-	crontab -l
-	
-	echo "Restarting crontab..."
-	service cron restart
-	
-}
-
 check_version()
 {
 	
 	echo "Mostrando a versão dos Apps"
 	uname -mrs
 	lsb_release -a
-	
-	#dpkg -l mariadb* java*s
-	apt-cache show mariadb
 	
 }
 
@@ -89,9 +68,6 @@ case "$1" in
 	fonts)
 		fonts_install
 		;;
-	crontab)
-		crontab_jobs
-		;;
 	version)
 		check_version
 		;;
@@ -99,10 +75,10 @@ case "$1" in
 		upgrade
 		profile_pt_BR
 		fonts_install
-		crontab_config
+		check_version
 		;;
 	*)
-		echo "Use: $0 {all|upgrade|profile|fonts|crontab|version}"
+		echo "Use: $0 {all|upgrade|profile|fonts|version}"
 		exit 1
 		;;
 esac

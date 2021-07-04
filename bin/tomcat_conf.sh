@@ -37,30 +37,32 @@ tomcat_install()
 	
 	fi
 	
+	DIR_SHARE="/usr/share"
+	
 	echo "Extract downloaded file with tar..."
-	tar xvf ${ARQ_TOMCAT} -C /usr/share/
+	tar xvf ${ARQ_TOMCAT} -C ${DIR_SHARE}/
 	
 	echo "Remove tomcat tar..."
 	rm -fv ${ARQ_TOMCAT}
 	rm -fv ${DIR_TOMCAT} 2> /dev/null
 	
 	echo "Create symlink to extracted tomcat data..."
-	ln -s /usr/share/apache-tomcat-${RELEASE}/ ${DIR_TOMCAT}
+	ln -s ${DIR_SHARE}/apache-tomcat-${RELEASE}/ ${DIR_TOMCAT}
 	
 	ls -al ${DIR_TOMCAT}
 	
 	echo "Set proper directory permissions..."
 	chown -R tomcat:tomcat ${DIR_TOMCAT}
-	chown -R tomcat:tomcat /usr/share/apache-tomcat-${RELEASE}/
+	chown -R tomcat:tomcat ${DIR_SHARE}/apache-tomcat-${RELEASE}/
 	
-	ls -al /usr/share/apache-tomcat-${RELEASE}/
+	ls -al ${DIR_SHARE}/apache-tomcat-${RELEASE}/
 	
 }
 
 tomcat_users()
 {	
 	
-	ARQ_CONFIG="${DIR_TOMCAT}/conf/tomcat-users.xml"
+	ARQ_CONFIG="${DIR_CONF}/tomcat-users.xml"
 	
 	sed -i '/<\/tomcat-users>/i <role rolename="admin-gui"\/>' ${ARQ_CONFIG}
 	sed -i '/<\/tomcat-users>/i <role rolename="manager-gui"\/>' ${ARQ_CONFIG}
@@ -136,17 +138,6 @@ memory_show()
 VERSAO="7"
 RELEASE="${VERSAO}.0.109"
 ARQ_TOMCAT="apache-tomcat-${RELEASE}.tar.gz"
-DIR_TOMCAT="/usr/share/tomcat"
-
-PASSWORD=`git config user.password`
-
-if [ -z "${PASSWORD}" ]; then
-	
-	echo "Not found a user password!"
-	echo "Use: git_conf.sh password {PASSWORD}"
-	exit 1
-	
-fi
 
 case "$1" in
 	download)
