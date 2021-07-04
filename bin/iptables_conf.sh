@@ -25,34 +25,41 @@ iptables_install()
 	
 }
 
+iptables_config()
+{
+	
+	FILE_CONF="/etc/sysctl.conf"
+	
+	echo "net.ipv4.ip_forward=1"	>> ${FILE_CONF}
+	
+	cat ${FILE_CONF} | tail -2
+	
+	systemctl restart netfilter-persistent
+	
+}
+
 iptables_rules()
 {
 	
-	RULES="/etc/iptables/rules.v4"
+	echo "*filter"																	> ${FILE_RULES}
+	echo ":INPUT ACCEPT [0:0]"														>> ${FILE_RULES}
+	echo ":FORWARD ACCEPT [0:0]"													>> ${FILE_RULES}
+	echo ":OUTPUT ACCEPT [0:0]"														>> ${FILE_RULES}
+	echo "COMMIT"																	>> ${FILE_RULES}
+	echo "*nat"																		>> ${FILE_RULES}
+	echo ":PREROUTING ACCEPT [0:0]"													>> ${FILE_RULES}
+	echo ":INPUT ACCEPT [0:0]"														>> ${FILE_RULES}
+	echo ":POSTROUTING ACCEPT [0:0]"												>> ${FILE_RULES}
+	echo ":OUTPUT ACCEPT [0:0]"														>> ${FILE_RULES}
+	echo "-A PREROUTING -p tcp -m tcp --dport 80 -j REDIRECT --to-ports 8080"		>> ${FILE_RULES}
+	echo "-A PREROUTING -p tcp -m tcp --dport 443 -j REDIRECT --to-ports 8443"		>> ${FILE_RULES}
+	echo "COMMIT"																	>> ${FILE_RULES}
 	
-	echo "*filter"																	> ${RULES}
-	echo ":INPUT ACCEPT [0:0]"														>> ${RULES}
-	echo ":FORWARD ACCEPT [0:0]"													>> ${RULES}
-	echo ":OUTPUT ACCEPT [0:0]"														>> ${RULES}
-	echo "COMMIT"																	>> ${RULES}
-	echo "*nat"																		>> ${RULES}
-	echo ":PREROUTING ACCEPT [0:0]"													>> ${RULES}
-	echo ":INPUT ACCEPT [0:0]"														>> ${RULES}
-	echo ":POSTROUTING ACCEPT [0:0]"												>> ${RULES}
-	echo ":OUTPUT ACCEPT [0:0]"														>> ${RULES}
-	echo "-A PREROUTING -p tcp -m tcp --dport 80 -j REDIRECT --to-ports 8080"		>> ${RULES}
-	echo "-A PREROUTING -p tcp -m tcp --dport 443 -j REDIRECT --to-ports 8443"		>> ${RULES}
-	echo "COMMIT"																	>> ${RULES}
+	cat ${FILE_RULES}
 	
-	iptables-restore -n < ${RULES}
+	iptables -F -t nat
 	
-	cat ${RULES}
-	
-	RULES="/etc/sysctl.conf"
-	
-	echo "net.ipv4.ip_forward=1"													>> ${RULES}
-	
-	cat ${RULES} | tail -2
+	iptables-restore -n < ${FILE_RULES}
 	
 	/usr/sbin/netfilter-persistent save
 	/usr/sbin/netfilter-persistent reload
@@ -91,6 +98,9 @@ case "$1" in
 	install)
 		iptables_install
 		;;
+	config)
+		iptables_config
+		;;
 	rules)
 		iptables_rules
 		;;
@@ -99,11 +109,12 @@ case "$1" in
 		;;
 	all)
 		iptables_install
+		iptables_config
 		iptables_rules
 		iptables_show
 		;;
 	*)
-		echo "Use: $0 {all|install|rules|show}"
+		echo "Use: $0 {all|install|config|rules|show}"
 		exit 1
 		;;
 esac

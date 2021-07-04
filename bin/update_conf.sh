@@ -42,9 +42,9 @@ JULHO(2021){
 (OK) Configurar Tomcat {
  (ok) tomcat_conf.sh
  }
-(  ) Configurar LLS-WS {
+(OK) Configurar LLS-WS {
  (ok) Copiar o diretório do cloud atual
- (  ) lls_conf.sh
+ (ok) lls_conf.sh
  }
 }
 (04/07/2021){

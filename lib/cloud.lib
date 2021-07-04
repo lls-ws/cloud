@@ -89,6 +89,8 @@ if [ -z "${PASSWORD}" ]; then
 	
 fi
 
+FILE_RULES="/etc/iptables/rules.v4"
+
 DIR_TOMCAT="/usr/share/tomcat"
 DIR_TOMCAT_CONF="${DIR_TOMCAT}/conf"
 DIR_WEBAPPS="${DIR_TOMCAT}/webapps"
