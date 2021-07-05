@@ -27,7 +27,7 @@ backup_restore()
 	
 	if [ ! -f ${FILE_SQL} ]; then
 	
-		echo "File ${FILE_SQL}  not found!"
+		echo "File ${FILE_SQL} not found!"
 		exit 1
 	
 	fi
