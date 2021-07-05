@@ -59,7 +59,7 @@ backup_send()
 	
 	echo "Send backup to email: ${DESTINATARIO}"
 	
-	echo -e "to: ${DESTINATARIO}\nsubject: Backup LLS-WS\n" |
+	echo -e "to: ${DESTINATARIO}\nsubject: Backup LLS-WS\n " |
 	
 	(cat - && uuencode ${FILE_ZIP} ${NAME_ZIP}) |
 	
