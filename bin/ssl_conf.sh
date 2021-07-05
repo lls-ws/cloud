@@ -11,8 +11,13 @@ PATH=.:$(dirname $0):$PATH
 ssl_install()
 {
 
+	echo "Installing snap core..."
+	snap install core
+	snap refresh core
+	
 	echo "Installing certbot..."
-	apt-get -y install certbot
+	snap install --classic certbot
+	ln -sv /snap/bin/certbot /usr/bin/certbot
 	
 }
 
@@ -35,7 +40,7 @@ ssl_create()
 	keytool -certreq -alias ${ALIAS} -file request.csr -keystore ${KEYSTORE} -storepass "${PASSWORD}"
 
 	echo " -- Request Certificate -- "
-	certbot certonly --csr ./request.csr --standalone
+	certbot certonly --csr ./request.csr --standalone -m "${EMAIL}"
 
 	echo " -- import Certificate -- "
 	keytool -import -trustcacerts -alias ${ALIAS} -file 0001_chain.pem -keystore ${KEYSTORE} -storepass "${PASSWORD}"
