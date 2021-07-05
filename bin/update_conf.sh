@@ -55,5 +55,11 @@ JULHO(2021){
  (ok) lls_backup.sh
  (ok) crontab_conf.sh
  }
+(OK) Desligar Instância 2020 na AWS {}
 }
+(05/07/2021){
+( ) Deletar Conta AWS 2020 {}
+( ) Deletar Email Google 2020 {}
+}
+
 }
