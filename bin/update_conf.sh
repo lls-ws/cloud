@@ -52,7 +52,7 @@ JULHO(2021){
  (ok) ssl_conf.sh
  }
 (  ) Configurar BackUp {
- (  ) lls_backup.sh
+ (ok) lls_backup.sh
  (  ) crontab_conf.sh
  }
 }
