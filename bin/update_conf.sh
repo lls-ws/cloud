@@ -48,10 +48,12 @@ JULHO(2021){
  }
 }
 (04/07/2021){
-(  ) Configurar SSL {
+(OK) Configurar SSL {
  (ok) ssl_conf.sh
- (  ) crontab_conf.sh
+ }
+(  ) Configurar BackUp {
  (  ) backup_bd_lls.sh
+ (  ) crontab_conf.sh
  }
 }
 }
