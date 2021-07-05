@@ -63,7 +63,7 @@ backup_send()
 	
 	(cat - && uuencode ${FILE_ZIP} ${NAME_ZIP}) |
 	
-	/usr/sbin/ssmtp ${DESTINATARIO}
+	/usr/sbin/ssmtp -f"LLS-WS" -F"LLS Tecnologia" ${DESTINATARIO}
 	
 	RESPONSE="$?"
 	
