@@ -42,29 +42,27 @@ backup_restore()
 backup_send()
 {
 	
-	criar_backup
+	backup_create
 	
-	echo "Enviando backup por email..."
+	echo "Send backup by email..."
 	
-	echo -e "to: ${DESTINATARIO}\nsubject: Backup LLS-WS\n" |
+	echo -e "to: ${EMAIL}\nsubject: Backup LLS-WS\n" |
 	
-	(cat - && uuencode ${ARQ_ZIP} ${ARQ_ZIP}) |
+	(cat - && uuencode ${FILE_ZIP} ${FILE_ZIP}) |
 	
-	/usr/sbin/ssmtp ${DESTINATARIO}
+	/usr/sbin/ssmtp ${EMAIL}
 	
 	RESPONSE="$?"
 	
 	if [ "${RESPONSE}" == "0" ]; then
 	
-		echo "Backup enviado para: ${DESTINATARIO} ${DATA_EMAIL}-${HORA_EMAIL}" >> ${ARQ_LOG}
+		echo "Backup send to: ${EMAIL}"
 	
 	else
 	
-		echo "Erro ao enviar email!" >> ${ARQ_LOG}
+		echo "Send email error!"
 	
 	fi
-	
-	tail -1 ${ARQ_LOG}
 	
 }
 
@@ -99,6 +97,16 @@ if [ "$EUID" -ne 0 ]; then
 	echo "Rodar script como root"
 	exit 1
   
+fi
+
+EMAIL=`git config user.email`
+
+if [ -z "${EMAIL}" ]; then
+		
+	echo "Not found a user email!"
+	echo "Use: git_conf.sh email {EMAIL}"
+	exit 1
+	
 fi
 
 PASSWORD=`git config user.password`

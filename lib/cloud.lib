@@ -89,6 +89,7 @@ if [ -z "${PASSWORD}" ]; then
 	
 fi
 
+FILE_BIN="/usr/bin/lls_backup"
 FILE_RULES="/etc/iptables/rules.v4"
 
 DIR_TOMCAT="/usr/share/tomcat"

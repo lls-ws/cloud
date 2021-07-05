@@ -75,7 +75,6 @@ lls_update()
 {
 	
 	ARQ_BACKUP="lls_backup.sh"
-	ARQ_BIN="/usr/bin/lls_backup"
 	
 	if [ ! -f "bin/${ARQ_BACKUP}" ]; then
 	
@@ -100,13 +99,13 @@ lls_update()
 	
 	if [ -L "${ARQ_BIN}" ]; then
 	
-		rm -fv ${ARQ_BIN}
+		rm -fv ${FILE_BIN}
 	
 	fi
 	
-	ln -sfv "${DIR_LLS}/bin/${ARQ_BACKUP}" ${ARQ_BIN}
+	ln -sfv "${DIR_LLS}/bin/${ARQ_BACKUP}" ${FILE_BIN}
 	
-	du -hsc "${DIR_LLS}/sql" "${DIR_LLS}/bin/${ARQ_BACKUP}" ${ARQ_BIN}
+	du -hsc "${DIR_LLS}/sql" "${DIR_LLS}/bin/${ARQ_BACKUP}" ${FILE_BIN}
 	
 }
 

@@ -15,7 +15,7 @@ crontab_config()
 	
 	chmod -v 0600 ${ARQ_CONFIG}
 	
-	echo "20 18 * * * bash /home/lls/addons/bin/backup_bd_lls.sh send > /dev/null 2>&1" > ${ARQ_CONFIG}
+	echo "20 18 * * * bash ${FILE_BIN} send > /dev/null 2>&1" > ${ARQ_CONFIG}
 	echo "0 5 * * * /usr/sbin/reboot" >> ${ARQ_CONFIG}
 	
 	crontab_show
