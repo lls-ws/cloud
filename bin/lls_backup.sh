@@ -56,7 +56,7 @@ backup_send()
 	
 	DESTINATARIO="${USER}.${HOSTNAME}.${YEAR}@${DOMAIN}"
 	
-	echo "Send backup by email..."
+	echo "Send backup to email: ${DESTINATARIO}"
 	
 	echo -e "to: ${DESTINATARIO}\nsubject: Backup LLS-WS\n" |
 	
