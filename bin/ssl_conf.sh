@@ -40,7 +40,7 @@ ssl_create()
 	keytool -certreq -alias ${ALIAS} -file request.csr -keystore ${KEYSTORE} -storepass "${PASSWORD}"
 
 	echo " -- Request Certificate -- "
-	certbot certonly --csr ./request.csr --standalone -m "${EMAIL}"
+	certbot certonly --csr ./request.csr --standalone --agree-tos -n -m "${EMAIL}"
 
 	echo " -- import Certificate -- "
 	keytool -import -trustcacerts -alias ${ALIAS} -file 0001_chain.pem -keystore ${KEYSTORE} -storepass "${PASSWORD}"
