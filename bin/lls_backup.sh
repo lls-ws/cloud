@@ -25,11 +25,19 @@ backup_create()
 backup_restore()
 {
 	
+	if [ ! -f ${FILE_SQL} ]; then
+	
+		echo "File ${FILE_SQL}  not found!"
+		exit 1
+	
+	fi
+	
 	echo "Stopping tomcat..."
 	service tomcat stop
 	
-	echo "Restore backup file: ${FILE_SQL}"
+	du -hsc ${FILE_SQL}
 	
+	echo "Restore backup file: ${FILE_SQL}"
 	${CMD_BASE} < "${FILE_SQL}"
 	
 	show_tables
