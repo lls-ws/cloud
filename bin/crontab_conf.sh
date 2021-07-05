@@ -16,7 +16,7 @@ crontab_config()
 	chmod -v 0600 ${ARQ_CONFIG}
 	
 	#echo "40 18 * * * bash ${FILE_BIN} send > /dev/null 2>&1" > ${ARQ_CONFIG}
-	echo "10 2 * * * bash ${FILE_BIN} send > /dev/null 2>&1" > ${ARQ_CONFIG}
+	echo "20 2 * * * bash ${FILE_BIN} send > /dev/null 2>&1" > ${ARQ_CONFIG}
 	echo "0 5 * * * /usr/sbin/reboot" >> ${ARQ_CONFIG}
 	
 	crontab_show
