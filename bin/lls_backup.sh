@@ -111,6 +111,16 @@ if [ "$EUID" -ne 0 ]; then
   
 fi
 
+USER=`git config user.name`
+
+if [ -z "${USER}" ]; then
+		
+	echo "Not found a user name!"
+	echo "Use: git_conf.sh name {NAME}"
+	exit 1
+	
+fi
+
 EMAIL=`git config user.email`
 
 if [ -z "${EMAIL}" ]; then
