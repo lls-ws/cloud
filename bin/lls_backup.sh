@@ -60,7 +60,7 @@ backup_send()
 	
 	echo -e "to: ${DESTINATARIO}\nsubject: Backup LLS-WS\n" |
 	
-	(cat - && uuencode ${FILE_ZIP} "lls_backup.zip") |
+	(cat - && uuencode ${FILE_ZIP}) |
 	
 	/usr/sbin/ssmtp ${DESTINATARIO}
 	
