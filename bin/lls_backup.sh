@@ -25,11 +25,17 @@ backup_create()
 backup_restore()
 {
 	
+	echo "Stopping tomcat..."
+	service tomcat stop
+	
 	echo "Restore backup file: ${FILE_SQL}"
 	
 	${CMD_BASE} < "${FILE_SQL}"
 	
 	show_tables
+	
+	echo "Starting tomcat..."
+	service tomcat start
 	
 }
 
@@ -110,8 +116,6 @@ FILE_SQL="${DIR_SQL}/lls_backup.sql"
 FILE_ZIP="${DIR_SQL}/lls_backup.zip"
 
 CMD_BASE="mysql -u root --password=${PASSWORD} -D bd_lls"
-
-echo "${CMD_BASE}"
 
 case "$1" in
 	create)    	
