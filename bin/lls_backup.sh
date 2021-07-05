@@ -52,7 +52,7 @@ backup_send()
 	
 	backup_create
 	
-	HOSTNAME=`hostname -a`
+	HOSTNAME=`hostname`
 	DOMAIN=`echo ${EMAIL} | cut -d @ -f2`
 	
 	DESTINATARIO="${USER}.${HOSTNAME}.${YEAR}@${DOMAIN}"
