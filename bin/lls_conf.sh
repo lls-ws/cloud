@@ -71,6 +71,36 @@ lls_server()
 	
 }
 
+lls_update()
+{
+	
+	ARQ_BACKUP="lls_backup.sh"
+	
+	if [ ! -f "bin/${ARQ_BACKUP}" ]; then
+	
+		echo "File ${ARQ_BACKUP} not found!"
+		exit 1
+	
+	fi
+	
+	if [ ! -d "${DIR_LLS}/bin" ]; then
+	
+		mkdir -pv "${DIR_LLS}/bin"
+	
+	fi
+	
+	cp -fv "bin/${ARQ_BACKUP}" "${DIR_LLS}/bin"
+	
+	if [ ! -d "${DIR_LLS}/sql" ]; then
+	
+		mkdir -pv "${DIR_LLS}/sql"
+	
+	fi
+	
+	du -hsc "${DIR_LLS}/sql" "${DIR_LLS}/bin/${ARQ_BACKUP}"
+	
+}
+
 ARQ_LLS="${USER}-${HOSTNAME}.tar.gz"
 
 case "$1" in
@@ -83,8 +113,11 @@ case "$1" in
 	server)
 		lls_server
 		;;
+	update)
+		lls_update
+		;;
 	*)
-		echo "Use: $0 {create|install|server}"
+		echo "Use: $0 {create|install|server|update}"
 		exit 1
 		;;
 esac
