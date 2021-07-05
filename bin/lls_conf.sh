@@ -105,7 +105,9 @@ lls_update()
 	
 	ln -sfv "${DIR_LLS}/bin/${ARQ_BACKUP}" ${FILE_BIN}
 	
-	du -hsc "${DIR_LLS}/sql" "${DIR_LLS}/bin/${ARQ_BACKUP}" ${FILE_BIN}
+	du -hsc "${DIR_LLS}/sql" "${DIR_LLS}/bin/${ARQ_BACKUP}"
+	
+	ls -al  ${FILE_BIN}
 	
 }
 
