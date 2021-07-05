@@ -52,19 +52,26 @@ backup_send()
 	
 	backup_create
 	
+	DOMAIN=`echo ${EMAIL} | cut -d @ -f2`
+	
+	DESTINATARIO="${USER}.${HOSTNAME}.${YEAR}@${DOMAIN}"
+	
+	echo "${DESTINATARIO}"
+	exit 1
+	
 	echo "Send backup by email..."
 	
-	echo -e "to: ${EMAIL}\nsubject: Backup LLS-WS\n" |
+	echo -e "to: ${DESTINATARIO}\nsubject: Backup LLS-WS\n" |
 	
 	(cat - && uuencode ${FILE_ZIP} ${FILE_ZIP}) |
 	
-	/usr/sbin/ssmtp ${EMAIL}
+	/usr/sbin/ssmtp ${DESTINATARIO}
 	
 	RESPONSE="$?"
 	
 	if [ "${RESPONSE}" == "0" ]; then
 	
-		echo "Backup send to: ${EMAIL}"
+		echo "Backup send to: ${DESTINATARIO}"
 	
 	else
 	
@@ -127,6 +134,7 @@ if [ -z "${PASSWORD}" ]; then
 	
 fi
 
+YEAR=`date +%Y`
 DIR_SQL="/usr/share/tomcat/webapps/lls/sql"
 FILE_SQL="${DIR_SQL}/lls_backup.sql"
 FILE_ZIP="${DIR_SQL}/lls_backup.zip"
