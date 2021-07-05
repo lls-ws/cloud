@@ -60,7 +60,7 @@ backup_send()
 	
 	echo -e "to: ${DESTINATARIO}\nsubject: Backup LLS-WS\n" |
 	
-	(cat - base64 && uuencode ${FILE_ZIP} "lls_backup.zip") |
+	(cat - && uuencode ${FILE_ZIP} ${NAME_ZIP}) |
 	
 	/usr/sbin/ssmtp ${DESTINATARIO}
 	
@@ -134,7 +134,8 @@ fi
 YEAR=`date +%Y`
 DIR_SQL="/usr/share/tomcat/webapps/lls/sql"
 FILE_SQL="${DIR_SQL}/lls_backup.sql"
-FILE_ZIP="${DIR_SQL}/lls_backup.zip"
+NAME_ZIP="lls_backup.zip"
+FILE_ZIP="${DIR_SQL}/${NAME_ZIP}"
 
 CMD_BASE="mysql -u root --password=${PASSWORD} -D bd_lls"
 
