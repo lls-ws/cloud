@@ -59,6 +59,6 @@ JULHO(2021){
 }
 (06/07/2021){
 (OK) Deletar Conta AWS 2020 {}
-(OK Deletar Email Google 2020 {}
+(OK) Deletar Email Google 2020 {}
 }
 }
