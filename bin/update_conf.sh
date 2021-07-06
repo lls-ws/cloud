@@ -57,9 +57,8 @@ JULHO(2021){
  }
 (OK) Desligar Instância 2020 na AWS {}
 }
-(05/07/2021){
-( ) Deletar Conta AWS 2020 {}
-( ) Deletar Email Google 2020 {}
+(06/07/2021){
+(OK) Deletar Conta AWS 2020 {}
+(OK Deletar Email Google 2020 {}
 }
-
 }
