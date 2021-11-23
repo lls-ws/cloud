@@ -8,7 +8,7 @@ git_update()
 	
 	echo "Updating a local repository with changes from a GitHub repository..."
 	git config pull.ff only
-	git pull origin master
+	git pull origin main
 	
 }
 
@@ -47,7 +47,7 @@ git_remote()
 	git add .
 	git commit -m "Add files remotely"
 	git remote set-url origin ${URL:0:6}//${TOKEN}@${URL:8:17}/${REPOSITORY}.git
-	git push -u origin master
+	git push -u origin main
 	
 }
 
