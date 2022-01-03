@@ -143,8 +143,21 @@ if [ -z "${PASSWORD}" ]; then
 fi
 
 # Change year for the correct email adress account
-#YEAR=`date +%Y`
-YEAR=`date --date="1 year ago" +%Y`
+MONTH=`date +%-m`
+
+if [ ${MONTH} -gt 6 ]; then
+
+	YEAR=`date +%Y`
+	
+else
+	
+	YEAR=`date --date="1 year ago" +%Y`
+
+fi
+
+echo "Ano: ${YEAR}"
+exit 1
+
 DIR_SQL="/usr/share/tomcat/webapps/lls/sql"
 FILE_SQL="${DIR_SQL}/lls_backup.sql"
 NAME_ZIP="lls_backup.zip"
