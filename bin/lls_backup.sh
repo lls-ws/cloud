@@ -155,9 +155,6 @@ else
 
 fi
 
-echo "Ano: ${YEAR}"
-exit 1
-
 DIR_SQL="/usr/share/tomcat/webapps/lls/sql"
 FILE_SQL="${DIR_SQL}/lls_backup.sql"
 NAME_ZIP="lls_backup.zip"
