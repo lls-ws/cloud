@@ -1,64 +1,65 @@
-JUNHO(2021){
-(28/06/2021){
-(OK) Criar novo Cloud para Funchal {
- (ok) Criar novo Email no Google
- (ok) Criar nova Conta na Amazon Web Service
- (ok) Configurar Instância EC2
- (ok) Editar Regras de Entrada
- (ok) Adicionar Zona no Registro.br
- (ok) GoogleDrive: user.doc
- }
-}
-(29/06/2021){
-(OK) Configurar Usuário {
- (ok) user_conf.sh
- }
-}
-(30/06/2021){
-(OK) Configurar GitHub {
+JUNHO(2022){
+(26/06/2022){
+( ) Criar novo Log no GitHub {
  (ok) GoogleDrive: token.doc
- (ok) git_conf.sh
+ (ok) git_conf.sh token
+ (ok) update_2021.log
+ }
+( ) Criar novo Cloud para Funchal {
+ ( ) Criar novo Log Email no Google
+ ( ) Criar novo Email no Google
+ ( ) Criar nova Conta na Amazon Web Service
+ ( ) Configurar Instância EC2
+ ( ) Editar Regras de Entrada
+ ( ) Adicionar Zona no Registro.br
+ ( ) GoogleDrive: user.doc
  }
 }
+(29/06/2022){
+( ) Configurar Usuário {
+ ( ) user_conf.sh
+ }
 }
 
-JULHO(2021){
-(01/07/2021){
-(OK) Configurar Ubuntu {
- (ok) ubuntu_conf.sh
- (ok) iptables_config.sh
- (ok) ssmtp_config.sh
- (ok) GoogleDrive: ssmtp_app_password.doc
+}
+
+JULHO(2022){
+(01/07/2022){
+( ) Configurar Ubuntu {
+ ( ) ubuntu_conf.sh
+ ( ) iptables_config.sh
+ ( ) ssmtp_config.sh
+ ( ) GoogleDrive: ssmtp_app_password.doc
  }
 }
-(02/07/2021){
-(OK) Configurar Servidores {
- (ok) mariadb_conf.sh
- (ok) java_conf.sh
- (ok) cloud.lib
+(02/07/2022){
+( ) Configurar Servidores {
+ ( ) mariadb_conf.sh
+ ( ) java_conf.sh
+ ( ) cloud.lib
  }
 }
-(03/07/2021){
-(OK) Configurar Tomcat {
- (ok) tomcat_conf.sh
+(03/07/2022){
+( ) Configurar Tomcat {
+ ( ) tomcat_conf.sh
  }
-(OK) Configurar LLS-WS {
- (ok) Copiar o diretório do cloud atual
- (ok) lls_conf.sh
+( ) Configurar LLS-WS {
+ ( ) Copiar o diretório do cloud atual
+ ( ) lls_conf.sh
  }
 }
-(04/07/2021){
-(OK) Configurar SSL {
- (ok) ssl_conf.sh
+(04/07/2022){
+( ) Configurar SSL {
+ ( ) ssl_conf.sh
  }
-(OK) Configurar BackUp {
- (ok) lls_backup.sh
- (ok) crontab_conf.sh
+( ) Configurar BackUp {
+ ( ) lls_backup.sh
+ ( ) crontab_conf.sh
  }
-(OK) Desligar Instância 2020 na AWS {}
+( ) Desligar Instância 2020 na AWS {}
 }
-(06/07/2021){
-(OK) Deletar Conta AWS 2020 {}
-(OK) Deletar Email Google 2020 {}
+(06/07/2022){
+( ) Deletar Conta AWS 2020 {}
+( ) Deletar Email Google 2020 {}
 }
 }
