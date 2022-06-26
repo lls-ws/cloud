@@ -1,6 +1,6 @@
 JUNHO(2022){
 (26/06/2022){
-(ok) Criar novo Log no GitHub {
+(OK) Criar novo Log no GitHub {
  (ok) GoogleDrive: token.doc
  (ok) git_conf.sh token
  (ok) update_2021.log
