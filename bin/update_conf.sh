@@ -2,11 +2,10 @@ JUNHO(2022){
 (26/06/2022){
 (OK) Criar novo Log no GitHub {
  (ok) GoogleDrive: token.doc
- (ok) git_conf.sh token
+ (ok) git_conf.sh token <TOKEN>
  (ok) update_2021.log
  }
 ( ) Criar novo Cloud para Funchal {
- ( ) Criar novo Log Email no Google
  ( ) Criar novo Email no Google
  ( ) Criar nova Conta na Amazon Web Service
  ( ) Configurar Instância EC2
@@ -56,10 +55,10 @@ JULHO(2022){
  ( ) lls_backup.sh
  ( ) crontab_conf.sh
  }
-( ) Desligar Instância 2020 na AWS {}
+( ) Desligar Instância 2021 na AWS {}
 }
 (06/07/2022){
-( ) Deletar Conta AWS 2020 {}
-( ) Deletar Email Google 2020 {}
+( ) Deletar Conta AWS 2021 {}
+( ) Deletar Email Google 2021 {}
 }
 }
