@@ -5,9 +5,10 @@ JUNHO(2022){
  (ok) git_conf.sh token <TOKEN>
  (ok) update_2021.log
  }
-( ) Criar novo Cloud para Funchal {
- ( ) Criar novo Email no Google
- ( ) Criar nova Conta na Amazon Web Service
+( ) Criar novo Cloud na Amazon {
+ (ok) GoogleDrive: user_aws_2022.doc
+ (ok) Criar novo Email no Google
+ (ok) Criar nova Conta na Amazon Web Service
  ( ) Configurar Instância EC2
  ( ) Editar Regras de Entrada
  ( ) Adicionar Zona no Registro.br
