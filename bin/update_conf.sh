@@ -37,17 +37,15 @@ JUNHO(2022){
  }
 }
 
-}
-
-JULHO(2022){
-(02/07/2022){
+(29/06/2022){
 ( ) Configurar Servidores {
  ( ) mariadb_conf.sh
  ( ) java_conf.sh
  ( ) cloud.lib
  }
 }
-(03/07/2022){
+
+(30/06/2022){
 ( ) Configurar Tomcat {
  ( ) tomcat_conf.sh
  }
@@ -56,7 +54,11 @@ JULHO(2022){
  ( ) lls_conf.sh
  }
 }
-(04/07/2022){
+
+}
+
+JULHO(2022){
+(01/07/2022){
 ( ) Configurar SSL {
  ( ) ssl_conf.sh
  }
@@ -66,7 +68,7 @@ JULHO(2022){
  }
 ( ) Desligar Instância 2021 na AWS {}
 }
-(06/07/2022){
+(02/07/2022){
 ( ) Deletar Conta AWS 2021 {}
 ( ) Deletar Email Google 2021 {}
 }
