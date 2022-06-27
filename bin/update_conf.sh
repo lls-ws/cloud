@@ -20,18 +20,15 @@ JUNHO(2022){
  (ok) Adicionar Zona no Registro.br
  (ok) GoogleDrive: user_registro.br.doc
  }
-( ) Configurar Usuário {
+(OK) Configurar Usuário {
  (ok) user_conf.sh root <HOSTNAME>
  (ok) user_conf.sh user
- ( ) user_conf.sh ssh-local
- ( ) user_conf.sh ssh-remote
+ (ok) user_conf.sh ssh-local <HOSTNAME> <KEYNAME>
+ (ok) user_conf.sh ssh-remote
  }
 }
 
-}
-
-JULHO(2022){
-(01/07/2022){
+(28/06/2022){
 ( ) Configurar Ubuntu {
  ( ) ubuntu_conf.sh
  ( ) iptables_config.sh
@@ -39,6 +36,10 @@ JULHO(2022){
  ( ) GoogleDrive: ssmtp_app_password.doc
  }
 }
+
+}
+
+JULHO(2022){
 (02/07/2022){
 ( ) Configurar Servidores {
  ( ) mariadb_conf.sh
