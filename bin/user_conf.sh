@@ -1,5 +1,5 @@
 #!/bin/sh
-# Script para configurar o usuario no cloud Ubuntu Server 20.04 LTS 64 bits
+# Script para configurar o usuario no cloud Ubuntu Server 22.04 LTS 64 bits
 #
 # Autor: Leandro Luiz
 # email: lls.homeoffice@gmail.com
@@ -19,6 +19,13 @@ root_new_password()
 
 change_hostname()
 {
+	
+	if [ -z "${HOSTNAME}" ]; then
+		
+		echo "Use: $0 hostname {HOSTNAME}"
+		exit 1
+	
+	fi
 	
 	echo "Changing hostname..."
 	sudo tee /etc/hostname <<< ${HOSTNAME}
@@ -47,21 +54,36 @@ add_user()
 ssh_create_local()
 {
 	
+	if [ -z "${HOSTNAME}" -o -z "${KEYNAME}" ]; then
+		
+		echo "Use: $0 {HOSTNAME} {KEYNAME}"
+		exit 1
+	
+	fi
+	
 	if [ "${HOSTNAME}" != "lls" ]; then
 
 		HOST="${HOSTNAME}.${HOST}"
 
 	fi
 	
-	KEY="/home/lls/.ssh/${USER}-${HOSTNAME}-${YEAR}.pem"
+	KEY="/home/lls/.ssh/${USER}-${KEYNAME}-${YEAR}.pem"
 	USER="ubuntu"
 	
-	echo "Creating key pair on user local..."
-	ssh-keygen -t rsa
+	echo "Creating old key pair backup on user local..."
+	cp -fv ${DIR_SSH}/id_rsa ${DIR_SSH}/id_rsa.old
+	cp -fv ${DIR_SSH}/id_rsa.pub ${DIR_SSH}/id_rsa.pub.old
 	
-	chmod -v 400 ${KEY}
+	if [ ! -f ${DIR_SSH}/id_rsa.pub ]; then
 	
-	echo "Copy key pair to cloud..."
+		echo "Creating key pair on user local..."
+		ssh-keygen -t rsa
+	
+		chmod -v 400 ${KEY}
+		
+	fi
+	
+	echo "Copy key pair to cloud: ${HOST}"
 	scp -i ${KEY} ${DIR_SSH}/id_rsa.pub ${USER}@${HOST}:~
 	
 }
@@ -107,20 +129,13 @@ ARQ_AUTHORIZED_KEYS="${DIR_SSH}/authorized_keys"
 HOST="${USER}.net.br"
 YEAR=`date +%Y`
 HOSTNAME="$2"
+KEYNAME="$3"
 
 case "$1" in
 	root)
 		root_new_password
 		;; 
 	hostname)
-		
-		if [ -z "${HOSTNAME}" ]; then
-		
-			echo "Use: $0 hostname {name}"
-			exit 1
-		
-		fi
-		
 		change_hostname
 		;;
 	user)

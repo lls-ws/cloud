@@ -20,11 +20,11 @@ JUNHO(2022){
  (ok) Adicionar Zona no Registro.br
  (ok) GoogleDrive: user_registro.br.doc
  }
-}
-
-(28/06/2022){
 ( ) Configurar Usuário {
- ( ) user_conf.sh
+ (ok) user_conf.sh root <HOSTNAME>
+ (ok) user_conf.sh user
+ ( ) user_conf.sh ssh-local
+ ( ) user_conf.sh ssh-remote
  }
 }
 
