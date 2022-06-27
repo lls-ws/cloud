@@ -13,7 +13,7 @@ JUNHO(2022){
 }
 
 (27/06/2022){
-( ) Configurar Amazon Web Service {
+(OK) Configurar Amazon Web Service {
  (ok) GoogleDrive: user_aws_2022.doc
  (ok) Configurar Instância EC2
  (ok) Editar Regras de Entrada
