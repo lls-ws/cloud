@@ -5,17 +5,24 @@ JUNHO(2022){
  (ok) git_conf.sh token <TOKEN>
  (ok) update_2021.log
  }
-( ) Criar novo Cloud na Amazon {
+(OK) Criar novo Cloud na Amazon {
  (ok) GoogleDrive: user_aws_2022.doc
  (ok) Criar novo Email no Google
- (ok) Criar nova Conta na Amazon Web Service
- ( ) Configurar Instância EC2
- ( ) Editar Regras de Entrada
- ( ) Adicionar Zona no Registro.br
- ( ) GoogleDrive: user.doc
+ (ok) Criar nova Conta na Amazon
  }
 }
-(29/06/2022){
+
+(27/06/2022){
+( ) Configurar Amazon Web Service {
+ (ok) GoogleDrive: user_aws_2022.doc
+ (ok) Configurar Instância EC2
+ (ok) Editar Regras de Entrada
+ (ok) Adicionar Zona no Registro.br
+ (ok) GoogleDrive: user_registro.br.doc
+ }
+}
+
+(28/06/2022){
 ( ) Configurar Usuário {
  ( ) user_conf.sh
  }
