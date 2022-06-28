@@ -29,6 +29,12 @@ JUNHO(2022){
 }
 
 (28/06/2022){
+( ) Configurar GitHub {
+ ( ) GoogleDrive: token.doc
+ ( ) git_conf.sh name <NAME>
+ ( ) git_conf.sh email <EMAIL>
+ ( ) git_conf.sh password <PASSWORD>
+ }
 ( ) Configurar Ubuntu {
  ( ) ubuntu_conf.sh upgrade
  ( ) ubuntu_conf.sh 
