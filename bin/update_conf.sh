@@ -30,7 +30,10 @@ JUNHO(2022){
 
 (28/06/2022){
 ( ) Configurar Ubuntu {
- ( ) ubuntu_conf.sh
+ ( ) ubuntu_conf.sh upgrade
+ ( ) ubuntu_conf.sh 
+ ( ) ubuntu_conf.sh 
+ ( ) ubuntu_conf.sh 
  ( ) iptables_config.sh
  ( ) ssmtp_config.sh
  ( ) GoogleDrive: ssmtp_app_password.doc
