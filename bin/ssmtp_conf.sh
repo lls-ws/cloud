@@ -1,5 +1,5 @@
 #!/bin/bash
-# Script para configurar o Ssmtp no cloud Ubuntu Server 20.04 LTS 64 bits
+# Script para configurar o Ssmtp no cloud Ubuntu Server 22.04 LTS 64 bits
 # Change this Google settings:
 # IMAP enabled
 # Allow less secure apps is ON

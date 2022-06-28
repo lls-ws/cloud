@@ -29,20 +29,30 @@ JUNHO(2022){
 }
 
 (28/06/2022){
-( ) Configurar GitHub {
- ( ) GoogleDrive: token.doc
- ( ) git_conf.sh name <NAME>
- ( ) git_conf.sh email <EMAIL>
- ( ) git_conf.sh password <PASSWORD>
+(OK) Configurar GitHub {
+ (ok) GoogleDrive: token.doc
+ (ok) git_conf.sh name <NAME>
+ (ok) git_conf.sh email <EMAIL>
+ (ok) git_conf.sh password <PASSWORD>
+ (ok) git_conf.sh show
  }
-( ) Configurar Ubuntu {
- ( ) ubuntu_conf.sh upgrade
- ( ) ubuntu_conf.sh 
- ( ) ubuntu_conf.sh 
- ( ) ubuntu_conf.sh 
- ( ) iptables_config.sh
- ( ) ssmtp_config.sh
- ( ) GoogleDrive: ssmtp_app_password.doc
+(OK) Configurar Ubuntu {
+ (ok) ubuntu_conf.sh upgrade
+ (ok) ubuntu_conf.sh profile
+ (ok) ubuntu_conf.sh fonts
+ (ok) ubuntu_conf.sh version
+ }
+(OK) Configurar Iptables {
+ (ok) iptables_conf.sh install
+ (ok) iptables_conf.sh config
+ (ok) iptables_conf.sh rules
+ (ok) iptables_conf.sh show
+ }
+(OK) Configurar Ssmtp {
+ (ok) GoogleDrive: ssmtp_app_password.doc
+ (ok) git_conf.sh ssmtp <SSMTP-PASSWORD>
+ (ok) ssmtp_config.sh install
+ (ok) ssmtp_config.sh config
  }
 }
 
