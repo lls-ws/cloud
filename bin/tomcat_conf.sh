@@ -53,7 +53,7 @@ tomcat_users()
 tomcat_setenv()
 {	
 	
-	ln -sv "usr/share/tomcat${VERSION}" "usr/share/tomcat"
+	ln -sfv "/usr/share/tomcat${VERSION}" "/usr/share/tomcat"
 	
 	FILE_CONF="setenv.sh"
 	DIR_CONF="usr/share/tomcat/bin"
