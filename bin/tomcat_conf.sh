@@ -5,6 +5,10 @@
 # Autor: Leandro Luiz
 # email: lls.homeoffice@gmail.com
 
+# Caminho das bibliotecas
+PATH=.:$(dirname $0):$PATH
+. lib/cloud.lib		|| exit 1
+
 tomcat_search()
 {
 	
@@ -41,6 +45,8 @@ tomcat_users()
 	sed -i '/<\/tomcat-users>/i <user username="admin" password="'${PASSWORD}'" fullName="Administrator" roles="admin-gui,manager-gui"\/>' ${ARQ_CONFIG}
 	
 	cat ${ARQ_CONFIG}
+	
+	systemctl restart tomcat9
 	
 }
 
