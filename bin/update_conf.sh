@@ -1,3 +1,4 @@
+# Passos para configurar o cloud Ubuntu Server 22.04 LTS 64 bits
 JUNHO(2022){
 (26/06/2022){
 (OK) Criar novo Log no GitHub {
@@ -57,17 +58,26 @@ JUNHO(2022){
 }
 
 (29/06/2022){
-( ) Configurar Servidores {
- ( ) mariadb_conf.sh
- ( ) java_conf.sh
- ( ) cloud.lib
+(OK) Configurar MariaDB {
+ (ok) mariadb_conf.sh install
+ (ok) mariadb_conf.sh secure
+ (ok) mariadb_conf.sh conf
+ (ok) mariadb_conf.sh create
+ (ok) mariadb_conf.sh show
+ (ok) mariadb_conf.sh version
+ }
+(OK) Configurar Java {
+ (ok) java_conf.sh install
+ }
+( ) Configurar Tomcat {
+ ( ) tomcat_conf.sh search
+ ( ) tomcat_conf.sh install
+ ( ) tomcat_conf.sh 
+ ( ) tomcat_conf.sh 
  }
 }
 
 (30/06/2022){
-( ) Configurar Tomcat {
- ( ) tomcat_conf.sh
- }
 ( ) Configurar LLS-WS {
  ( ) Copiar o diretório do cloud atual
  ( ) lls_conf.sh

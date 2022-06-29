@@ -1,5 +1,5 @@
 #!/bin/sh
-# Script para configurar Java no cloud Ubuntu Server 20.04 LTS 64 bits
+# Script para configurar Java no cloud Ubuntu Server 22.04 LTS 64 bits
 #
 # Autor: Leandro Luiz
 # email: lls.homeoffice@gmail.com
