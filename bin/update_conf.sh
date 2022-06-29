@@ -69,18 +69,15 @@ JUNHO(2022){
 (OK) Configurar Java {
  (ok) java_conf.sh install
  }
-( ) Configurar Tomcat {
+(OK) Configurar Tomcat {
  (ok) tomcat_conf.sh search
  (ok) tomcat_conf.sh install
  (ok) tomcat_conf.sh check
- ( ) tomcat_conf.sh setenv
+ (ok) tomcat_conf.sh setenv
  (ok) tomcat_conf.sh users
  (ok) tomcat_conf.sh show
  (ok) tomcat_conf.sh memory
  }
-}
-
-(30/06/2022){
 ( ) Configurar LLS-WS {
  ( ) Copiar o diretório do cloud atual
  ( ) lls_conf.sh
