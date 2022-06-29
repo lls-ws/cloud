@@ -92,8 +92,10 @@ fi
 FILE_BIN="/usr/bin/lls_backup"
 FILE_RULES="/etc/iptables/rules.v4"
 
+TOMCAT_VERSION="9"
+
 DIR_TOMCAT="/usr/share/tomcat"
-#DIR_TOMCAT_CONF="${DIR_TOMCAT}/conf"
+DIR_TOMCAT_CONF="/etc/tomcat${TOMCAT_VERSION}"
 DIR_WEBAPPS="${DIR_TOMCAT}/webapps"
 DIR_LLS="${DIR_WEBAPPS}/${USER}"
 DIR_KEYSTORE="${DIR_LLS}/keystore"

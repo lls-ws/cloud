@@ -1,6 +1,6 @@
 #!/bin/sh
 # Script para configurar o Tomcat no cloud Ubuntu Server 22.04 LTS 64 bits
-# Note: Find the required Apache Tomcat package and replace the variable VERSION
+# Note: Find the required Apache Tomcat package and replace the variable TOMCAT_VERSION on cloud.lib
 #
 # Autor: Leandro Luiz
 # email: lls.homeoffice@gmail.com
@@ -21,7 +21,7 @@ tomcat_install()
 {
 	
 	echo "Install Apache Tomcat Server on Ubuntu..."
-	apt-get -y install tomcat${VERSION} tomcat${VERSION}-admin
+	apt-get -y install tomcat${TOMCAT_VERSION} tomcat${TOMCAT_VERSION}-admin
 	
 }
 
@@ -33,10 +33,26 @@ tomcat_check()
 	
 }
 
+tomcat_setenv()
+{	
+	
+	ln -sfv "/usr/share/tomcat${TOMCAT_VERSION}" "/usr/share/tomcat"
+	
+	FILE_CONF="setenv.sh"
+	DIR_CONF="usr/share/tomcat/bin"
+	
+	lib_update
+	
+	chmod -v 755 /${DIR_CONF}/${FILE_CONF}
+	
+	systemctl restart tomcat${TOMCAT_VERSION}
+	
+}
+
 tomcat_users()
 {	
 	
-	ARQ_CONFIG="/etc/tomcat${VERSION}/tomcat-users.xml"
+	ARQ_CONFIG="${DIR_TOMCAT_CONF}/tomcat-users.xml"
 	
 	file_backup
 	
@@ -46,23 +62,7 @@ tomcat_users()
 	
 	cat ${ARQ_CONFIG}
 	
-	systemctl restart tomcat${VERSION}
-	
-}
-
-tomcat_setenv()
-{	
-	
-	ln -sfv "/usr/share/tomcat${VERSION}" "/usr/share/tomcat"
-	
-	FILE_CONF="setenv.sh"
-	DIR_CONF="usr/share/tomcat/bin"
-	
-	lib_update
-	
-	chmod -v 755 /${DIR_CONF}/${FILE_CONF}
-	
-	systemctl restart tomcat${VERSION}
+	systemctl restart tomcat${TOMCAT_VERSION}
 	
 }
 
@@ -76,7 +76,7 @@ tomcat_show()
 	echo "" &&
 	
 	echo "Check service status..."
-	systemctl status tomcat${VERSION}
+	systemctl status tomcat${TOMCAT_VERSION}
 	
 }
 
@@ -88,8 +88,6 @@ memory_show()
 	echo "Memory Info:"
 	cat /proc/meminfo
 }
-
-VERSION="9"
 
 case "$1" in
 	search)

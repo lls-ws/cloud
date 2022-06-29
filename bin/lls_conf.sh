@@ -1,5 +1,5 @@
 #!/bin/sh
-# Script para configurar o LLS WebService no cloud Ubuntu Server 20.04 LTS 64 bits
+# Script para configurar o LLS WebService no cloud Ubuntu Server 22.04 LTS 64 bits
 #
 # Autor: Leandro Luiz
 # email: lls.homeoffice@gmail.com
@@ -12,7 +12,7 @@ lls_create()
 {
 	
 	echo "Stopping tomcat..."
-	service tomcat stop
+	service tomcat${TOMCAT_VERSION} stop
 	
 	tar -cvzf ${ARQ_LLS} -C ${DIR_WEBAPPS} ${USER}
 	
@@ -21,7 +21,7 @@ lls_create()
 	du -hsc ${ARQ_LLS}
 	
 	echo "Starting tomcat..."
-	service tomcat start
+	service tomcat${TOMCAT_VERSION} start
 	
 }
 
@@ -29,7 +29,7 @@ lls_install()
 {
 	
 	echo "Stopping tomcat..."
-	service tomcat stop
+	service tomcat${TOMCAT_VERSION} stop
 	
 	tar -xvzf ${ARQ_LLS} -C ${DIR_WEBAPPS}
 	
@@ -45,7 +45,7 @@ lls_server()
 {
 	
 	echo "Stopping tomcat..."
-	service tomcat stop
+	service tomcat${TOMCAT_VERSION} stop
 	
 	ARQ_CONFIG="${DIR_TOMCAT_CONF}/server.xml"
 	
@@ -67,7 +67,7 @@ lls_server()
 	cat ${ARQ_CONFIG}
 	
 	echo "Starting tomcat..."
-	service tomcat start
+	service tomcat${TOMCAT_VERSION} start
 	
 }
 
