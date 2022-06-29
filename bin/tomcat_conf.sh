@@ -23,9 +23,6 @@ tomcat_install()
 	echo "Install Apache Tomcat Server on Ubuntu..."
 	apt-get -y install tomcat${VERSION} tomcat${VERSION}-admin
 	
-	echo "Enable tomcat on boot..."
-	systemctl enable tomcat${VERSION}
-	
 }
 
 tomcat_check()
@@ -48,6 +45,22 @@ tomcat_users()
 	sed -i '/<\/tomcat-users>/i <user username="admin" password="'${PASSWORD}'" fullName="Administrator" roles="admin-gui,manager-gui"\/>' ${ARQ_CONFIG}
 	
 	cat ${ARQ_CONFIG}
+	
+	systemctl restart tomcat${VERSION}
+	
+}
+
+tomcat_setenv()
+{	
+	
+	ln -sv "usr/share/tomcat${VERSION}" "usr/share/tomcat"
+	
+	FILE_CONF="setenv.sh"
+	DIR_CONF="usr/share/tomcat/bin"
+	
+	lib_update
+	
+	chmod -v 755 /${DIR_CONF}/${FILE_CONF}
 	
 	systemctl restart tomcat${VERSION}
 	
@@ -88,6 +101,9 @@ case "$1" in
 	check)
 		tomcat_check
 		;;
+	setenv)
+		tomcat_setenv
+		;;
 	users)
 		tomcat_users
 		;;
@@ -101,12 +117,13 @@ case "$1" in
 		tomcat_search
 		tomcat_install
 		tomcat_check
+		tomcat_setenv
 		tomcat_users
 		tomcat_show
 		memory_show
 		;;
 	*)
-		echo "Use: $0 {all|search|install|check|users|show|memory}"
+		echo "Use: $0 {all|search|install|check|setenv|users|show|memory}"
 		exit 1
 		;;
 esac
