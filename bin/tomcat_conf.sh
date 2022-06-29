@@ -1,6 +1,6 @@
 #!/bin/sh
 # Script para configurar o Tomcat no cloud Ubuntu Server 22.04 LTS 64 bits
-# Note: Find the required Apache Tomcat package
+# Note: Find the required Apache Tomcat package and replace the variable VERSION
 #
 # Autor: Leandro Luiz
 # email: lls.homeoffice@gmail.com
@@ -17,9 +17,11 @@ tomcat_install()
 {
 	
 	echo "Install Apache Tomcat Server on Ubuntu..."
-	apt-get -y install tomcat9 tomcat9-admin
+	apt-get -y install tomcat${VERSION} tomcat${VERSION}-admin
 	
 }
+
+VERSION="9"
 
 case "$1" in
 	search)
