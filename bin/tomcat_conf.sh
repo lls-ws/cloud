@@ -23,6 +23,9 @@ tomcat_install()
 	echo "Install Apache Tomcat Server on Ubuntu..."
 	apt-get -y install tomcat${VERSION} tomcat${VERSION}-admin
 	
+	echo "Enable tomcat on boot..."
+	systemctl enable tomcat${VERSION}
+	
 }
 
 tomcat_check()
@@ -46,8 +49,31 @@ tomcat_users()
 	
 	cat ${ARQ_CONFIG}
 	
-	systemctl restart tomcat9
+	systemctl restart tomcat${VERSION}
 	
+}
+
+tomcat_show()
+{
+	
+	clear &&
+	ps aux | grep tomcat | head -1 &&
+	echo "" &&
+	free -m &&
+	echo "" &&
+	
+	echo "Check service status..."
+	systemctl status tomcat${VERSION}
+	
+}
+
+memory_show()
+{
+	echo "Memory Statistics:"
+	vmstat -s
+	
+	echo "Memory Info:"
+	cat /proc/meminfo
 }
 
 VERSION="9"
@@ -65,12 +91,22 @@ case "$1" in
 	users)
 		tomcat_users
 		;;
+	show)
+		tomcat_show
+		;;
+	memory)
+		memory_show
+		;;
 	all)
 		tomcat_search
 		tomcat_install
+		tomcat_check
+		tomcat_users
+		tomcat_show
+		memory_show
 		;;
 	*)
-		echo "Use: $0 {all|search|install|check|users}"
+		echo "Use: $0 {all|search|install|check|users|show|memory}"
 		exit 1
 		;;
 esac
