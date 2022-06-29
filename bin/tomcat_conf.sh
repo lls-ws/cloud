@@ -21,6 +21,29 @@ tomcat_install()
 	
 }
 
+tomcat_check()
+{
+	
+	echo "Check ports for Apache Tomcat Server..."
+	ss -ltn
+	
+}
+
+tomcat_users()
+{	
+	
+	ARQ_CONFIG="/etc/tomcat${VERSION}/tomcat-users.xml"
+	
+	file_backup
+	
+	sed -i '/<\/tomcat-users>/i <role rolename="admin-gui"\/>' ${ARQ_CONFIG}
+	sed -i '/<\/tomcat-users>/i <role rolename="manager-gui"\/>' ${ARQ_CONFIG}
+	sed -i '/<\/tomcat-users>/i <user username="admin" password="'${PASSWORD}'" fullName="Administrator" roles="admin-gui,manager-gui"\/>' ${ARQ_CONFIG}
+	
+	cat ${ARQ_CONFIG}
+	
+}
+
 VERSION="9"
 
 case "$1" in
@@ -30,12 +53,18 @@ case "$1" in
 	install)
 		tomcat_install
 		;;
+	check)
+		tomcat_check
+		;;
+	users)
+		tomcat_users
+		;;
 	all)
 		tomcat_search
 		tomcat_install
 		;;
 	*)
-		echo "Use: $0 {all|search|install}"
+		echo "Use: $0 {all|search|install|check|users}"
 		exit 1
 		;;
 esac

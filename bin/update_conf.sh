@@ -70,9 +70,9 @@ JUNHO(2022){
  (ok) java_conf.sh install
  }
 ( ) Configurar Tomcat {
- ( ) tomcat_conf.sh search
- ( ) tomcat_conf.sh install
- ( ) tomcat_conf.sh 
+ (ok) tomcat_conf.sh search
+ (ok) tomcat_conf.sh install
+ (ok) tomcat_conf.sh check
  ( ) tomcat_conf.sh 
  }
 }
