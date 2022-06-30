@@ -14,6 +14,8 @@ lls_local()
 	
 	HOST="$1"
 	
+	DIR_SSH="/home/${USER}/.ssh"
+	
 	if [ -z "${HOST}" ]; then
 		
 		echo "Use: $0 {HOST}"
