@@ -63,7 +63,7 @@ lls_install()
 	echo "Stopping tomcat..."
 	service tomcat${TOMCAT_VERSION} stop
 	
-	tar -xvzf ${ARQ_LLS} -C ${DIR_WEBAPPS}
+	tar -xvzf /home/${USER}/${ARQ_LLS} -C ${DIR_WEBAPPS}
 	
 	chown -R tomcat.tomcat ${DIR_LLS}
 	
