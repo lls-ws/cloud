@@ -60,6 +60,17 @@ lls_create()
 lls_install()
 {
 	
+	HOST="$1"
+	
+	if [ -z "${HOST}" ]; then
+		
+		echo "Use: $0 {HOST}"
+		exit 1
+	
+	fi
+	
+	ARQ_LLS="${USER}-${HOST}.tar.gz"
+	
 	echo "Stopping tomcat..."
 	service tomcat${TOMCAT_VERSION} stop
 	
@@ -154,7 +165,7 @@ case "$1" in
 		lls_create "$2"
 		;;
 	install)
-		lls_install
+		lls_install "$2"
 		;;
 	server)
 		lls_server
