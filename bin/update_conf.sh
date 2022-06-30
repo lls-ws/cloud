@@ -78,6 +78,9 @@ JUNHO(2022){
  (ok) tomcat_conf.sh show
  (ok) tomcat_conf.sh memory
  }
+}
+
+(30/06/2022){
 ( ) Configurar LLS-WS {
  (ok) lls_conf.sh local <HOSTNAME>
  (ok) lls_conf.sh create <HOSTNAME>
