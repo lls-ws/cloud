@@ -79,9 +79,8 @@ JUNHO(2022){
  (ok) tomcat_conf.sh memory
  }
 ( ) Configurar LLS-WS {
- ( ) Copiar o diretório do cloud atual
  (ok) lls_conf.sh local <HOSTNAME>
- ( ) lls_conf.sh create <HOSTNAME>
+ (ok) lls_conf.sh create <HOSTNAME>
  ( ) lls_conf.sh install
  ( ) lls_conf.sh server
  ( ) lls_conf.sh update

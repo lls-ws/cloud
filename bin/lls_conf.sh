@@ -39,8 +39,7 @@ lls_create()
 	fi
 	
 	echo "Stopping tomcat..."
-	service tomcat stop
-	#service tomcat${TOMCAT_VERSION} stop
+	service tomcat${TOMCAT_VERSION} stop
 	
 	tar -cvzf ${ARQ_LLS} -C ${DIR_WEBAPPS} ${USER}
 	
@@ -54,8 +53,7 @@ lls_create()
 	rm -fv ${ARQ_LLS}
 	
 	echo "Starting tomcat..."
-	service tomcat start
-	#service tomcat${TOMCAT_VERSION} start
+	service tomcat${TOMCAT_VERSION} start
 	
 }
 
