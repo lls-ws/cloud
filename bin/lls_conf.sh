@@ -1,5 +1,6 @@
 #!/bin/sh
 # Script para configurar o LLS WebService no cloud Ubuntu Server 22.04 LTS 64 bits
+# Note: Change SSH rules on new AWS site
 #
 # Autor: Leandro Luiz
 # email: lls.homeoffice@gmail.com
@@ -7,6 +8,23 @@
 # Caminho das bibliotecas
 PATH=.:$(dirname $0):$PATH
 . lib/cloud.lib		|| exit 1
+
+lls_local()
+{
+	
+	HOST="$1"
+	
+	if [ -z "${HOST}" ]; then
+		
+		echo "Use: $0 {HOST}"
+		exit 1
+	
+	fi
+	
+	echo "Coping SSH key to old cloud..."
+	scp -i ${DIR_SSH}/id_rsa ${DIR_SSH}/id_rsa ${USER}@${HOST}.lls.net.br:~
+	
+}
 
 lls_create()
 {
@@ -19,6 +37,8 @@ lls_create()
 	tar -tf ${ARQ_LLS}
 	
 	du -hsc ${ARQ_LLS}
+	
+	
 	
 	echo "Starting tomcat..."
 	service tomcat${TOMCAT_VERSION} start
@@ -114,6 +134,9 @@ lls_update()
 ARQ_LLS="${USER}-${HOSTNAME}.tar.gz"
 
 case "$1" in
+	local)
+		lls_local "$2"
+		;;
 	create)
 		lls_create
 		;;
@@ -127,7 +150,7 @@ case "$1" in
 		lls_update
 		;;
 	*)
-		echo "Use: $0 {create|install|server|update}"
+		echo "Use: $0 {local|create|install|server|update}"
 		exit 1
 		;;
 esac

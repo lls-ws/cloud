@@ -80,7 +80,7 @@ JUNHO(2022){
  }
 ( ) Configurar LLS-WS {
  ( ) Copiar o diretório do cloud atual
- ( ) lls_conf.sh create
+ (ok) lls_conf.sh create
  ( ) lls_conf.sh install
  ( ) lls_conf.sh server
  ( ) lls_conf.sh update
