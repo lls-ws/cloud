@@ -22,7 +22,7 @@ lls_local()
 	fi
 	
 	echo "Coping SSH key to old cloud..."
-	scp -i ${DIR_SSH}/id_rsa ${DIR_SSH}/id_rsa ${USER}@${HOST}.lls.net.br:~
+	scp -i ${DIR_SSH}/id_rsa ${DIR_SSH}/id_rsa ${USER}@${HOST}.lls.net.br:${DIR_SSH}
 	
 }
 
