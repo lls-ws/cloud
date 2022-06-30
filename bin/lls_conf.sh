@@ -39,7 +39,8 @@ lls_create()
 	fi
 	
 	echo "Stopping tomcat..."
-	service tomcat${TOMCAT_VERSION} stop
+	service tomcat stop
+	#service tomcat${TOMCAT_VERSION} stop
 	
 	tar -cvzf ${ARQ_LLS} -C ${DIR_WEBAPPS} ${USER}
 	
@@ -50,8 +51,11 @@ lls_create()
 	echo "Coping ${ARQ_LLS} to cloud: ${HOST}.${USER}.net.br"
 	scp -i ${DIR_SSH}/id_rsa ${ARQ_LLS} ${USER}@${HOST}.${USER}.net.br:~
 	
+	rm -fv ${ARQ_LLS}
+	
 	echo "Starting tomcat..."
-	service tomcat${TOMCAT_VERSION} start
+	service tomcat start
+	#service tomcat${TOMCAT_VERSION} start
 	
 }
 
