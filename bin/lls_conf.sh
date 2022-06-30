@@ -14,8 +14,6 @@ lls_local()
 	
 	HOST="$1"
 	
-	DIR_SSH="/home/${USER}/.ssh"
-	
 	if [ -z "${HOST}" ]; then
 		
 		echo "Use: $0 {HOST}"
@@ -23,13 +21,22 @@ lls_local()
 	
 	fi
 	
-	echo "Coping SSH key to old cloud..."
-	scp -i ${DIR_SSH}/id_rsa ${DIR_SSH}/id_rsa ${USER}@${HOST}.lls.net.br:${DIR_SSH}
+	echo "Coping SSH key to cloud: ${HOST}.${USER}.net.br"
+	scp -i ${DIR_SSH}/id_rsa ${DIR_SSH}/id_rsa ${USER}@${HOST}.${USER}.net.br:${DIR_SSH}
 	
 }
 
 lls_create()
 {
+	
+	HOST="$1"
+	
+	if [ -z "${HOST}" ]; then
+		
+		echo "Use: $0 {HOST}"
+		exit 1
+	
+	fi
 	
 	echo "Stopping tomcat..."
 	service tomcat${TOMCAT_VERSION} stop
@@ -40,7 +47,8 @@ lls_create()
 	
 	du -hsc ${ARQ_LLS}
 	
-	
+	echo "Coping ${ARQ_LLS} to cloud: ${HOST}.${USER}.net.br"
+	scp -i ${DIR_SSH}/id_rsa ${ARQ_LLS} ${USER}@${HOST}.${USER}.net.br:~
 	
 	echo "Starting tomcat..."
 	service tomcat${TOMCAT_VERSION} start
@@ -134,13 +142,14 @@ lls_update()
 }
 
 ARQ_LLS="${USER}-${HOSTNAME}.tar.gz"
+DIR_SSH="/home/${USER}/.ssh"
 
 case "$1" in
 	local)
 		lls_local "$2"
 		;;
 	create)
-		lls_create
+		lls_create "$2"
 		;;
 	install)
 		lls_install
