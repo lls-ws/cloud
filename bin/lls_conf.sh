@@ -90,20 +90,18 @@ lls_server()
 	echo "Stopping tomcat..."
 	service tomcat${TOMCAT_VERSION} stop
 	
-	ARQ_CONFIG="${DIR_TOMCAT_CONF}/server.xml"
+	FILE_CONF="server.xml"
+	DIR_CONF="usr/share/tomcat/conf"
 	
-	file_backup
+	lib_update
 	
-	sed -i '/connectionTimeout/a \	\	\	\	enableLookups="false"' ${ARQ_CONFIG}
-	sed -i '/Connector port="8443"/i \	--\>' ${ARQ_CONFIG}
+	ARQ_CONFIG=/${DIR_CONF}/${FILE_CONF}
 	
-	sed -i '/sslProtocol="TLS"/i \	\	\	\	keystoreFile="'${KEYSTORE}'"' ${ARQ_CONFIG}
-	sed -i '/sslProtocol="TLS"/i \	\	\	\	keystorePass="'${PASSWORD}'"' ${ARQ_CONFIG}
-	sed -i '/sslProtocol="TLS"/i \	\	\	\	keyAlias="'${ALIAS}'"' ${ARQ_CONFIG}
+	chmod -v 755 ${ARQ_CONFIG}
 	
-	sed -i '/sslProtocol="TLS"/a \	\<!--' ${ARQ_CONFIG}
-	
-	sed -i '/sslProtocol="TLS"/a \\n\	\<Connector protocol="AJP\/1.3" address="::1" port="8009" redirectPort="8443" \/\>' ${ARQ_CONFIG}
+	sed -i '/sslProtocol="TLS"/i \	\	\keystoreFile="'${KEYSTORE}'"' ${ARQ_CONFIG}
+	sed -i '/sslProtocol="TLS"/i \	\	\keystorePass="'${PASSWORD}'"' ${ARQ_CONFIG}
+	sed -i '/sslProtocol="TLS"/i \	\	\keyAlias="'${ALIAS}'"' ${ARQ_CONFIG}
 	
 	sed -i '/\/Host/i \	\	\<Context path="" docBase="'${DIR_LLS}'" debug="0"\/\>' ${ARQ_CONFIG}
 	
