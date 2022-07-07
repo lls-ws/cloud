@@ -36,10 +36,8 @@ tomcat_check()
 tomcat_setenv()
 {	
 	
-	ln -sfv "/usr/share/tomcat${TOMCAT_VERSION}" "/usr/share/tomcat"
-	
 	FILE_CONF="setenv.sh"
-	DIR_CONF="usr/share/tomcat/bin"
+	DIR_CONF="usr/share/tomcat${TOMCAT_VERSION}/bin"
 	
 	lib_update
 	
@@ -52,7 +50,7 @@ tomcat_setenv()
 tomcat_users()
 {	
 	
-	ARQ_CONFIG="${DIR_TOMCAT_CONF}/tomcat-users.xml"
+	ARQ_CONFIG="${DIR_TOMCAT_ETC}/tomcat-users.xml"
 	
 	file_backup
 	

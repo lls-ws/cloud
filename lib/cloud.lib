@@ -94,9 +94,10 @@ FILE_RULES="/etc/iptables/rules.v4"
 
 TOMCAT_VERSION="9"
 
-DIR_TOMCAT="/usr/share/tomcat"
-DIR_TOMCAT_CONF="/etc/tomcat${TOMCAT_VERSION}"
-DIR_WEBAPPS="/var/lib/tomcat${TOMCAT_VERSION}/webapps"
+DIR_TOMCAT="/var/lib/tomcat${TOMCAT_VERSION}"
+DIR_TOMCAT_ETC="/etc/tomcat${TOMCAT_VERSION}"
+DIR_TOMCAT_BIN="/usr/share/tomcat${TOMCAT_VERSION}/bin"
+DIR_WEBAPPS="${DIR_TOMCAT}/webapps"
 DIR_LLS="${DIR_WEBAPPS}/${USER}"
 DIR_KEYSTORE="${DIR_LLS}/keystore"
 

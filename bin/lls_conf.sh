@@ -91,7 +91,7 @@ lls_server()
 	service tomcat${TOMCAT_VERSION} stop
 	
 	FILE_CONF="server.xml"
-	DIR_CONF="usr/share/tomcat/conf"
+	DIR_CONF="etc/tomcat${TOMCAT_VERSION}"
 	
 	ARQ_CONFIG=/${DIR_CONF}/${FILE_CONF}
 	
