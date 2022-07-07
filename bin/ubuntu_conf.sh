@@ -14,7 +14,7 @@ ubuntu_upgrade()
 	apt update
 	apt list --upgradable
 	apt -y upgrade
-	apt autoremove
+	apt -y autoremove
 	
 	echo "Type: reboot"
 	

@@ -87,6 +87,15 @@ memory_show()
 	cat /proc/meminfo
 }
 
+tomcat_remove()
+{
+	
+	echo "Remove Apache Tomcat Server from Ubuntu..."
+	apt -y purge tomcat${TOMCAT_VERSION} tomcat${TOMCAT_VERSION}-admin
+	apt -y autoremove
+	
+}
+
 case "$1" in
 	search)
 		tomcat_search
@@ -109,6 +118,9 @@ case "$1" in
 	memory)
 		memory_show
 		;;
+	remove)
+		tomcat_remove
+		;;
 	all)
 		tomcat_search
 		tomcat_install
@@ -119,7 +131,7 @@ case "$1" in
 		memory_show
 		;;
 	*)
-		echo "Use: $0 {all|search|install|check|setenv|users|show|memory}"
+		echo "Use: $0 {all|search|install|check|setenv|users|show|memory|remove}"
 		exit 1
 		;;
 esac
