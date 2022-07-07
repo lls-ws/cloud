@@ -93,9 +93,11 @@ lls_server()
 	FILE_CONF="server.xml"
 	DIR_CONF="usr/share/tomcat/conf"
 	
-	lib_update
-	
 	ARQ_CONFIG=/${DIR_CONF}/${FILE_CONF}
+	
+	file_backup
+	
+	lib_update
 	
 	chmod -v 755 ${ARQ_CONFIG}
 	
