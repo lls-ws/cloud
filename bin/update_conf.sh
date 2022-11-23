@@ -82,18 +82,16 @@ JUNHO(2022){
 
 }
 
-JULHO(2022){
-(08/07/2022){
-( ) Configurar LLS-WS {
+NOVEMBRO(2022){
+(22/11/2022){
+(OK) Configurar LLS-WS {
  (ok) lls_conf.sh local <HOSTNAME>
  (ok) lls_conf.sh create <HOSTNAME>
  (ok) lls_conf.sh install <HOSTNAME>
- ( ) lls_conf.sh server
- ( ) lls_conf.sh update
+ (ok) lls_conf.sh server
+ (ok) lls_conf.sh update
  }
 }
-	
-(09/07/2022){
 ( ) Configurar SSL {
  ( ) ssl_conf.sh
  }
@@ -102,7 +100,7 @@ JULHO(2022){
  ( ) crontab_conf.sh
  }
 ( ) Desligar Instância 2021 na AWS {}
-}
+
 (10/07/2022){
 ( ) Deletar Conta AWS 2021 {}
 ( ) Deletar Email Google 2021 {}

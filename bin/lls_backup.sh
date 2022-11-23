@@ -33,7 +33,7 @@ backup_restore()
 	fi
 	
 	echo "Stopping tomcat..."
-	service tomcat stop
+	service tomcat${TOMCAT_VERSION} stop
 	
 	du -hsc ${FILE_SQL}
 	
@@ -43,7 +43,7 @@ backup_restore()
 	show_tables
 	
 	echo "Starting tomcat..."
-	service tomcat start
+	service tomcat${TOMCAT_VERSION} start
 	
 }
 
@@ -155,7 +155,12 @@ else
 
 fi
 
-DIR_SQL="/usr/share/tomcat/webapps/lls/sql"
+TOMCAT_VERSION="9"
+
+DIR_TOMCAT="/var/lib/tomcat${TOMCAT_VERSION}"
+DIR_WEBAPPS="${DIR_TOMCAT}/webapps"
+DIR_LLS="${DIR_WEBAPPS}/${USER}"
+DIR_SQL="${DIR_LLS}/sql"
 FILE_SQL="${DIR_SQL}/lls_backup.sql"
 NAME_ZIP="lls_backup.zip"
 FILE_ZIP="${DIR_SQL}/${NAME_ZIP}"
