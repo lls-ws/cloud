@@ -28,7 +28,7 @@ ssl_create()
 
 	echo " -- Stop Services -- "
 	iptables -F -t nat
-	service tomcat stop
+	service tomcat${TOMCAT_VERSION} stop
 
 	echo " -- Delete Keystore -- "
 	rm -fv ${KEYSTORE}
@@ -46,7 +46,7 @@ ssl_create()
 	keytool -import -trustcacerts -alias ${ALIAS} -file 0001_chain.pem -keystore ${KEYSTORE} -storepass "${PASSWORD}"
 
 	echo " -- Restart services -- "
-	service tomcat start
+	service tomcat${TOMCAT_VERSION} start
 	iptables-restore -n < ${FILE_RULES}
 
 	ssl_clean
