@@ -96,15 +96,19 @@ NOVEMBRO(2022){
  (ok) ssl_conf.sh install
  (ok) ssl_conf.sh create
  }
-( ) Configurar BackUp {
- (ok) lls_backup.sh restore
- ( ) lls_backup.sh
- ( ) crontab_conf.sh
- }
-( ) Desligar Instância 2021 na AWS {}
 
 (24/11/2022){
+(OK) Configurar BackUp {
+ (ok) lls_backup.sh restore
+ (ok) lls_backup.sh create
+ (ok) lls_backup.sh send
+ (ok) lls_backup.sh show
+ (ok) crontab_conf.sh config
+ (ok) crontab_conf.sh show
+ }
+( ) Desligar Instância 2021 na AWS {}
 ( ) Deletar Conta AWS 2021 {}
 ( ) Deletar Email Google 2021 {}
 }
+
 }

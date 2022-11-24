@@ -13,6 +13,12 @@ crontab_config()
 	
 	ARQ_CONFIG="/var/spool/cron/crontabs/root"
 	
+	if [ ! -f "${ARQ_CONFIG}" ]; then
+	
+		touch ${ARQ_CONFIG}
+	
+	fi
+	
 	chmod -v 0600 ${ARQ_CONFIG}
 	
 	echo "0 12 * * * bash ${FILE_BIN} send > /dev/null 2>&1" 	> ${ARQ_CONFIG}
