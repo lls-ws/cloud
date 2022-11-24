@@ -91,11 +91,12 @@ NOVEMBRO(2022){
  (ok) lls_conf.sh server
  (ok) lls_conf.sh update
  }
-}
 (OK) Configurar SSL {
  (ok) ssl_conf.sh install
  (ok) ssl_conf.sh create
  }
+
+}
 
 (24/11/2022){
 (OK) Configurar BackUp {
@@ -106,6 +107,10 @@ NOVEMBRO(2022){
  (ok) crontab_conf.sh config
  (ok) crontab_conf.sh show
  }
+
+}
+
+(25/11/2022){
 ( ) Desligar Instância 2021 na AWS {}
 ( ) Deletar Conta AWS 2021 {}
 ( ) Deletar Email Google 2021 {}
