@@ -13,7 +13,7 @@ backup_create()
 	fi
 	
 	echo "Create backup file: ${FILE_SQL}"
-	mysqldump -u root --password="${PASSWORD}" "bd_lls" > "${FILE_SQL}"
+	mysqldump -u root --password="${PASSWORD}" "bd_${USER}" > "${FILE_SQL}"
 	
 	echo "Compact backup file: ${FILE_ZIP}"
 	zip -j ${FILE_ZIP} ${FILE_SQL}
@@ -107,7 +107,7 @@ show_tables()
 }
 
 if [ "$EUID" -ne 0 ]; then
-	echo "Rodar script como root"
+	echo "Run script as root!"
 	exit 1
   
 fi
@@ -161,11 +161,11 @@ DIR_TOMCAT="/var/lib/tomcat${TOMCAT_VERSION}"
 DIR_WEBAPPS="${DIR_TOMCAT}/webapps"
 DIR_LLS="${DIR_WEBAPPS}/${USER}"
 DIR_SQL="${DIR_LLS}/sql"
-FILE_SQL="${DIR_SQL}/lls_backup.sql"
-NAME_ZIP="lls_backup.zip"
+FILE_SQL="${DIR_SQL}/${USER}_backup.sql"
+NAME_ZIP="${USER}_backup.zip"
 FILE_ZIP="${DIR_SQL}/${NAME_ZIP}"
 
-CMD_BASE="mysql -u root --password=${PASSWORD} -D bd_lls"
+CMD_BASE="mysql -u root --password=${PASSWORD} -D bd_${USER}"
 
 case "$1" in
 	create)    	
