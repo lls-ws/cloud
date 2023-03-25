@@ -1,5 +1,5 @@
 #!/bin/sh
-# Script to configure user on cloud Ubuntu Server
+# Script to configure a user on cloud Ubuntu Server
 #
 # Autor: Leandro Luiz
 # email: lls.homeoffice@gmail.com
@@ -71,8 +71,8 @@ ssh_create_local()
 	USER="ubuntu"
 	
 	echo "Creating old key pair backup on user local..."
-	cp -fv ${DIR_SSH}/id_rsa ${DIR_SSH}/id_rsa.old
-	cp -fv ${DIR_SSH}/id_rsa.pub ${DIR_SSH}/id_rsa.pub.old
+	cp -fv ${DIR_SSH}/id_rsa ${DIR_SSH}/id_rsa.old 2> /dev/null
+	cp -fv ${DIR_SSH}/id_rsa.pub ${DIR_SSH}/id_rsa.pub.old 2> /dev/null
 	
 	if [ ! -f ${DIR_SSH}/id_rsa.pub ]; then
 	
