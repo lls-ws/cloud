@@ -1,7 +1,10 @@
 # Cloud EC2
-Scripts to configure cloud Ubuntu 20.04.1 LTS
 
-Servers:
-Apache
-Tomcat
-Mariadb
+Scripts to configure a cloud Ubuntu 22.04.2 LTS
+
+# Steps to configure:
+
+cd cloud
+
+bash bin/user_config.sh 
+

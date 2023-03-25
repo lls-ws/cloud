@@ -1,5 +1,5 @@
 #!/bin/sh
-# Script para configurar o usuario no cloud Ubuntu Server 22.04 LTS 64 bits
+# Script to configure user on cloud Ubuntu Server
 #
 # Autor: Leandro Luiz
 # email: lls.homeoffice@gmail.com
