@@ -16,26 +16,26 @@ git clone https://github.com/lls-ws/cloud.git
 
 cd cloud
 
-sudo bin/git_config.sh name [NAME]
+sudo bin/git_conf.sh name [NAME]
 
-sudo bin/git_config.sh email [EMAIL]
+sudo bin/git_conf.sh email [EMAIL]
 
-sudo bin/git_config.sh password [PASSWORD]
+sudo bin/git_conf.sh password [PASSWORD]
 
 ```
 
 ### Configure a user:
 
 ```bash
-bash bin/user_config.sh hostname [HOSTNAME]
+bash bin/user_conf.sh hostname [HOSTNAME]
 
-bash bin/user_config.sh user
+bash bin/user_conf.sh user
 
 # Only this line is run on a local machine
-bash bin/user_config.sh ssh-local [HOSTNAME] [KEYNAME]
+bash bin/user_conf.sh ssh-local [HOSTNAME] [KEYNAME]
 
 # Run again on a cloud
-bash bin/user_config.sh ssh-remote
+bash bin/user_conf.sh ssh-remote
 
 ```
 
@@ -47,6 +47,17 @@ sudo bin/ubuntu_conf.sh upgrade
 sudo bin/ubuntu_conf.sh profile
 
 sudo bin/ubuntu_conf.sh fonts
+
+```
+
+### Configure Ssmtp:
+
+```bash
+sudo bin/git_conf.sh ssmtp [SSMTP-PASSWORD]
+
+sudo bin/ssmtp_conf.sh install
+
+sudo bin/ssmtp_conf.sh config
 
 ```
 

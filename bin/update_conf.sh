@@ -43,17 +43,11 @@ JUNHO(2022){
  (ok) ubuntu_conf.sh fonts
  (ok) ubuntu_conf.sh version
  }
-(OK) Configurar Iptables {
- (ok) iptables_conf.sh install
- (ok) iptables_conf.sh config
- (ok) iptables_conf.sh rules
- (ok) iptables_conf.sh show
- }
 (OK) Configurar Ssmtp {
  (ok) GoogleDrive: ssmtp_app_password.doc
  (ok) git_conf.sh ssmtp <SSMTP-PASSWORD>
- (ok) ssmtp_config.sh install
- (ok) ssmtp_config.sh config
+ (ok) ssmtp_conf.sh install
+ (ok) ssmtp_conf.sh config
  }
 }
 
@@ -95,7 +89,13 @@ NOVEMBRO(2022){
  (ok) ssl_conf.sh install
  (ok) ssl_conf.sh create
  }
-
+(OK) Configurar Iptables {
+ (ok) iptables_conf.sh install
+ (ok) iptables_conf.sh config
+ (ok) iptables_conf.sh rules
+ (ok) iptables_conf.sh show
+ }
+ 
 }
 
 (24/11/2022){

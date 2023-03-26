@@ -4,7 +4,7 @@
 # Autor: Leandro Luiz
 # email: lls.homeoffice@gmail.com
 
-# Caminho das bibliotecas
+# Library Path
 PATH=.:$(dirname $0):$PATH
 . lib/cloud.lib		|| exit 1
 

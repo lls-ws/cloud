@@ -1,5 +1,5 @@
 #!/bin/bash
-# Script para configurar o Ssmtp no cloud Ubuntu Server 22.04 LTS 64 bits
+# Script to configre Ssmtp on cloud Ubuntu Server
 # Change this Google settings:
 # IMAP enabled
 # Allow less secure apps is ON
@@ -9,7 +9,7 @@
 # Autor: Leandro Luiz
 # email: lls.homeoffice@gmail.com
 
-# Caminho das bibliotecas
+# Library Path
 PATH=.:$(dirname $0):$PATH
 . lib/cloud.lib		|| exit 1
 
