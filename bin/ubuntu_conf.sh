@@ -1,5 +1,5 @@
 #!/bin/bash
-# Script para configurar o cloud Ubuntu Server 22.04 LTS 64 bits
+# Script to configure a cloud Ubuntu Server
 #
 # Autor: Leandro Luiz
 # email: lls.homeoffice@gmail.com
@@ -52,7 +52,7 @@ fonts_install()
 check_version()
 {
 	
-	echo "Mostrando a versão dos Apps"
+	echo "Show Apps versions"
 	uname -mrs
 	lsb_release -a
 	

@@ -16,11 +16,11 @@ git clone https://github.com/lls-ws/cloud.git
 
 cd cloud
 
-bash bin/git_config.sh name [NAME]
+sudo bin/git_config.sh name [NAME]
 
-bash bin/git_config.sh email [EMAIL]
+sudo bin/git_config.sh email [EMAIL]
 
-bash bin/git_config.sh password [PASSWORD]
+sudo bin/git_config.sh password [PASSWORD]
 
 ```
 
@@ -36,6 +36,17 @@ bash bin/user_config.sh ssh-local [HOSTNAME] [KEYNAME]
 
 # Run again on a cloud
 bash bin/user_config.sh ssh-remote
+
+```
+
+### Configure Ubuntu:
+
+```bash
+sudo bin/ubuntu_conf.sh upgrade
+
+sudo bin/ubuntu_conf.sh profile
+
+sudo bin/ubuntu_conf.sh fonts
 
 ```
 
