@@ -4,19 +4,6 @@
 # Autor: Leandro Luiz
 # email: lls.homeoffice@gmail.com
 
-root_new_password()
-{
-	
-	echo "Change root password..."
-	sudo passwd root
-	
-	echo "Show root password..."
-	sudo cat /etc/shadow | grep root
-	
-	change_hostname
-	
-}
-
 change_hostname()
 {
 	
@@ -36,7 +23,7 @@ change_hostname()
 	echo "Restarting hostname..."
 	sudo systemctl restart systemd-hostnamed
 	
-	sudo reboot
+	exit
 	
 }
 
@@ -61,13 +48,13 @@ ssh_create_local()
 	
 	fi
 	
-	if [ "${HOSTNAME}" != "lls" ]; then
+	if [ "${HOSTNAME}" != "${USER}" ]; then
 
 		HOST="${HOSTNAME}.${HOST}"
 
 	fi
 	
-	KEY="/home/lls/.ssh/${USER}-${KEYNAME}-${YEAR}.pem"
+	KEY="${DIR_SSH}/${USER}-${KEYNAME}-${YEAR}.pem"
 	USER="ubuntu"
 	
 	echo "Creating old key pair backup on user local..."
@@ -123,7 +110,16 @@ ssh_create_remote()
 	
 }
 
-USER="lls"
+if [ "$EUID" -eq 0 ]; then
+	
+	echo "Root user not permited!"
+	
+	exit 1
+  
+fi
+
+USER=`sudo git config user.name`
+
 DIR_SSH="/home/${USER}/.ssh"
 ARQ_AUTHORIZED_KEYS="${DIR_SSH}/authorized_keys"
 HOST="${USER}.net.br"
@@ -132,9 +128,6 @@ HOSTNAME="$2"
 KEYNAME="$3"
 
 case "$1" in
-	root)
-		root_new_password
-		;; 
 	hostname)
 		change_hostname
 		;;
@@ -148,7 +141,7 @@ case "$1" in
 		ssh_create_remote
 		;; 
 	*)
-		echo "Use: $0 {root|hostname|user|ssh-local|ssh-remote}"
+		echo "Use: $0 {hostname|user|ssh-local|ssh-remote}"
 		exit 1
 		;;
 esac

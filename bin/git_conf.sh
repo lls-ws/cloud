@@ -1,5 +1,5 @@
 #!/bin/bash
-# Script para gerenciar os repositorios no Github
+# Script for manager a GitHub repository
 #
 # email: lls.homeoffice@gmail.com
 
@@ -98,7 +98,9 @@ git_show()
 URL="https://github.com/lls-ws"
 
 if [ "$EUID" -ne 0 ]; then
-	echo "Rodar script como root"
+	
+	echo "Run script with sudo command!"
+	echo "Use: sudo `basename $0`"
 	exit 1
   
 fi
@@ -132,7 +134,7 @@ case "$1" in
 		git_conf "ssmtp" "$2"
 		;;
 	*)
-		echo "Use: $(basename $0) {name|email|password|token|ssmtp|show|local|clone|remote}"
+		echo "Use: sudo $(basename $0) {name|email|password|token|ssmtp|show|local|clone|remote}"
 		exit 1
 		;;
 esac

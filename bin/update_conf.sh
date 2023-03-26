@@ -22,7 +22,7 @@ JUNHO(2022){
  (ok) GoogleDrive: user_registro.br.doc
  }
 (OK) Configurar Usuário {
- (ok) user_conf.sh root <HOSTNAME>
+ (ok) user_conf.sh hostname <HOSTNAME>
  (ok) user_conf.sh user
  (ok) user_conf.sh ssh-local <HOSTNAME> <KEYNAME>
  (ok) user_conf.sh ssh-remote
