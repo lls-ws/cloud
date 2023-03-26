@@ -28,9 +28,10 @@ java_path()
 	echo "Set the Java home path..."
 	echo 'JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"' >> ${DIR_ENVIRONMENT}
 	
-	echo "Source the file to start using it without logging out..."
+	echo "Now reload this file to apply the changes to your current session:"
 	source ${DIR_ENVIRONMENT}
 	
+	echo "Verify that the environment variable is set:"
 	echo ${JAVA_HOME}
 	
 }
