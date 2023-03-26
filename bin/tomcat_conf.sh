@@ -1,11 +1,11 @@
 #!/bin/sh
-# Script para configurar o Tomcat no cloud Ubuntu Server 22.04 LTS 64 bits
+# Script to configure Tomcat on cloud Ubuntu Server
 # Note: Find the required Apache Tomcat package and replace the variable TOMCAT_VERSION on cloud.lib
 #
 # Autor: Leandro Luiz
 # email: lls.homeoffice@gmail.com
 
-# Caminho das bibliotecas
+# Library Path
 PATH=.:$(dirname $0):$PATH
 . lib/cloud.lib		|| exit 1
 
@@ -14,6 +14,9 @@ tomcat_search()
 	
 	echo "Check the availability of Apache Tomcat package..."
 	apt-cache search tomcat
+	
+	echo -e "\nReplace variable TOMCAT_VERSION on cloud.lib if necessary!"
+	echo "TOMCAT_VERSION: ${TOMCAT_VERSION}"
 	
 }
 

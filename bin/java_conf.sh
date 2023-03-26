@@ -1,10 +1,10 @@
 #!/bin/sh
-# Script para configurar Java no cloud Ubuntu Server 22.04 LTS 64 bits
+# Script to configure Java on cloud Ubuntu Server
 #
 # Autor: Leandro Luiz
 # email: lls.homeoffice@gmail.com
 
-# Caminho das bibliotecas
+# Library Path
 PATH=.:$(dirname $0):$PATH
 . lib/cloud.lib		|| exit 1
 

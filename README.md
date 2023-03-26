@@ -24,7 +24,7 @@ sudo bin/git_conf.sh password [PASSWORD]
 
 ```
 
-### Configure a user:
+### Configure User:
 
 ```bash
 bash bin/user_conf.sh hostname [HOSTNAME]
@@ -71,6 +71,19 @@ sudo bin/mariadb_conf.sh secure
 sudo bin/mariadb_conf.sh conf
 
 sudo bin/mariadb_conf.sh create
+
+```
+
+### Configure Tomcat:
+
+```bash
+sudo bash bin/java_conf.sh install
+
+sudo bash bin/tomcat_conf.sh install
+
+sudo bash bin/tomcat_conf.sh setenv
+
+sudo bash bin/tomcat_conf.sh users
 
 ```
 
