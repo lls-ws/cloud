@@ -61,6 +61,18 @@ sudo bin/ssmtp_conf.sh config
 
 ```
 
+### Configure MariaDB:
+
+```bash
+sudo bin/mariadb_conf.sh install
+
+sudo bin/mariadb_conf.sh secure
+
+sudo bin/mariadb_conf.sh conf
+
+sudo bin/mariadb_conf.sh create
+
+```
 
 ## License
 
