@@ -1,16 +1,21 @@
 # Passos para configurar o cloud Ubuntu Server 22.04 LTS 64 bits
-AGOSTO(2023){
-(06/08/2023){
+JUNHO(2022){
+(26/06/2022){
+(OK) Criar novo Log no GitHub {
+ (ok) GoogleDrive: token.doc
+ (ok) git_conf.sh token <TOKEN>
+ (ok) update_2021.log
+ }
 (OK) Criar novo Cloud na Amazon {
- (ok) GoogleDrive: user_aws_2023.doc
+ (ok) GoogleDrive: user_aws_2022.doc
  (ok) Criar novo Email no Google
  (ok) Criar nova Conta na Amazon
  }
 }
 
-(07/08/2023){
+(27/06/2022){
 (OK) Configurar Amazon Web Service {
- (ok) GoogleDrive: user_aws_2023.doc
+ (ok) GoogleDrive: user_aws_2022.doc
  (ok) Configurar Instância EC2
  (ok) Editar Regras de Entrada
  (ok) Adicionar Zona no Registro.br
@@ -24,7 +29,7 @@ AGOSTO(2023){
  }
 }
 
-(08/08/2023){
+(28/06/2022){
 (OK) Configurar GitHub {
  (ok) GoogleDrive: token.doc
  (ok) git_conf.sh name <NAME>
@@ -46,7 +51,7 @@ AGOSTO(2023){
  }
 }
 
-(09/08/2023){
+(29/06/2022){
 (OK) Configurar MariaDB {
  (ok) mariadb_conf.sh install
  (ok) mariadb_conf.sh secure
@@ -69,7 +74,10 @@ AGOSTO(2023){
  }
 }
 
-(10/08/2023){
+}
+
+NOVEMBRO(2022){
+(23/11/2022){
 (OK) Configurar LLS-WS {
  (ok) lls_conf.sh local <HOSTNAME>
  (ok) lls_conf.sh create <HOSTNAME>
@@ -90,7 +98,7 @@ AGOSTO(2023){
  
 }
 
-(11/08/2023){
+(24/11/2022){
 (OK) Configurar BackUp {
  (ok) lls_backup.sh restore
  (ok) lls_backup.sh create
@@ -102,16 +110,12 @@ AGOSTO(2023){
 
 }
 
-(12/08/2023){
-(ok) Desligar Instância 2022 na AWS {}
-(ok) Deletar Conta AWS 2022 {}
-(OK) Deletar Email Google 2022 {
- (ok) GoogleDrive: Google_2022.png
- }
-(OK) Criar novo Log no GitHub {
- (ok) cp -fv bin/update_conf.sh log/update_2022.log
- (ok) git_upload_cloud
- }
+(25/11/2022){
+(ok) Desligar Instância 2021 na AWS {}
+(ok) Deletar Conta AWS 2021 {}
+(OK) Deletar Email Google 2021 {
+ (ok) GoogleDrive: Google_2021.png
+	}
 }
 
 }
