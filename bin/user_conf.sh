@@ -18,15 +18,7 @@ change_hostname()
 	echo "Restarting hostname..."
 	sudo systemctl restart systemd-hostnamed
 	
-	if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-	
-		exit
-		
-	else
-	
-		logout
-		
-	fi
+	reboot
 	
 }
 
