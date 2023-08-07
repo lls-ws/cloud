@@ -20,11 +20,11 @@ change_hostname()
 	
 	if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
 	
-		logout
+		exit
 		
 	else
 	
-		exit
+		logout
 		
 	fi
 	
