@@ -45,49 +45,54 @@ AGOSTO(2023){
  (ok) git_conf.sh show
  }
  
-() Configurar Ubuntu {
- () ubuntu_conf.sh upgrade
- () ubuntu_conf.sh profile
- () ubuntu_conf.sh fonts
- () ubuntu_conf.sh version
+(OK) Configurar Ubuntu {
+ (ok) ubuntu_conf.sh upgrade
+ (ok) ubuntu_conf.sh profile
+ (ok) ubuntu_conf.sh fonts
+ (ok) ubuntu_conf.sh version
  }
- 
+
+(OK) Configurar Ssmtp {
+ (ok) GoogleDrive: ssmtp_app_password.doc
+ (ok) git_conf.sh ssmtp <SSMTP-PASSWORD>
+ (ok) ssmtp_conf.sh install
+ (ok) ssmtp_conf.sh config
+ }
+
+(OK) Configurar MariaDB {
+ (ok) mariadb_conf.sh install
+ (ok) mariadb_conf.sh secure
+ (ok) mariadb_conf.sh conf
+ (ok) mariadb_conf.sh create
+ (ok) mariadb_conf.sh show
+ (ok) mariadb_conf.sh version
+ }
+
+(OK) Configurar Java {
+ (ok) java_conf.sh install
+ }
+
+(OK) Configurar Tomcat {
+ (ok) tomcat_conf.sh search
+ (ok) tomcat_conf.sh install
+ (ok) tomcat_conf.sh check
+ (ok) tomcat_conf.sh setenv
+ (ok) tomcat_conf.sh users
+ (ok) tomcat_conf.sh show
+ (ok) tomcat_conf.sh memory
+ }
+
+(OK) Configurar Iptables {
+ (ok) iptables_conf.sh install
+ (ok) iptables_conf.sh config
+ (ok) iptables_conf.sh rules
+ (ok) iptables_conf.sh show
+ }
+
 }
 
 (08/08/2023){
 
-() Configurar Ssmtp {
- () GoogleDrive: ssmtp_app_password.doc
- () git_conf.sh ssmtp <SSMTP-PASSWORD>
- () ssmtp_conf.sh install
- () ssmtp_conf.sh config
- }
-}
-
-(09/08/2023){
-() Configurar MariaDB {
- () mariadb_conf.sh install
- () mariadb_conf.sh secure
- () mariadb_conf.sh conf
- () mariadb_conf.sh create
- () mariadb_conf.sh show
- () mariadb_conf.sh version
- }
-() Configurar Java {
- () java_conf.sh install
- }
-() Configurar Tomcat {
- () tomcat_conf.sh search
- () tomcat_conf.sh install
- () tomcat_conf.sh check
- () tomcat_conf.sh setenv
- () tomcat_conf.sh users
- () tomcat_conf.sh show
- () tomcat_conf.sh memory
- }
-}
-
-(10/08/2023){
 () Configurar LLS-WS {
  () lls_conf.sh local <HOSTNAME>
  () lls_conf.sh create <HOSTNAME>
@@ -95,20 +100,16 @@ AGOSTO(2023){
  () lls_conf.sh server
  () lls_conf.sh update
  }
+
 () Configurar SSL {
  () ssl_conf.sh install
  () ssl_conf.sh create
  }
-() Configurar Iptables {
- () iptables_conf.sh install
- () iptables_conf.sh config
- () iptables_conf.sh rules
- () iptables_conf.sh show
- }
- 
+
 }
 
-(11/08/2023){
+(09/08/2023){
+
 () Configurar BackUp {
  () lls_backup.sh restore
  () lls_backup.sh create
@@ -120,16 +121,18 @@ AGOSTO(2023){
 
 }
 
-(12/08/2023){
+(10/08/2023){
+
 () Desligar Instância 2022 na AWS {}
 () Deletar Conta AWS 2022 {}
 () Deletar Email Google 2022 {
  () GoogleDrive: Google_2022.png
  }
 () Criar novo Log no GitHub {
- () cp -fv bin/update_conf.sh log/update_2022.log
+ () cp -fv bin/update_conf.sh log/update_2023.log
  () git_upload_cloud
  }
+
 }
 
 }
