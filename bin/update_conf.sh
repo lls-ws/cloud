@@ -41,7 +41,7 @@ AGOSTO(2023){
 
 (08/08/2023){
 () Configurar GitHub {
- () GoogleDrive: ten.doc
+ () GoogleDrive: token.doc
  () git_conf.sh name <NAME>
  () git_conf.sh email <EMAIL>
  () git_conf.sh password <PASSWORD>
