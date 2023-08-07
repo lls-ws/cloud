@@ -84,6 +84,15 @@ ssh_create_remote()
 	
 	check_user "$1"
 	
+	KEY_PUB="id_rsa.pub"
+	
+	if [ ! -f ${KEY_PUB} ]; then
+	
+		echo "KEY not found: ${KEY_PUB}"
+		exit 1;
+	
+	fi
+	
 	echo "Creating ssh dir for user ${USER}"
 	sudo mkdir -v ${DIR_SSH}
 	
@@ -94,7 +103,7 @@ ssh_create_remote()
 	sudo touch ${ARQ_AUTHORIZED_KEYS}
 	
 	echo "Setting public key to authorized keys..."
-	sudo bash -c "cat id_rsa.pub >> ${ARQ_AUTHORIZED_KEYS}"
+	sudo bash -c "cat ${KEY_PUB} >> ${ARQ_AUTHORIZED_KEYS}"
 	
 	echo "Changing ssh dir permissions..."
 	sudo chmod -v 700 ${DIR_SSH}
@@ -110,7 +119,7 @@ ssh_create_remote()
 	sudo cat ${ARQ_AUTHORIZED_KEYS}
 	
 	echo "Deleting public key file..."
-	sudo rm -rf cloud/ id_rsa.pub
+	sudo rm -rf cloud/ ${KEY_PUB}
 	
 	echo "Type to exit: logout"
 	
