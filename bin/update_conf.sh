@@ -36,23 +36,26 @@ AGOSTO(2023){
  (ok) user_conf.sh user <USER>
  (ok) user_conf.sh ssh-remote <USER>
  }
- 
-}
 
-(08/08/2023){
-() Configurar GitHub {
- () GoogleDrive: token.doc
- () git_conf.sh name <NAME>
- () git_conf.sh email <EMAIL>
- () git_conf.sh password <PASSWORD>
- () git_conf.sh show
+(OK) Configurar GitHub {
+ (ok) GoogleDrive: token.doc
+ (ok) git_conf.sh name <NAME>
+ (ok) git_conf.sh email <EMAIL>
+ (ok) git_conf.sh password <PASSWORD>
+ (ok) git_conf.sh show
  }
+ 
 () Configurar Ubuntu {
  () ubuntu_conf.sh upgrade
  () ubuntu_conf.sh profile
  () ubuntu_conf.sh fonts
  () ubuntu_conf.sh version
  }
+ 
+}
+
+(08/08/2023){
+
 () Configurar Ssmtp {
  () GoogleDrive: ssmtp_app_password.doc
  () git_conf.sh ssmtp <SSMTP-PASSWORD>

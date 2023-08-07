@@ -33,6 +33,9 @@ add_user()
 	echo "Changing password..."
 	sudo passwd ${USER}
 	
+	echo "Adding user to sudo group..."
+	sudo usermod -a -G sudo ${USER}
+	
 }
 
 ssh_create_local()
