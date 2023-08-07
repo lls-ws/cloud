@@ -25,7 +25,7 @@ change_hostname()
 add_user()
 {
 	
-	check_user
+	check_user "$1"
 	
 	echo "Adding user ${USER}"
 	sudo adduser ${USER}
@@ -82,7 +82,7 @@ ssh_create_local()
 ssh_create_remote()
 {
 	
-	check_user
+	check_user "$1"
 	
 	echo "Creating ssh dir for user ${USER}"
 	sudo mkdir -v ${DIR_SSH}
