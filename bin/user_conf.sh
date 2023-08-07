@@ -36,7 +36,6 @@ add_user()
 ssh_create_local()
 {
 	
-	check_host
 	check_key
 	
 	if [ ! -f ${KEY} ]; then
@@ -116,6 +115,8 @@ ssh_create_remote()
 ssh_connect()
 {
 	
+	check_key
+	
 	echo "Connecting on cloud: {HOST}"
 	ssh -i ${KEY} ${USER_CLOUD}@${HOST} -t 'git clone https://github.com/lls-ws/cloud.git'
 	
@@ -135,6 +136,8 @@ check_host()
 
 check_key()
 {
+	
+	check_host
 	
 	if [ -z "${KEYNAME}" ]; then
 		
