@@ -25,6 +25,8 @@ change_hostname()
 add_user()
 {
 	
+	check_user
+	
 	echo "Adding user ${USER}"
 	sudo adduser ${USER}
 	
@@ -80,6 +82,8 @@ ssh_create_local()
 ssh_create_remote()
 {
 	
+	check_user
+	
 	echo "Creating ssh dir for user ${USER}"
 	sudo mkdir -v ${DIR_SSH}
 	
@@ -119,6 +123,31 @@ ssh_connect()
 	
 	echo "Connecting on cloud: ${HOST}"
 	ssh -i ${KEY} ${USER_CLOUD}@${HOST}
+	
+}
+
+check_user()
+{
+	
+	if [ -z "${HOSTNAME}" ]; then
+		
+		echo "Use: $0 $1 {USER}"
+		exit 1
+	
+	fi
+	
+	USER="${HOSTNAME}"
+		
+	set_user
+	
+}
+
+set_user()
+{
+	
+	DIR_SSH="/home/${USER}/.ssh"
+	ARQ_AUTHORIZED_KEYS="${DIR_SSH}/authorized_keys"
+	HOST="${USER}.net.br"
 	
 }
 
@@ -169,9 +198,8 @@ fi
 
 USER=`sudo git config user.name`
 
-DIR_SSH="/home/${USER}/.ssh"
-ARQ_AUTHORIZED_KEYS="${DIR_SSH}/authorized_keys"
-HOST="${USER}.net.br"
+set_user
+
 YEAR=`date +%Y`
 HOSTNAME="$2"
 KEYNAME="$3"
