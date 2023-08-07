@@ -32,7 +32,7 @@ AGOSTO(2023){
  (ok) user_conf.sh ssh-local <HOSTNAME> <KEYNAME>
  (ok) user_conf.sh connect <HOSTNAME> <KEYNAME>
  (ok) user_conf.sh hostname <HOSTNAME>
- () user_conf.sh user <USER>
+ (ok) user_conf.sh user <USER>
  () user_conf.sh ssh-remote <USER>
  }
 }

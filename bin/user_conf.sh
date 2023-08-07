@@ -215,13 +215,13 @@ case "$1" in
 		change_hostname
 		;;
 	user)
-		add_user
+		add_user "$1"
 		;;
 	ssh-local)
 		ssh_create_local
 		;;
 	ssh-remote)
-		ssh_create_remote
+		ssh_create_remote "$1"
 		;;
 	ping)
 		ping_host
