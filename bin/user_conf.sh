@@ -117,8 +117,8 @@ ssh_connect()
 	
 	check_key
 	
-	echo "Connecting on cloud: {HOST}"
-	ssh -i ${KEY} ${USER_CLOUD}@${HOST} -t 'git clone https://github.com/lls-ws/cloud.git'
+	echo "Connecting on cloud: ${HOST}"
+	ssh -i ${KEY} ${USER_CLOUD}@${HOST} -t 'rm -rf cloud;git clone https://github.com/lls-ws/cloud.git; ls -al'
 	
 }
 
