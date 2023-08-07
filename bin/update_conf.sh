@@ -2,6 +2,7 @@
 AGOSTO(2023){
 
 (06/08/2023){
+
 (OK) Criar novo Cloud na Amazon {
  (ok) GoogleDrive: user_aws_2023.doc
  (OK) Criar novo Email no Google {
@@ -27,14 +28,15 @@ AGOSTO(2023){
 
 (07/08/2023){
 
-() Configurar Usuário {
+(OK) Configurar Usuário {
  (ok) user_conf.sh ping <HOSTNAME>
  (ok) user_conf.sh ssh-local <HOSTNAME> <KEYNAME>
  (ok) user_conf.sh connect <HOSTNAME> <KEYNAME>
  (ok) user_conf.sh hostname <HOSTNAME>
  (ok) user_conf.sh user <USER>
- () user_conf.sh ssh-remote <USER>
+ (ok) user_conf.sh ssh-remote <USER>
  }
+ 
 }
 
 (08/08/2023){
