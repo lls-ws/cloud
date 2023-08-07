@@ -18,7 +18,7 @@ change_hostname()
 	echo "Restarting hostname..."
 	sudo systemctl restart systemd-hostnamed
 	
-	reboot
+	sudo reboot
 	
 }
 
