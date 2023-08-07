@@ -7,12 +7,7 @@
 change_hostname()
 {
 	
-	if [ -z "${HOSTNAME}" ]; then
-		
-		echo "Use: $0 hostname {HOSTNAME}"
-		exit 1
-	
-	fi
+	check_host
 	
 	echo "Changing hostname..."
 	sudo tee /etc/hostname <<< ${HOSTNAME}
@@ -41,21 +36,31 @@ add_user()
 ssh_create_local()
 {
 	
-	if [ -z "${HOSTNAME}" -o -z "${KEYNAME}" ]; then
+	check_host
+	check_key
+	
+	if [ ! -f ${KEY} ]; then
+	
+		KEY_DOWNLOAD="/home/${USER}/Downloads/${USER}-${KEYNAME}-${YEAR}.pem"
+	
+		if [ -f ${KEY_DOWNLOAD} ]; then
+	
+			echo "Coping KEY PEM to SSH Path..."
+			mv -v ${KEY_DOWNLOAD} ${DIR_SSH}
+			
+			chmod -v 400 ${KEY}
+			chown -v lls.lls ${KEY}
+			
+			ssh-keygen -f "${DIR_SSH}/known_hosts" -R ${HOST}
+			
+		else
 		
-		echo "Use: $0 {HOSTNAME} {KEYNAME}"
-		exit 1
+			echo "KEY ${KEY_DOWNLOAD} not found!"
+			exit 1;
+			
+		fi
 	
 	fi
-	
-	if [ "${HOSTNAME}" != "${USER}" ]; then
-
-		HOST="${HOSTNAME}.${HOST}"
-
-	fi
-	
-	KEY="${DIR_SSH}/${USER}-${KEYNAME}-${YEAR}.pem"
-	USER="ubuntu"
 	
 	echo "Creating old key pair backup on user local..."
 	cp -fv ${DIR_SSH}/id_rsa ${DIR_SSH}/id_rsa.old 2> /dev/null
@@ -66,12 +71,10 @@ ssh_create_local()
 		echo "Creating key pair on user local..."
 		ssh-keygen -t rsa
 	
-		chmod -v 400 ${KEY}
-		
 	fi
 	
 	echo "Copy key pair to cloud: ${HOST}"
-	scp -i ${KEY} ${DIR_SSH}/id_rsa.pub ${USER}@${HOST}:~
+	scp -i ${KEY} ${DIR_SSH}/id_rsa.pub ${USER_CLOUD}@${HOST}:~
 	
 }
 
@@ -110,6 +113,49 @@ ssh_create_remote()
 	
 }
 
+ssh_connect()
+{
+	
+	echo "Connecting on cloud: {HOST}"
+	ssh -i ${KEY} ${USER_CLOUD}@${HOST} -t 'git clone https://github.com/lls-ws/cloud.git'
+	
+}
+
+check_host()
+{
+	
+	if [ -z "${HOSTNAME}" ]; then
+		
+		echo "Use: $0 hostname {HOSTNAME}"
+		exit 1
+	
+	fi
+	
+}
+
+check_key()
+{
+	
+	if [ -z "${KEYNAME}" ]; then
+		
+		echo "Use: $0 {HOSTNAME} {KEYNAME}"
+		exit 1
+	
+	fi
+	
+	KEY="${DIR_SSH}/${USER}-${KEYNAME}-${YEAR}.pem"
+	
+	USER_CLOUD="ubuntu"
+	
+}
+
+ping_host()
+{
+	
+	ping ${HOST}
+	
+}
+
 if [ "$EUID" -eq 0 ]; then
 	
 	echo "Root user not permited!"
@@ -127,6 +173,12 @@ YEAR=`date +%Y`
 HOSTNAME="$2"
 KEYNAME="$3"
 
+if [ "${HOSTNAME}" != "${USER}" ]; then
+
+	HOST="${HOSTNAME}.${HOST}"
+
+fi
+
 case "$1" in
 	hostname)
 		change_hostname
@@ -139,9 +191,15 @@ case "$1" in
 		;;
 	ssh-remote)
 		ssh_create_remote
+		;;
+	ping)
+		ping_host
+		;; 	
+	connect)
+		ssh_connect
 		;; 
 	*)
-		echo "Use: $0 {hostname|user|ssh-local|ssh-remote}"
+		echo "Use: $0 {hostname|user|ssh-local|ssh-remote|ping|connect}"
 		exit 1
 		;;
 esac

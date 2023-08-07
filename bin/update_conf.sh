@@ -28,9 +28,12 @@ AGOSTO(2023){
 (07/08/2023){
 
 () Configurar Usuário {
+ (ok) user_conf.sh ping <HOSTNAME>
+ (ok) user_conf.sh ssh-local <HOSTNAME> <KEYNAME>
+ () user_conf.sh connect <HOSTNAME> <KEYNAME>
+ 
  () user_conf.sh hostname <HOSTNAME>
  () user_conf.sh user
- () user_conf.sh ssh-local <HOSTNAME> <KEYNAME>
  () user_conf.sh ssh-remote
  }
 }
