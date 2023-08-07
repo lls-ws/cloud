@@ -129,9 +129,11 @@ ssh_connect()
 check_user()
 {
 	
+	OPT="$1"
+	
 	if [ -z "${HOSTNAME}" ]; then
 		
-		echo "Use: $0 $1 {USER}"
+		echo "Use: $0 ${OPT} {USER}"
 		exit 1
 	
 	fi
