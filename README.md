@@ -87,7 +87,7 @@ sudo bash bin/tomcat_conf.sh users
 
 ```
 
-### Configure ipTables:
+### Configure IpTables:
 
 ```bash
 sudo bash bin/iptables_conf.sh install
