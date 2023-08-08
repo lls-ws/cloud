@@ -29,7 +29,7 @@ sudo bin/git_conf.sh password [PASSWORD]
 ```bash
 bash bin/user_conf.sh hostname [HOSTNAME]
 
-bash bin/user_conf.sh user
+bash bin/user_conf.sh user [USER]
 
 # Only this line is run on a local machine
 bash bin/user_conf.sh ssh-local [HOSTNAME] [KEYNAME]
