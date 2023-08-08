@@ -96,9 +96,9 @@ AGOSTO(2023){
 (08/08/2023){
 
 () Configurar LLS-WS {
- () lls_conf.sh local <HOSTNAME>
- () lls_conf.sh create <HOSTNAME>
- () lls_conf.sh install <HOSTNAME>
+ () lls_conf.sh local <HOSTNAME_OLD>
+ () lls_conf.sh create <HOSTNAME_OLD>
+ () lls_conf.sh install <HOSTNAME_OLD>
  () lls_conf.sh server
  () lls_conf.sh update
  }
