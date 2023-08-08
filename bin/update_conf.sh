@@ -12,6 +12,7 @@ AGOSTO(2023){
   (ok) GoogleDrive: 02_Amazon_Conta_2023.png
  }
  }
+
 (OK) Configurar Amazon Web Service {
  (OK) Configurar Instância EC2 {
   (ok) GoogleDrive: lls-funchal-2023.pem
@@ -24,6 +25,7 @@ AGOSTO(2023){
   (ok) GoogleDrive: 05_Registro.br_2023.png
  }
  }
+
 }
 
 (07/08/2023){
