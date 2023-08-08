@@ -105,11 +105,14 @@ sudo bash bin/iptables_conf.sh rules
 ### Configure LLS-WS:
 
 ```bash
+# Run on a local machine
 sudo bash bin/lls_conf.sh local [HOSTNAME_OLD]
 
-sudo bash bin/lls_conf.sh create [HOSTNAME_OLD]
+# Run on old cloud
+sudo bash bin/lls_conf.sh create [HOSTNAME]
 
-sudo bash bin/lls_conf.sh install [HOSTNAME_OLD]
+# Run on new cloud
+sudo bash bin/lls_conf.sh install [HOSTNAME]
 
 sudo bash bin/lls_conf.sh server
 
