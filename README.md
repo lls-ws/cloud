@@ -27,14 +27,18 @@ sudo bin/git_conf.sh password [PASSWORD]
 ### Configure User:
 
 ```bash
+# Run on a local machine
+bash bin/user_conf.sh ping [HOSTNAME]
+
+bash bin/user_conf.sh ssh-local [HOSTNAME] [KEYNAME]
+
+bash bin/user_conf.sh connect [HOSTNAME] [KEYNAME]
+
+# Run on a cloud
 bash bin/user_conf.sh hostname [HOSTNAME]
 
 bash bin/user_conf.sh user [USER]
 
-# Only this line is run on a local machine
-bash bin/user_conf.sh ssh-local [HOSTNAME] [KEYNAME]
-
-# Run again on a cloud
 bash bin/user_conf.sh ssh-remote [USER]
 
 ```
