@@ -112,7 +112,7 @@ sudo bash bin/lls_conf.sh local [HOSTNAME_OLD]
 sudo bash bin/lls_conf.sh create [HOSTNAME]
 
 # Run on new cloud
-sudo bash bin/lls_conf.sh install [HOSTNAME]
+sudo bash bin/lls_conf.sh install [HOSTNAME_OLD]
 
 sudo bash bin/lls_conf.sh server
 
