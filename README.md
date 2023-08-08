@@ -35,7 +35,7 @@ bash bin/user_conf.sh user [USER]
 bash bin/user_conf.sh ssh-local [HOSTNAME] [KEYNAME]
 
 # Run again on a cloud
-bash bin/user_conf.sh ssh-remote
+bash bin/user_conf.sh ssh-remote [USER]
 
 ```
 
