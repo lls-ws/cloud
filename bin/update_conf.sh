@@ -98,8 +98,8 @@ AGOSTO(2023){
 () Configurar LLS-WS {
  (ok) lls_conf.sh local <HOSTNAME_OLD>
  (ok) lls_conf.sh create <HOSTNAME>
- (ok) lls_conf.sh install <HOSTNAME>
- (ok) lls_conf.sh server
+ (ok) lls_conf.sh install <HOSTNAME_OLD>
+ () lls_conf.sh server
  () lls_conf.sh update
  }
 
