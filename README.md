@@ -120,6 +120,15 @@ sudo bash bin/lls_conf.sh update
 
 ```
 
+### Configure SSL:
+
+```bash
+sudo bash bin/ssl_conf.sh install
+
+sudo bash bin/ssl_conf.sh create
+
+```
+
 
 ## License
 
