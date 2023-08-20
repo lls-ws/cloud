@@ -129,6 +129,15 @@ sudo bash bin/ssl_conf.sh create
 
 ```
 
+### Configure Cron:
+
+```bash
+sudo bash bin/crontab_conf.sh config
+
+sudo bash bin/crontab_conf.sh show
+
+```
+
 
 ## License
 
