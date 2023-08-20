@@ -93,39 +93,42 @@ AGOSTO(2023){
 
 }
 
-(08/08/2023){
+(18/08/2023){
 
-() Configurar LLS-WS {
+(OK) Configurar LLS-WS {
  (ok) lls_conf.sh local <HOSTNAME_OLD>
  (ok) lls_conf.sh create <HOSTNAME>
  (ok) lls_conf.sh install <HOSTNAME_OLD>
- () lls_conf.sh server
- () lls_conf.sh update
- }
-
-() Configurar SSL {
- () ssl_conf.sh install
- () ssl_conf.sh create
+ (ok) lls_conf.sh server
+ (ok) lls_conf.sh update
  }
 
 }
 
-(09/08/2023){
+(20/08/2023){
 
-() Configurar BackUp {
- () lls_backup.sh restore
- () lls_backup.sh create
- () lls_backup.sh send
- () lls_backup.sh show
- () crontab_conf.sh config
- () crontab_conf.sh show
+(OK) Configurar SSL {
+ (ok) ssl_conf.sh install
+ (ok) ssl_conf.sh create
+ }
+
+(OK) Configurar BackUp {
+ (ok) lls_backup.sh restore
+ (ok) lls_backup.sh create
+ (ok) lls_backup.sh send
+ (ok) lls_backup.sh show
+ }
+
+(OK) Configurar Cron {
+ (ok) crontab_conf.sh config
+ (ok) crontab_conf.sh show
  }
 
 }
 
-(10/08/2023){
+(01/09/2023){
 
-() Desligar Instância 2022 na AWS {}
+(OK) Desligar Instância 2022 na AWS {}
 () Deletar Conta AWS 2022 {}
 () Deletar Email Google 2022 {
  () GoogleDrive: Google_2022.png
