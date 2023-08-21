@@ -27,8 +27,6 @@ sudo bin/git_conf.sh email [EMAIL]
 
 sudo bin/git_conf.sh password [PASSWORD]
 
-sudo bin/git_conf.sh ssmtp [SSMTP-PASSWORD]
-
 ```
 
 ### Configure User:
@@ -64,6 +62,8 @@ sudo bin/ubuntu_conf.sh fonts
 ### Configure Ssmtp:
 
 ```bash
+sudo bin/git_conf.sh ssmtp [SSMTP-PASSWORD]
+
 sudo bin/ssmtp_conf.sh install
 
 sudo bin/ssmtp_conf.sh config
