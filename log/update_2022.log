@@ -111,8 +111,8 @@ NOVEMBRO(2022){
 }
 
 (25/11/2022){
-(ok) Desligar Instância 2021 na AWS {}
-(ok) Deletar Conta AWS 2021 {}
+(OK) Desligar Instância 2021 na AWS {}
+(OK) Deletar Conta AWS 2021 {}
 (OK) Deletar Email Google 2021 {
  (ok) GoogleDrive: Google_2021.png
 	}
