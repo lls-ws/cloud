@@ -1,5 +1,5 @@
 #!/bin/sh
-# Script para configurar o Crontab no cloud Ubuntu Server 20.04 LTS 64 bits
+# Script to configure Cron on cloud Ubuntu Server
 #
 # Autor: Leandro Luiz
 # email: lls.homeoffice@gmail.com

@@ -1,5 +1,5 @@
 #!/bin/sh
-# Script para configurar o LLS WebService no cloud Ubuntu Server 22.04 LTS 64 bits
+# Script to configure LLS WebService on cloud Ubuntu Server
 # Note: Change SSH rules on new AWS site, add the old cloud IP
 #
 # Autor: Leandro Luiz

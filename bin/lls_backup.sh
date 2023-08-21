@@ -1,5 +1,5 @@
 #!/bin/bash
-# Script para gerenciar o arquivo de backup do banco de dados bd_lls no mariadb
+# Script to manager backup file on DataBase bd_lls in MariaDB
 #
 # email: lls.homeoffice@gmail.com
 

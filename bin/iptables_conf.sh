@@ -1,5 +1,5 @@
 #!/bin/bash
-# Script para configurar o Iptables no cloud Ubuntu Server 22.04 LTS 64 bits
+# Script to configure IpTables on cloud Ubuntu Server
 #
 # Autor: Leandro Luiz
 # email: lls.homeoffice@gmail.com

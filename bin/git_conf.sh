@@ -1,5 +1,5 @@
 #!/bin/bash
-# Script for manager a GitHub repository
+# Script to configure GitHub on cloud Ubuntu Server
 #
 # email: lls.homeoffice@gmail.com
 
