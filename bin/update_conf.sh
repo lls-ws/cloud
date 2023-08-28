@@ -126,6 +126,10 @@ AGOSTO(2023){
 
 }
 
+}
+
+SETEMBRO(2023){
+
 (01/09/2023){
 
 (OK) Desligar Instância 2022 na AWS {}
