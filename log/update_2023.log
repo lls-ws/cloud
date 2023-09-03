@@ -138,7 +138,7 @@ SETEMBRO(2023){
  }  (ok) GoogleDrive: 06_Amazon_Cancel_2022.pdf
 
 (OK) Deletar Email Google 2022 {
- (ok) GoogleDrive: 07_Google_Deleted_2022.png
+ (ok) GoogleDrive: 07_Google_Deleted_2022.pdf
  }
 
 (OK) Criar novo Log no GitHub {
