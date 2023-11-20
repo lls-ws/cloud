@@ -192,8 +192,6 @@ check_key()
 	
 	KEY="${DIR_SSH}/${USER}-${KEYNAME}-${YEAR}.pem"
 	
-	USER_CLOUD="ubuntu"
-	
 }
 
 ping_host()
@@ -218,6 +216,8 @@ set_user
 YEAR=`date +%Y`
 HOSTNAME="$2"
 KEYNAME="$3"
+
+USER_CLOUD="ubuntu"
 
 if [ "${HOSTNAME}" != "${USER}" ]; then
 
