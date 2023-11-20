@@ -42,7 +42,14 @@ ssh_create_local()
 {
 	
 	check_key
+
+	if [ ! -f ${DIR_SSH}/id_rsa.pub ]; then
 	
+		echo "Creating key pair on user local..."
+		ssh-keygen -t rsa
+	
+	fi
+ 
 	if [ ! -f ${KEY} ]; then
 	
 		KEY_DOWNLOAD="/home/${USER}/Downloads/${USER}-${KEYNAME}-${YEAR}.pem"
@@ -69,13 +76,6 @@ ssh_create_local()
 	echo "Creating old key pair backup on user local..."
 	cp -fv ${DIR_SSH}/id_rsa ${DIR_SSH}/id_rsa.old 2> /dev/null
 	cp -fv ${DIR_SSH}/id_rsa.pub ${DIR_SSH}/id_rsa.pub.old 2> /dev/null
-	
-	if [ ! -f ${DIR_SSH}/id_rsa.pub ]; then
-	
-		echo "Creating key pair on user local..."
-		ssh-keygen -t rsa
-	
-	fi
 	
 	echo "Copy key pair to cloud: ${HOST}"
 	scp -i ${KEY} ${DIR_SSH}/id_rsa.pub ${USER_CLOUD}@${HOST}:~
