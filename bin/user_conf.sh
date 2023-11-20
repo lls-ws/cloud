@@ -87,7 +87,7 @@ ssh_create_remote()
 	
 	check_user "$1"
 	
-	KEY_PUB="id_rsa.pub"
+	KEY_PUB="/home/${USER_CLOUD}/id_rsa.pub"
 	
 	if [ ! -f ${KEY_PUB} ]; then
 	
@@ -122,6 +122,7 @@ ssh_create_remote()
 	sudo cat ${ARQ_AUTHORIZED_KEYS}
 	
 	echo "Deleting public key file..."
+ 	cd ~
 	sudo rm -rf cloud/ ${KEY_PUB}
 	
 	echo "Type to exit: logout"
