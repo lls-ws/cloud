@@ -12,9 +12,7 @@
 ### From Command Line
 
 ```bash
-git clone https://github.com/lls-ws/cloud.git
-
-cd cloud
+git clone https://github.com/lls-ws/cloud.git && cd cloud
 
 ```
 
@@ -22,11 +20,15 @@ cd cloud
 
 ```bash
 sudo bin/git_conf.sh name [NAME]
-
+```
+```bash
 sudo bin/git_conf.sh email [EMAIL]
-
+```
+```bash
 sudo bin/git_conf.sh password [PASSWORD]
-
+```
+```bash
+sudo bin/git_conf.sh token [TOKEN]
 ```
 
 ### Configure User:
