@@ -34,7 +34,7 @@ sudo bin/git_conf.sh token [TOKEN]
 ### Configure User:
 
 
-## Run on a local machine
+#### Run on a local machine
 ```bash
 bash bin/user_conf.sh ping [HOSTNAME]
 ```
@@ -45,7 +45,7 @@ bash bin/user_conf.sh ssh-local [HOSTNAME] [KEYNAME]
 bash bin/user_conf.sh connect [HOSTNAME] [KEYNAME]
 ```
 
-## Run on a cloud
+#### Run on a cloud
 ```bash
 bash bin/user_conf.sh hostname [HOSTNAME]
 ```
@@ -124,16 +124,18 @@ sudo bash bin/iptables_conf.sh rules
 
 ### Configure LLS-WS:
 
+#### Run on a local machine
 ```bash
-## Run on a local machine
 sudo bash bin/lls_conf.sh local [HOSTNAME_OLD]
 ```
+
+#### Run on old cloud
 ```bash
-## Run on old cloud
 sudo bash bin/lls_conf.sh create [HOSTNAME]
 ```
+
+#### Run on new cloud
 ```bash
-## Run on new cloud
 sudo bash bin/lls_conf.sh install [HOSTNAME_OLD]
 ```
 ```bash
