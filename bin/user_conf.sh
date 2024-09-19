@@ -60,7 +60,7 @@ ssh_create_local()
 			mv -v ${KEY_DOWNLOAD} ${DIR_SSH}
 			
 			chmod -v 400 ${KEY}
-			chown -v lls.lls ${KEY}
+			chown -v lls:lls ${KEY}
 			
 			ssh-keygen -f "${DIR_SSH}/known_hosts" -R ${HOST}
 			
@@ -100,7 +100,7 @@ ssh_create_remote()
 	sudo mkdir -v ${DIR_SSH}
 	
 	echo "Changing group for user ssh dir..."
-	sudo chown -Rv ${USER}.${USER} ${DIR_SSH}/
+	sudo chown -Rv ${USER}:${USER} ${DIR_SSH}/
 	
 	echo "Creating ssh authorized keys..."
 	sudo touch ${ARQ_AUTHORIZED_KEYS}
@@ -113,7 +113,7 @@ ssh_create_remote()
 	sudo chmod -v 600 ${ARQ_AUTHORIZED_KEYS}
 	
 	echo "Changing group for user ssh authorized keys..."
-	sudo chown -v ${USER}.${USER} ${ARQ_AUTHORIZED_KEYS}
+	sudo chown -v ${USER}:${USER} ${ARQ_AUTHORIZED_KEYS}
 	
 	echo "show authorized keys file permissions..."
 	sudo ls -al ${ARQ_AUTHORIZED_KEYS}
