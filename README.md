@@ -3,7 +3,7 @@
 </h1>
 
 <h4 align="center">
-  Scripts to configure a Cloud AWS EC2 with Ubuntu 22.04.3 LTS.
+  Scripts to configure a Cloud AWS EC2 with Ubuntu 24.04 LTS
 </h4>
 
 
