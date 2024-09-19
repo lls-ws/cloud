@@ -16,7 +16,7 @@ ubuntu_upgrade()
 	apt -y upgrade
 	apt -y autoremove
 	
-	echo "Type: reboot"
+	echo "Type: sudo reboot"
 	
 }
 
