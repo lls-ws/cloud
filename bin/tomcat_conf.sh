@@ -23,11 +23,6 @@ tomcat_search()
 tomcat_install()
 {
 
- 	echo "Add repository..."
-  	add-apt-repository -y -s "deb http://archive.ubuntu.com/ubuntu/ jammy main universe"
-
-	apt-get update
- 
  	echo "Install Apache Tomcat Server on Ubuntu..."
 	apt-get -y install tomcat${TOMCAT_VERSION} tomcat${TOMCAT_VERSION}-admin
 	
