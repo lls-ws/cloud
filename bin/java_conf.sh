@@ -27,7 +27,7 @@ java_path()
 	JAVA_HOME="/usr/lib/jvm/java-${JAVA_VERSION}-openjdk-amd64"
  
 	echo "Set the Java home path..."
-	echo 'JAVA_HOME="${JAVA_HOME}"' >> ${DIR_ENVIRONMENT}
+	echo 'JAVA_HOME="'${JAVA_HOME}'"' >> ${DIR_ENVIRONMENT}
 	
 	echo "Now reload this file to apply the changes to your current session:"
 	source ${DIR_ENVIRONMENT}
