@@ -13,7 +13,7 @@ tomcat_search()
 {
 	
 	echo "Check the availability of Apache Tomcat package..."
-	apt-cache search tomcat
+	apt-cache search tomcat | grep -i ^tomcat
 	
 	echo -e "\nReplace variable TOMCAT_VERSION on cloud.lib if necessary!"
 	echo "TOMCAT_VERSION: ${TOMCAT_VERSION}"
@@ -23,6 +23,8 @@ tomcat_search()
 tomcat_install()
 {
 
+	tomcat_search
+ 
  	echo "Install Apache Tomcat Server on Ubuntu..."
 	apt-get -y install tomcat${TOMCAT_VERSION} tomcat${TOMCAT_VERSION}-admin
 	
