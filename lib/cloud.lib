@@ -94,6 +94,7 @@ fi
 FILE_BIN="/usr/bin/lls_backup"
 FILE_RULES="/etc/iptables/rules.v4"
 
+JAVA_VERSION="21"
 TOMCAT_VERSION="9"
 
 DIR_TOMCAT="/var/lib/tomcat${TOMCAT_VERSION}"
