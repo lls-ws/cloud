@@ -32,7 +32,7 @@ java_path()
 	source ${DIR_ENVIRONMENT}
 	
 	echo "Verify that the environment variable is set:"
-	echo ${JAVA_HOME}
+	cat ${DIR_ENVIRONMENT} | tail -1
 	
 }
 
