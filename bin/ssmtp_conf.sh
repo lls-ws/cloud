@@ -50,7 +50,7 @@ ssmtp_config()
 ssmtp_change()
 {
 	
-	chown -v root.mail ${ARQ_CONFIG}
+	chown -v root:mail ${ARQ_CONFIG}
 	
 	chmod -v 640 ${ARQ_CONFIG}
 	
