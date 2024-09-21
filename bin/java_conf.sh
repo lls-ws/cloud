@@ -14,7 +14,7 @@ java_install()
 	echo "Install java-openjdk..."
 	apt-get -y install default-jre
 	
-	java -version
+	java_version
 	
 	java_path
 	
@@ -37,6 +37,20 @@ java_path()
 	
 }
 
+java_version()
+{
+
+	java -version
+	
+}
+
+java_choice()
+{
+	
+	update-alternatives --config java
+	
+}
+
 case "$1" in
 	install)
 		java_install
@@ -44,12 +58,18 @@ case "$1" in
 	path)
 		java_path
 		;;
+	version)
+		java_version
+		;;
+	choice)
+		java_choice
+		;;
 	all)
 		java_install
 		java_path
 		;;
 	*)
-		echo "Use: $0 {all|install|path}"
+		echo "Use: $0 {all|install|path|version|choice}"
 		exit 1
 		;;
 esac
