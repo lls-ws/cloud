@@ -76,11 +76,17 @@ lls_install()
 	
 	tar -xvzf /home/${USER}/${ARQ_LLS} -C ${DIR_WEBAPPS}
 	
-	chown -R tomcat.tomcat ${DIR_LLS}
+	chown -R tomcat:tomcat ${DIR_LLS}
 	
 	ls -al ${DIR_LLS}
 	
 	du -hsc ${DIR_LLS}
+	
+	ln -sfv ${DIR_LLS} /home/${USER}/lls-ws
+	
+	ls -al /home/${USER}/lls-ws
+	
+	ls /home/${USER}
 	
 }
 
