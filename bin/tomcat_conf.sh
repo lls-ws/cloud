@@ -12,11 +12,28 @@ PATH=.:$(dirname $0):$PATH
 tomcat_search()
 {
 	
-	echo "Check the availability of Apache Tomcat package..."
-	apt-cache search tomcat | grep -i ^tomcat
+	echo "Check the availability of Apache Tomcat ${TOMCAT_VERSION} packages..."
+	apt-cache search tomcat | grep -i ^tomcat${TOMCAT_VERSION}
 	
-	echo -e "\nReplace variable TOMCAT_VERSION on cloud.lib if necessary!"
-	echo "TOMCAT_VERSION: ${TOMCAT_VERSION}"
+	if [ $? == 1 ]; then
+	
+		echo "Package tomcat${TOMCAT_VERSION} not found!"
+		
+		echo "Add tomcat${TOMCAT_VERSION} repository..."
+		
+		add-apt-repository -y -s "deb http://archive.ubuntu.com/ubuntu/ jammy main universe"
+		
+		echo "Update repositories..."
+		
+		apt update
+		
+		tomcat_search
+		
+	else
+	
+		echo "Package tomcat${TOMCAT_VERSION} found!"
+		
+	fi
 	
 }
 

@@ -4,15 +4,11 @@
 # Autor: Leandro Luiz
 # email: lls.homeoffice@gmail.com
 
-# Library Path
-PATH=.:$(dirname $0):$PATH
-. lib/cloud.lib		|| exit 1
-
 java_install()
 {
 	
-	echo "Install java-openjdk..."
-	apt-get -y install default-jre
+	echo "Install Java: openjdk-${JAVA_VERSION}-${JAVA_OPT}"
+	apt-get -y install openjdk-${JAVA_VERSION}-${JAVA_OPT}
 	
 	java_version
 	
@@ -40,16 +36,60 @@ java_path()
 java_version()
 {
 
-	java -version
+	echo "Show Java ${JAVA_OPT} version:"
+
+	if [ "${JAVA_OPT}" = "jre" ]; then
+	
+		java -version
+	
+	else
+	
+		javac -version
+	
+	fi
 	
 }
 
 java_choice()
 {
 	
-	update-alternatives --config java
+	if [ "${JAVA_OPT}" = "jre" ]; then
+	
+		update-alternatives --config java
+	
+	else
+	
+		update-alternatives --config javac
+	
+	fi
 	
 }
+
+java_remove()
+{
+	
+	echo "Remove Java ${JAVA_OPT} from Ubuntu..."
+	apt -y purge openjdk-${JAVA_VERSION}-${JAVA_OPT}
+	apt -y autoremove
+	
+}
+
+JAVA_VERSION="11"
+
+echo "Java version: ${JAVA_VERSION}"
+
+case "$2" in
+	jre)
+		JAVA_OPT="jre"
+		;;
+	jdk)
+		JAVA_OPT="jdk"
+		;;
+	*)
+		echo "Use: $0 $1 {jre|jdk}"
+		exit 1
+		;;
+esac
 
 case "$1" in
 	install)
@@ -64,12 +104,15 @@ case "$1" in
 	choice)
 		java_choice
 		;;
+	remove)
+		java_remove
+		;;
 	all)
 		java_install
 		java_path
 		;;
 	*)
-		echo "Use: $0 {all|install|path|version|choice}"
+		echo "Use: $0 {all|install|path|version|choice|remove}"
 		exit 1
 		;;
 esac
