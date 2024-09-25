@@ -109,7 +109,6 @@ case "$1" in
 		;;
 	all)
 		java_install
-		java_path
 		;;
 	*)
 		echo "Use: $0 {all|install|path|version|choice|remove}"
