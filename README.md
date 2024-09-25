@@ -159,9 +159,6 @@ sudo bash bin/ssl_conf.sh create
 ```bash
 sudo bash bin/crontab_conf.sh config
 ```
-```bash
-sudo bash bin/crontab_conf.sh show
-```
 
 
 ## License
