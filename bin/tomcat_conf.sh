@@ -44,6 +44,8 @@ tomcat_install()
  
  	echo "Install Apache Tomcat Server on Ubuntu..."
 	apt-get -y install tomcat${TOMCAT_VERSION} tomcat${TOMCAT_VERSION}-admin
+
+ 	tomcat_check
 	
 }
 
@@ -144,9 +146,7 @@ case "$1" in
 		tomcat_remove
 		;;
 	all)
-		tomcat_search
 		tomcat_install
-		tomcat_check
 		tomcat_setenv
 		tomcat_users
 		tomcat_show
