@@ -24,40 +24,51 @@ ssmtp_install()
 ssmtp_config()
 {
 	
-	ARQ_CONFIG="/etc/ssmtp/revaliases"
-	
-	echo "root:${EMAIL}:smtp.gmail.com:587" 			> ${ARQ_CONFIG}
+	echo "root:${EMAIL}:smtp.gmail.com:587" 			> ${FILE_REVALIASES}
 	
 	echo "Changing permissions for revaliases..."
-	ssmtp_change
+	ssmtp_change ${FILE_REVALIASES}
 	
-	ARQ_CONFIG="/etc/ssmtp/ssmtp.conf"
-	
-	echo "root=${EMAIL}"		  						> ${ARQ_CONFIG}
-	echo "hostname=${HOSTNAME}"							>> ${ARQ_CONFIG}
-	echo "AuthUser=${EMAIL}"							>> ${ARQ_CONFIG}
-	echo "AuthPass=${SSMTP_APP_PASSWORD}"				>> ${ARQ_CONFIG}
-	echo "FromLineOverride=YES"							>> ${ARQ_CONFIG}
-	echo "Mailhub=smtp.gmail.com:587"					>> ${ARQ_CONFIG}
-	echo "UseSTARTTLS=YES"								>> ${ARQ_CONFIG}
-	echo "AuthMethod=LOGIN"								>> ${ARQ_CONFIG}
+	echo "root=${EMAIL}"		  				> ${FILE_SSMTP}
+	echo "hostname=${HOSTNAME}"					>> ${FILE_SSMTP}
+	echo "AuthUser=${EMAIL}"					>> ${FILE_SSMTP}
+	echo "AuthPass=${SSMTP_APP_PASSWORD}"				>> ${FILE_SSMTP}
+	echo "FromLineOverride=YES"					>> ${FILE_SSMTP}
+	echo "Mailhub=smtp.gmail.com:587"				>> ${FILE_SSMTP}
+	echo "UseSTARTTLS=YES"						>> ${FILE_SSMTP}
+	echo "AuthMethod=LOGIN"						>> ${FILE_SSMTP}
 	
 	echo "Changing permissions for ssmtp conf..."
-	ssmtp_change
-	
+	ssmtp_change ${FILE_SSMTP}
+
+	ssmtp_show
+  
 }
 
 ssmtp_change()
 {
-	
+
+	ARQ_CONFIG="$1"
+ 
 	chown -v root:mail ${ARQ_CONFIG}
 	
 	chmod -v 640 ${ARQ_CONFIG}
 	
-	cat ${ARQ_CONFIG}
+}
+
+ssmtp_show()
+{
+	
+ 	echo "Show revaliases ${FILE_REVALIASES}:"
+	cat ${FILE_REVALIASES}
+
+ 	echo "Show revaliases ${FILE_SSMTP}:"
+	cat ${FILE_SSMTP}
 	
 }
 
+FILE_REVALIASES="/etc/ssmtp/revaliases"
+FILE_SSMTP="/etc/ssmtp/ssmtp.conf"
 SSMTP_APP_PASSWORD=`git config user.ssmtp`
 
 if [ -z "${SSMTP_APP_PASSWORD}" ]; then
@@ -75,12 +86,15 @@ case "$1" in
 	config)
 		ssmtp_config
 		;;
+	show)
+		ssmtp_show
+		;;
 	all)
 		ssmtp_install
 		ssmtp_config
 		;;
 	*)
-		echo "Use: $0 {all|install|config}"
+		echo "Use: $0 {all|install|config|show}"
 		exit 1
 		;;
 esac
