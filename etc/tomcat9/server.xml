@@ -23,7 +23,7 @@
                redirectPort="8443" />
 
     <Connector
-           protocol="org.apache.coyote.http11.Http11NioProtocol"
+           protocol="HTTP/1.1"
            port="8443" maxThreads="150"
            scheme="https" secure="true" SSLEnabled="true"
            clientAuth="false" sslProtocol="TLS"/>

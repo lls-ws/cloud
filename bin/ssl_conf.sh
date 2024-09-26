@@ -66,10 +66,23 @@ ssl_clean()
 ssl_show()
 {
 	
-	chown -v tomcat.tomcat ${KEYSTORE}
+	chown -v tomcat:tomcat ${KEYSTORE}
 	
 	echo "Showing private key..."
 	keytool -list -v -keystore ${KEYSTORE} -storepass ${PASSWORD} | less
+	
+}
+
+ssl_localhost()
+{
+
+	echo " -- Delete Keystore -- "
+	rm -fv ${DIR_KEYSTORE}/*.pfx
+
+	echo " -- Recreate Keystore -- "
+	keytool -genkey -noprompt -alias ${ALIAS} -dname "CN=${DNAME}, OU=${USER}, O=${USER}, L=Uberlandia, S=MG, C=BR" -keystore ${KEYSTORE} -storepass "${PASSWORD}" -KeySize 2048 -keypass "${PASSWORD}" -keyalg RSA -validity 360
+	
+	ssl_show
 	
 }
 
@@ -83,8 +96,11 @@ case "$1" in
 	show)
 		ssl_show
 		;;
+	localhost)
+		ssl_localhost
+		;;
 	*)
-		echo "Use: $0 {install|create|show}"
+		echo "Use: $0 {install|create|show|localhost}"
 		exit 1
 		;;
 esac

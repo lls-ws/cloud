@@ -56,7 +56,9 @@ mysql_conf()
 	echo "Starting mariadb..."
 	service mariadb start
 	
-	mysql -e "SHOW VARIABLES LIKE 'char%'"
+	mysql -e "SHOW VARIABLES LIKE 'char%';show variables like '%log_error%'"
+	
+	chown -v mysql:adm /var/lib/mysql/error.log
 	
 }
 
