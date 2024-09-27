@@ -28,11 +28,9 @@ iptables_install()
 iptables_config()
 {
 	
-	FILE_CONF="/etc/sysctl.conf"
-	
 	echo "net.ipv4.ip_forward=1"	>> ${FILE_CONF}
 	
-	cat ${FILE_CONF} | tail -1
+	show_config
 	
 	systemctl restart netfilter-persistent
 	
@@ -51,11 +49,17 @@ iptables_rules()
 	echo ":INPUT ACCEPT [0:0]"														>> ${FILE_RULES}
 	echo ":POSTROUTING ACCEPT [0:0]"												>> ${FILE_RULES}
 	echo ":OUTPUT ACCEPT [0:0]"														>> ${FILE_RULES}
-	echo "-A PREROUTING -p tcp -m tcp --dport 80 -j REDIRECT --to-ports 8080"		>> ${FILE_RULES}
-	echo "-A PREROUTING -p tcp -m tcp --dport 443 -j REDIRECT --to-ports 8443"		>> ${FILE_RULES}
+	
+	if [ "${RULES_OPT}" = "cloud" ]; then
+	
+		echo "-A PREROUTING -p tcp -m tcp --dport 80 -j REDIRECT --to-ports 8080"		>> ${FILE_RULES}
+		echo "-A PREROUTING -p tcp -m tcp --dport 443 -j REDIRECT --to-ports 8443"		>> ${FILE_RULES}
+	
+	fi
+		
 	echo "COMMIT"																	>> ${FILE_RULES}
 	
-	cat ${FILE_RULES}
+	show_rules
 	
 	iptables -F -t nat
 	
@@ -66,12 +70,28 @@ iptables_rules()
 	
 	systemctl restart netfilter-persistent
 	
+	show_rules
+	
+}
+
+show_config()
+{
+	
+	echo -e "\nShowing file config ${FILE_CONF}"
+	cat ${FILE_CONF} | tail -2
+	
+}
+
+show_rules()
+{
+	
+	echo -e "\nShowing file rules ${FILE_RULES}"
+	cat ${FILE_RULES}
+	
 }
 
 iptables_show()
 {
-	
-	iptables -L
 	
 	nc -z -w5 -v localhost 8080
 	
@@ -92,7 +112,16 @@ iptables_show()
 	echo "Check ports to listening..."
 	netstat -tanp | grep -i tcp
 	
+	show_config
+	
+	show_rules
+	
+	echo -e "\nShowing iptables rules:"
+	iptables -L
+	
 }
+
+FILE_CONF="/etc/sysctl.conf"
 
 case "$1" in
 	install)
@@ -102,6 +131,19 @@ case "$1" in
 		iptables_config
 		;;
 	rules)
+		case "$2" in
+			cloud)
+				RULES_OPT="cloud"
+				;;
+			localhost)
+				RULES_OPT="localhost"
+				;;
+			*)
+				echo "Use: $0 $1 {cloud|localhost}"
+				exit 1
+				;;
+		esac
+		
 		iptables_rules
 		;;
 	show)
