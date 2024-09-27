@@ -28,7 +28,10 @@ iptables_install()
 iptables_config()
 {
 	
-	echo "net.ipv4.ip_forward=1"	>> ${FILE_CONF}
+	rm -fv ${FILE_CONF}
+	
+	echo "# Enable packet forwarding for IPv4"	> ${FILE_CONF}
+	echo "net.ipv4.ip_forward=1"				>> ${FILE_CONF}
 	
 	show_config
 	
@@ -39,6 +42,8 @@ iptables_config()
 iptables_rules()
 {
 	
+	rm -fv ${FILE_RULES}
+	
 	echo "*filter"																	> ${FILE_RULES}
 	echo ":INPUT ACCEPT [0:0]"														>> ${FILE_RULES}
 	echo ":FORWARD ACCEPT [0:0]"													>> ${FILE_RULES}
@@ -47,8 +52,8 @@ iptables_rules()
 	echo "*nat"																		>> ${FILE_RULES}
 	echo ":PREROUTING ACCEPT [0:0]"													>> ${FILE_RULES}
 	echo ":INPUT ACCEPT [0:0]"														>> ${FILE_RULES}
-	echo ":POSTROUTING ACCEPT [0:0]"												>> ${FILE_RULES}
 	echo ":OUTPUT ACCEPT [0:0]"														>> ${FILE_RULES}
+	echo ":POSTROUTING ACCEPT [0:0]"												>> ${FILE_RULES}
 	echo "-A PREROUTING -p tcp -m tcp --dport 80 -j REDIRECT --to-ports 8080"		>> ${FILE_RULES}
 	echo "-A PREROUTING -p tcp -m tcp --dport 443 -j REDIRECT --to-ports 8443"		>> ${FILE_RULES}
 	echo "COMMIT"																	>> ${FILE_RULES}
@@ -58,6 +63,9 @@ iptables_rules()
 	iptables -F -t nat
 	
 	iptables-restore -n < ${FILE_RULES}
+	
+	#sh -c '/sbin/iptables-restore < /etc/iptables/rules.v4'
+	#sh -c '/sbin/iptables-save > /etc/iptables/rules.v4'
 	
 	/usr/sbin/netfilter-persistent save
 	/usr/sbin/netfilter-persistent reload
@@ -72,7 +80,7 @@ show_config()
 {
 	
 	echo -e "\nShowing file config ${FILE_CONF}"
-	cat ${FILE_CONF} | tail -2
+	cat ${FILE_CONF}
 	
 }
 
