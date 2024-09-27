@@ -1,0 +1,47 @@
+# Print my public IP
+alias myip='curl ipinfo.io/ip && echo'
+
+# Tomcat
+alias tomcat-status='clear; sudo service tomcat9 status'
+alias tomcat-start='sudo service tomcat9 start; tomcat-status'
+alias tomcat-stop='sudo service tomcat9 stop; tomcat-status'
+alias tomcat-restart='tomcat-stop; tomcat-start'
+alias tomcat-log='cat /var/lib/tomcat9/logs/*.log | less'
+
+# MariaDB
+alias maria-status='clear; sudo service mariadb status'
+alias maria-start='sudo service mariadb start; maria-status'
+alias maria-stop='sudo service mariadb stop; maria-status'
+alias maria-restart='maria-stop; maria-start'
+alias maria-log='cat /var/lib/mysql/error.log | less'
+
+# Iptables
+alias iptables-status='clear; sudo service netfilter-persistent status'
+alias iptables-start='sudo service netfilter-persistent start; iptables-status'
+alias iptables-stop='sudo service netfilter-persistent stop; iptables-status'
+alias iptables-restart='iptables-stop; iptables-start'
+alias iptables-log='cat /var/log/syslog | grep netfilter | tail > /tmp/iptables.log && cat /tmp/iptables.log | less'
+
+# LLS
+alias lls-status='tomcat-status; maria-status; iptables-status'
+alias lls-start='tomcat-start; maria-start; iptables-start'
+alias lls-stop='tomcat-stop; maria-stop; iptables-stop'
+alias lls-restart='tomcat-restart; maria-restart; iptables-restart'
+
+lls-log() {
+	maria-log
+	tomcat-log
+	iptables-log
+}
+
+# Get a GitHub Repository
+alias git_clone_dataflex='cd ~; git clone https://github.com/lls-ws/dataflex.git; ls'
+alias git_clone_cloud='cd ~; git clone https://github.com/lls-ws/cloud.git; ls'
+alias git_clone_lls-src='cd ~; git clone https://github.com/lls-ws/lls-src.git; ls'
+
+# Comand for Only Upgrade Packages
+alias upgrade='clear; sudo apt --only-upgrade -y install '
+
+# Comand for Upgrade Packages
+alias update='clear; sudo apt update && sudo apt -y upgrade && sudo apt -y autoremove && sudo apt list --upgradable'
+alias version='uname -vr'

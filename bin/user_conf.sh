@@ -4,6 +4,21 @@
 # Autor: Leandro Luiz
 # email: lls.homeoffice@gmail.com
 
+aliases_conf()
+{
+	
+	FILE_ALIASES=~/.bash_aliases
+	
+	FILE_CLOUD=~/.cloud_aliases
+	
+	cp -fv config/bash_aliases_cloud ${FILE_CLOUD}
+	
+	echo ". ~/.bash_aliases_*" > ${FILE_ALIASES}
+	
+	cat ${FILE_CLOUD} ${FILE_ALIASES}
+	
+}
+
 change_hostname()
 {
 	
@@ -226,6 +241,9 @@ if [ "${HOSTNAME}" != "${USER}" ]; then
 fi
 
 case "$1" in
+	aliases)
+		aliases_conf
+		;;
 	hostname)
 		change_hostname
 		;;
@@ -245,7 +263,7 @@ case "$1" in
 		ssh_connect
 		;; 
 	*)
-		echo "Use: $0 {hostname|user|ssh-local|ssh-remote|ping|connect}"
+		echo "Use: $0 {aliases|hostname|user|ssh-local|ssh-remote|ping|connect}"
 		exit 1
 		;;
 esac
