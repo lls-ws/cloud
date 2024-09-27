@@ -98,14 +98,8 @@ iptables_show()
 	echo -e "\nCheck open ports:"
 	netstat -tulpn
 	
-	#echo -e "\nCheck ip address:"
-	#ip addr show
-
 	echo -e "\nCheck state:"
 	ss -t4 state all
-
-	#echo -e "\nWatch state:"
-	#watch -n 1 "ss -t4 state established"
 
 	echo -e "\nCheck ports to listening..."
 	netstat -tanp | grep -i tcp
