@@ -32,7 +32,7 @@ iptables_config()
 	
 	echo "net.ipv4.ip_forward=1"	>> ${FILE_CONF}
 	
-	cat ${FILE_CONF} | tail -2
+	cat ${FILE_CONF} | tail -1
 	
 	systemctl restart netfilter-persistent
 	
