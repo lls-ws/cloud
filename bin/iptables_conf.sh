@@ -64,9 +64,6 @@ iptables_rules()
 	
 	iptables-restore -n < ${FILE_RULES}
 	
-	#sh -c '/sbin/iptables-restore < /etc/iptables/rules.v4'
-	#sh -c '/sbin/iptables-save > /etc/iptables/rules.v4'
-	
 	/usr/sbin/netfilter-persistent save
 	/usr/sbin/netfilter-persistent reload
 	
@@ -95,23 +92,22 @@ show_rules()
 iptables_show()
 {
 	
+	echo -e "\nCheck connection to localhost:"
 	nc -z -w5 -v localhost 8080
 	
+	echo -e "\nCheck open ports:"
 	netstat -tulpn
 	
-	# Check ip address
-	#ip addr show
+	echo -e "\nCheck ip address:"
+	ip addr show
 
-	# Check state
-	#ss -t4 state all
+	echo -e "\nCheck state:"
+	ss -t4 state all
 
-	# Watch state
-	#watch -n 1 "ss -t4 state established"
+	echo -e "\nWatch state:"
+	watch -n 1 "ss -t4 state established"
 
-	# Check open ports
-	#netstat -tulpn
-
-	echo "Check ports to listening..."
+	echo -e "\nCheck ports to listening..."
 	netstat -tanp | grep -i tcp
 	
 	show_config
