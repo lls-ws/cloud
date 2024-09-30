@@ -58,6 +58,8 @@ mysql_conf()
 	
 	mysql -e "SHOW VARIABLES LIKE 'char%';show variables like '%log_error%'"
 	
+	sudo groupmod -a -U ${USER} adm
+	
 	chown -v mysql:adm /var/lib/mysql/error.log
 	
 }
