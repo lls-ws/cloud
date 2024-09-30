@@ -9,11 +9,21 @@ aliases_conf()
 	
 	FILE_ALIASES=~/.bash_aliases
 	
-	FILE_CLOUD=~/.cloud_aliases
+	FILE_NAME="bash_aliases_cloud"
 	
-	cp -fv config/bash_aliases_cloud ${FILE_CLOUD}
+	FILE_CLOUD=~/.${FILE_NAME}
 	
-	echo ". ~/.bash_aliases_*" > ${FILE_ALIASES}
+	rm -fv ${FILE_ALIASES}
+	
+	cp -fv util/${FILE_NAME} ${FILE_CLOUD}
+	
+	for FILE in ~/.bash_aliases_*; do
+	
+		echo ${FILE}
+	
+		echo ". ${FILE}" >> ${FILE_ALIASES}
+		
+	done
 	
 	cat ${FILE_CLOUD} ${FILE_ALIASES}
 	
