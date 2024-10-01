@@ -56,10 +56,6 @@ iptables_rules()
 	echo ":POSTROUTING ACCEPT [0:0]"												>> ${FILE_RULES}
 	echo "-A PREROUTING -p tcp -m tcp --dport 80 -j REDIRECT --to-ports 8080"		>> ${FILE_RULES}
 	echo "-A PREROUTING -p tcp -m tcp --dport 443 -j REDIRECT --to-ports 8443"		>> ${FILE_RULES}
-	
-	echo "-I PREROUTING -p tcp -m tcp --dport 80 -j REDIRECT --to-ports 8080"		>> ${FILE_RULES}
-	echo "-I PREROUTING -p tcp -m tcp --dport 443 -j REDIRECT --to-ports 8443"		>> ${FILE_RULES}
-	
 	echo "COMMIT"																	>> ${FILE_RULES}
 	
 	show_rules
@@ -113,7 +109,7 @@ iptables_show()
 	show_rules
 	
 	echo -e "\nShowing iptables rules:"
-	iptables -L
+	iptables -t nat -v -L -n --line-number
 	
 }
 
