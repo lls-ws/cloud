@@ -14,6 +14,8 @@ iptables_install()
 	echo "Removing ufw..."
 	apt-get -y purge ufw
 	
+	apt -y autoremove
+	
 	systemctl mask ufw
 	systemctl disable ufw
 	
