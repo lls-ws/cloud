@@ -56,11 +56,15 @@ iptables_rules()
 	echo ":POSTROUTING ACCEPT [0:0]"												>> ${FILE_RULES}
 	echo "-A PREROUTING -p tcp -m tcp --dport 80 -j REDIRECT --to-ports 8080"		>> ${FILE_RULES}
 	echo "-A PREROUTING -p tcp -m tcp --dport 443 -j REDIRECT --to-ports 8443"		>> ${FILE_RULES}
+	
+	echo "-I PREROUTING -p tcp -m tcp --dport 80 -j REDIRECT --to-ports 8080"		>> ${FILE_RULES}
+	echo "-I PREROUTING -p tcp -m tcp --dport 443 -j REDIRECT --to-ports 8443"		>> ${FILE_RULES}
+	
 	echo "COMMIT"																	>> ${FILE_RULES}
 	
 	show_rules
 	
-	iptables -F -t nat
+	iptables -F -t nat -v
 	
 	iptables-restore -n < ${FILE_RULES}
 	
@@ -113,6 +117,13 @@ iptables_show()
 	
 }
 
+iptables_watch()
+{
+	
+	tcpdump -i any -n port 80
+	
+}
+
 FILE_CONF="/etc/sysctl.conf"
 
 case "$1" in
@@ -128,6 +139,9 @@ case "$1" in
 	show)
 		iptables_show
 		;;
+	watch)
+		iptables_watch
+		;;
 	all)
 		iptables_install
 		iptables_config
@@ -135,7 +149,7 @@ case "$1" in
 		iptables_show
 		;;
 	*)
-		echo "Use: $0 {all|install|config|rules|show}"
+		echo "Use: $0 {all|install|config|rules|show|watch}"
 		exit 1
 		;;
 esac

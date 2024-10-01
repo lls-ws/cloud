@@ -3,10 +3,6 @@
 export CATALINA_OPTS="$CATALINA_OPTS -Xms128m"
 export CATALINA_OPTS="$CATALINA_OPTS -Xmx256m"
 
-# Increase maximum perm size for web base applications to 4x the default amount
-# http://wiki.apache.org/tomcat/FAQ/Memoryhttp://wiki.apache.org/tomcat/FAQ/Memory
-export CATALINA_OPTS="$CATALINA_OPTS -XX:PermSize=256m"
-
 # Reset the default stack size for threads to a lower value (by 1/10th original)
 # By default this can be anywhere between 512k -> 1024k depending on x32 or x64
 # bit Java version.

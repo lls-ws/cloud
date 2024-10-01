@@ -69,8 +69,6 @@ tomcat_setenv()
 	
 	systemctl restart tomcat${TOMCAT_VERSION}
 	
-	tomcat_check
-	
 }
 
 tomcat_users()
@@ -87,8 +85,6 @@ tomcat_users()
 	cat ${ARQ_CONFIG}
 	
 	systemctl restart tomcat${TOMCAT_VERSION}
-	
-	tomcat_check
 	
 }
 
