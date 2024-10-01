@@ -12,7 +12,7 @@ iptables_install()
 {
 
 	echo "Removing ufw..."
-	apt-get -y remove ufw
+	apt-get -y purge ufw
 	
 	systemctl mask ufw
 	systemctl disable ufw
@@ -42,6 +42,8 @@ iptables_config()
 iptables_rules()
 {
 	
+	systemctl stop netfilter-persistent
+	
 	rm -fv ${FILE_RULES}
 	
 	echo "*filter"																	> ${FILE_RULES}
@@ -60,14 +62,16 @@ iptables_rules()
 	
 	show_rules
 	
+	echo "Removing all rules:"
 	iptables -F -t nat -v
 	
 	iptables-restore -n < ${FILE_RULES}
 	
-	/usr/sbin/netfilter-persistent save
-	/usr/sbin/netfilter-persistent reload
+	netfilter-persistent save
 	
-	systemctl restart netfilter-persistent
+	netfilter-persistent reload
+	
+	systemctl start netfilter-persistent
 	
 	iptables_show
 	
@@ -120,6 +124,15 @@ iptables_watch()
 	
 }
 
+iptables_remove()
+{
+	
+	echo "Removing iptables..."
+	apt-get -y purge iptables iptables-persistent net-tools
+	apt -y autoremove
+	
+}
+
 FILE_CONF="/etc/sysctl.conf"
 
 case "$1" in
@@ -138,6 +151,9 @@ case "$1" in
 	watch)
 		iptables_watch
 		;;
+	remove)
+		iptables_remove
+		;;
 	all)
 		iptables_install
 		iptables_config
@@ -145,7 +161,7 @@ case "$1" in
 		iptables_show
 		;;
 	*)
-		echo "Use: $0 {all|install|config|rules|show|watch}"
+		echo "Use: $0 {all|install|config|rules|show|watch|remove}"
 		exit 1
 		;;
 esac
