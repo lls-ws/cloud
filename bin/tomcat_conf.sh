@@ -69,6 +69,8 @@ tomcat_setenv()
 	
 	systemctl restart tomcat${TOMCAT_VERSION}
 	
+	tomcat_check
+	
 }
 
 tomcat_users()
@@ -86,6 +88,8 @@ tomcat_users()
 	
 	systemctl restart tomcat${TOMCAT_VERSION}
 	
+	tomcat_check
+	
 }
 
 tomcat_show()
@@ -99,6 +103,8 @@ tomcat_show()
 	
 	echo "Check service status..."
 	systemctl status tomcat${TOMCAT_VERSION}
+	
+	tomcat_check
 	
 }
 

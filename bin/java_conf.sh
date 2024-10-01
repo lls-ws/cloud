@@ -4,6 +4,14 @@
 # Autor: Leandro Luiz
 # email: lls.homeoffice@gmail.com
 
+java_search()
+{
+	
+	echo "Check the availability of Java OpenJDK-${JAVA_VERSION}-${JAVA_OPT} packages..."
+	apt-cache search openjdk | grep -i openjdk-${JAVA_VERSION}-${JAVA_OPT}
+	
+}
+
 java_install()
 {
 	
@@ -19,17 +27,18 @@ java_install()
 java_path()
 {	
 	
-	DIR_ENVIRONMENT="/etc/environment"
-	JAVA_HOME="/usr/lib/jvm/java-${JAVA_VERSION}-openjdk-amd64"
- 
-	echo "Set the Java home path..."
-	echo 'JAVA_HOME="'${JAVA_HOME}'"' >> ${DIR_ENVIRONMENT}
+	JAVA_HOME="${JVM_HOME}/java-${JAVA_VERSION}-openjdk-amd64"
+	
+	path_remove
+	
+	echo "Set Java Home Path:"
+	echo 'JAVA_HOME="'${JAVA_HOME}'"' >> ${FILE_ENVIRONMENT}
 	
 	echo "Now reload this file to apply the changes to your current session:"
-	source ${DIR_ENVIRONMENT}
+	source ${FILE_ENVIRONMENT}
 	
 	echo "Verify that the environment variable is set:"
-	cat ${DIR_ENVIRONMENT} | tail -1
+	cat ${FILE_ENVIRONMENT}
 	
 }
 
@@ -69,12 +78,32 @@ java_remove()
 {
 	
 	echo "Remove Java ${JAVA_OPT} from Ubuntu..."
-	apt -y purge openjdk-${JAVA_VERSION}-${JAVA_OPT}
-	apt -y autoremove
+	
+	dpkg-query -W -f='${binary:Package}\n' | grep -E -e '^(ia32-)?(sun|oracle)-java' -e '^openjdk-' -e '^icedtea' -e '^(default|gcj)-j(re|dk)' -e '^gcj-(.*)-j(re|dk)' -e '^java-common' | xargs sudo apt-get -y remove
+	
+	apt-get -y autoremove
+	
+	dpkg -l | grep ^rc | awk '{print($2)}' | xargs sudo apt-get -y purge
+	
+	rm -rfv /usr/lib/jvm/*
+	
+	path_remove
+	
+}
+
+path_remove()
+{
+	
+	echo "Remove Java Home Path:"
+	sed -i '/JAVA_HOME/d' ${FILE_ENVIRONMENT}
 	
 }
 
 JAVA_VERSION="11"
+
+JVM_HOME="/usr/lib/jvm"
+
+FILE_ENVIRONMENT="/etc/environment"
 
 echo "Java version: ${JAVA_VERSION}"
 
@@ -92,6 +121,9 @@ case "$2" in
 esac
 
 case "$1" in
+	search)
+		java_search
+		;;
 	install)
 		java_install
 		;;
@@ -111,7 +143,7 @@ case "$1" in
 		java_install
 		;;
 	*)
-		echo "Use: $0 {all|install|path|version|choice|remove}"
+		echo "Use: $0 {all|search|install|path|version|choice|remove}"
 		exit 1
 		;;
 esac
