@@ -31,8 +31,8 @@ profile_pt_BR()
 	echo "Installing pt_BR..."
 	apt-get -y install language-pack-pt-base
 	
-	echo "Setting pt_BR..."
-	dpkg-reconfigure locales
+	#echo "Setting pt_BR..."
+	#dpkg-reconfigure locales
 	
 	echo "Changing profile to pt_BR..."
 	update-locale LC_ALL=pt_BR.UTF-8 LANG=pt_BR.UTF-8 LANGUAGE=pt_BR
