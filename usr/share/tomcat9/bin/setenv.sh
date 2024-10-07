@@ -40,3 +40,5 @@ export CATALINA_OPTS="$CATALINA_OPTS -server"
 # Disable remote (distributed) garbage collection by Java clients
 # and remove ability for applications to call explicit GC collection
 export CATALINA_OPTS="$CATALINA_OPTS -XX:+DisableExplicitGC"
+
+export JAVA_OPTS="$JAVA_OPTS -Duser.timezone=America/Sao_Paulo"
