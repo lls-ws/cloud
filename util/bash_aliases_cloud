@@ -44,4 +44,4 @@ alias upgrade='clear; sudo apt --only-upgrade -y install '
 
 # Comand for Upgrade Packages
 alias update='clear; sudo apt update && sudo apt -y upgrade && sudo apt -y autoremove && sudo apt list --upgradable'
-alias version='uname -vr'
+alias version='uname -vr && lsb_release -a'
