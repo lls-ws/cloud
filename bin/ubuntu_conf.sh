@@ -8,6 +8,44 @@
 PATH=.:$(dirname $0):$PATH
 . lib/cloud.lib		|| exit 1
 
+remove_packages()
+{
+	
+	dpkg --list | grep ^rc
+	
+	PACKAGE_LIST=$(dpkg --list | grep ^rc| awk '{ print $2}')
+	
+	echo "${PACKAGE_LIST}"
+	
+	apt-get -y --purge remove ${PACKAGE_LIST}
+	
+	apt -y autoremove
+	
+	remove_snap
+	
+}
+
+remove_snap()
+{
+	
+	df -h /
+	
+	snap list --all |
+	awk '/disabled/{print $1, $3}' |
+	while read snapname revision; do
+        
+        sudo snap remove "$snapname" --revision="$revision"
+        
+    done
+    
+    snap set system refresh.retain=2
+    
+    rm -rfv /var/lib/snapd/cache/
+	
+	df -h /
+	
+}
+
 ubuntu_upgrade()
 {
 	
@@ -76,6 +114,9 @@ case "$1" in
 	version)
 		check_version
 		;;
+	remove)
+		remove_packages
+		;;
 	all)
 		upgrade
 		profile_pt_BR
@@ -83,7 +124,7 @@ case "$1" in
 		check_version
 		;;
 	*)
-		echo "Use: $0 {all|upgrade|profile|fonts|version}"
+		echo "Use: $0 {all|remove|upgrade|profile|fonts|version}"
 		exit 1
 		;;
 esac
