@@ -20,7 +20,9 @@ remove_packages()
 	apt-get -y --purge remove ${PACKAGE_LIST}
 	
 	apt -y autoremove
-	
+
+        rm -fv /var/log/tomcat9/*
+ 
 	remove_snap
 	
 }
