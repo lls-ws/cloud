@@ -37,7 +37,6 @@ lls-log() {
 # Get a GitHub Repository
 alias git_clone_dataflex='cd ~; git clone https://github.com/lls-ws/dataflex.git; ls'
 alias git_clone_cloud='cd ~; git clone https://github.com/lls-ws/cloud.git; ls'
-alias git_clone_lls-src='cd ~; git clone https://github.com/lls-ws/lls-src.git; ls'
 
 # Comand for Only Upgrade Packages
 alias upgrade='clear; sudo apt --only-upgrade -y install '
