@@ -140,7 +140,7 @@ ssh_create_remote()
 	echo "Changing group for user ssh authorized keys..."
 	sudo chown -v ${USER}:${USER} ${ARQ_AUTHORIZED_KEYS}
 	
-	echo "show authorized keys file permissions..."
+	echo "Show authorized keys file permissions..."
 	sudo ls -al ${ARQ_AUTHORIZED_KEYS}
 	
 	echo "Show authorized keys file content..."
