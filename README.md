@@ -55,6 +55,9 @@ bash bin/user_conf.sh user [USER]
 ```bash
 bash bin/user_conf.sh ssh-remote [USER]
 ```
+```bash
+bash bin/user_conf.sh aliases
+```
 
 ### Configure Ubuntu:
 
