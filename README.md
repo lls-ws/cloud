@@ -101,7 +101,7 @@ sudo bin/mariadb_conf.sh create
 ### Configure Tomcat:
 
 ```bash
-sudo bash bin/java_conf.sh install
+sudo bash bin/java_conf.sh install [JRE|JDK]
 ```
 ```bash
 sudo bash bin/tomcat_conf.sh install
