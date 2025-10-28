@@ -101,6 +101,7 @@ DIR_TOMCAT_ETC="/etc/tomcat${TOMCAT_VERSION}"
 DIR_TOMCAT_BIN="/usr/share/tomcat${TOMCAT_VERSION}/bin"
 DIR_WEBAPPS="${DIR_TOMCAT}/webapps"
 DIR_LLS="${DIR_WEBAPPS}/${USER}"
+DIR_SSH="/home/${USER}/.ssh"
 DIR_KEYSTORE="${DIR_LLS}/keystore"
 
 DNAME="${USER}.net.br"

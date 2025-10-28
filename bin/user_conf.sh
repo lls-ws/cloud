@@ -215,8 +215,17 @@ check_key()
 	
 	fi
 	
-	KEY="${DIR_SSH}/${USER}-${KEYNAME}-${YEAR}.pem"
+	if [ "${USER_CLOUD}" != "${USER}" ]; then
 	
+		KEY="${DIR_SSH}/${USER}-${KEYNAME}-${YEAR}.pem"
+	
+	else
+		
+		KEY="${DIR_SSH}/id_rsa"
+		
+	fi
+	
+	echo "Set Key: ${KEY}"
 }
 
 ping_host()
@@ -242,7 +251,17 @@ YEAR=`date +%Y`
 HOSTNAME="$2"
 KEYNAME="$3"
 
-USER_CLOUD="ubuntu"
+if [ -z "$4" ]; then
+
+	USER_CLOUD="ubuntu"
+
+else
+
+	USER_CLOUD="${USER}"
+
+fi
+
+echo "Set User: ${USER_CLOUD}"
 
 if [ "${HOSTNAME}" != "${USER}" ]; then
 

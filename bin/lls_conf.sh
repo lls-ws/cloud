@@ -161,7 +161,6 @@ lls_update()
 }
 
 ARQ_LLS="${USER}-${HOSTNAME}.tar.gz"
-DIR_SSH="/home/${USER}/.ssh"
 
 case "$1" in
 	local)
