@@ -9,6 +9,22 @@
 PATH=.:$(dirname $0):$PATH
 . lib/cloud.lib		|| exit 1
 
+tomcat_stop()
+{
+	
+	echo "Stopping tomcat..."
+	service tomcat${TOMCAT_VERSION} stop
+	
+}
+
+tomcat_start()
+{
+	
+	echo "Starting tomcat..."
+	service tomcat${TOMCAT_VERSION} start
+	
+}
+
 lls_local()
 {
 	
@@ -38,8 +54,7 @@ lls_create()
 	
 	fi
 	
-	echo "Stopping tomcat..."
-	service tomcat${TOMCAT_VERSION} stop
+	tomcat_stop
 	
 	tar -cvzf ${ARQ_LLS} -C ${DIR_WEBAPPS} ${USER}
 	
@@ -52,8 +67,7 @@ lls_create()
 	
 	rm -fv ${ARQ_LLS}
 	
-	echo "Starting tomcat..."
-	service tomcat${TOMCAT_VERSION} start
+	tomcat_start
 	
 }
 
@@ -71,8 +85,7 @@ lls_install()
 	
 	ARQ_LLS="${USER}-${HOST}.tar.gz"
 	
-	echo "Stopping tomcat..."
-	service tomcat${TOMCAT_VERSION} stop
+	tomcat_stop
 	
 	tar -xvzf /home/${USER}/${ARQ_LLS} -C ${DIR_WEBAPPS}
 	
@@ -93,8 +106,7 @@ lls_install()
 lls_server()
 {
 	
-	echo "Stopping tomcat..."
-	service tomcat${TOMCAT_VERSION} stop
+	tomcat_stop
 	
 	FILE_CONF="server.xml"
 	DIR_CONF="etc/tomcat${TOMCAT_VERSION}"
@@ -115,8 +127,7 @@ lls_server()
 	
 	cat ${ARQ_CONFIG}
 	
-	echo "Starting tomcat..."
-	service tomcat${TOMCAT_VERSION} start
+	tomcat_start
 	
 }
 
