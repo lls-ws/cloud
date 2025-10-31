@@ -97,7 +97,7 @@ backup_copy()
 	backup_create
 	
 	echo "Coping ${NAME_ZIP} to cloud: ${URL}"
-	scp -i ~/.ssh/id_rsa ${FILE_ZIP} ${USER}@${URL}:~
+	scp -i /home/${USER}/.ssh/id_rsa ${FILE_ZIP} ${USER}@${URL}:~
 	
 	RESPONSE="$?"
 	
