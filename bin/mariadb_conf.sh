@@ -34,9 +34,8 @@ mysql_secure()
 	/usr/bin/mariadb-secure-installation
 	
 	mysql -e "GRANT ALL ON *.* TO 'admin'@'localhost' IDENTIFIED BY '${PASSWORD}' WITH GRANT OPTION; FLUSH PRIVILEGES;"
-	mysql -e "GRANT ALL ON *.* TO 'root'@'localhost' IDENTIFIED BY '${PASSWORD}' WITH GRANT OPTION; FLUSH PRIVILEGES;"
+	mysql -e "GRANT ALL ON *.* TO 'root'@'localhost' IDENTIFIED VIA unix_socket; FLUSH PRIVILEGES;"
 	mysql -e "SELECT user,authentication_string,plugin,host FROM mysql.user;"
-	#mysql -e "GRANT ALL ON *.* TO 'root'@'localhost' IDENTIFIED VIA unix_socket; FLUSH PRIVILEGES;"
 	
 	mysql -e "SHOW databases";
 	
@@ -59,29 +58,6 @@ mysql_conf()
 	FILE_CONF="50-mysql-clients.cnf"
 	
 	lib_update
-	
-	DIR_CONF="/etc/systemd/system/mariadb.service.d"
-	
-	if [ ! -d "${DIR_CONF}" ]; then
-	
-		mkdir -v ${DIR_CONF}
-	
-	fi
-	
-	FILE_CONF="unset_env_var_empty_fix.conf"
-	DIR_CONF="etc/systemd/system/mariadb.service.d"
-	
-	lib_update
-	
-	systemctl daemon-reload
-	
-	DIR_CONF="/etc/mysql/conf.d"
-	
-	if [ ! -d "${DIR_CONF}" ]; then
-	
-		mkdir -v ${DIR_CONF}
-	
-	fi
 	
 	echo "Starting mariadb..."
 	service mariadb start
