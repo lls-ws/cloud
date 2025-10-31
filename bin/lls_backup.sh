@@ -25,6 +25,16 @@ backup_create()
 backup_restore()
 {
 	
+	HOME_ZIP="/home/${USER}/${NAME_ZIP}"
+	
+	if [ -f ${HOME_ZIP} ]; then
+	
+		rm -fv ${FILE_ZIP} ${FILE_SQL}
+		mv -v ${HOME_ZIP} ${DIR_SQL}
+		unzip ${FILE_ZIP} -d ${DIR_SQL}
+	
+	fi
+	
 	if [ ! -f ${FILE_SQL} ]; then
 	
 		echo "File ${FILE_SQL} not found!"
