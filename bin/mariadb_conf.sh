@@ -8,6 +8,14 @@
 PATH=.:$(dirname $0):$PATH
 . lib/cloud.lib		|| exit 1
 
+mysql_stop()
+{	
+	
+	echo "Stopping mariadb..."
+	service mariadb stop
+	
+}
+
 mysql_install()
 {
 	
@@ -23,10 +31,12 @@ mysql_secure()
 {
 	
 	( echo ; echo "N" ; echo "Y" ; echo "Y" ; echo "Y" ; echo "Y" ) |
-	/usr/bin/mysql_secure_installation
+	/usr/bin/mariadb-secure-installation
 	
 	mysql -e "GRANT ALL ON *.* TO 'admin'@'localhost' IDENTIFIED BY '${PASSWORD}' WITH GRANT OPTION; FLUSH PRIVILEGES;"
-	mysql -e "GRANT ALL ON *.* TO 'root'@'localhost' IDENTIFIED VIA unix_socket; FLUSH PRIVILEGES;"
+	mysql -e "GRANT ALL ON *.* TO 'root'@'localhost' IDENTIFIED BY '${PASSWORD}' WITH GRANT OPTION; FLUSH PRIVILEGES;"
+	mysql -e "SELECT user,authentication_string,plugin,host FROM mysql.user;"
+	#mysql -e "GRANT ALL ON *.* TO 'root'@'localhost' IDENTIFIED VIA unix_socket; FLUSH PRIVILEGES;"
 	
 	mysql -e "SHOW databases";
 	
@@ -35,8 +45,7 @@ mysql_secure()
 mysql_conf()
 {	
 	
-	echo "Stopping mariadb..."
-	service mariadb stop
+	mysql_stop
 	
 	FILE_CONF="50-server.cnf"
 	DIR_CONF="etc/mysql/mariadb.conf.d"
@@ -44,14 +53,35 @@ mysql_conf()
 	lib_update
 	
 	FILE_CONF="50-client.cnf"
-	DIR_CONF="etc/mysql/mariadb.conf.d"
 	
 	lib_update
 	
 	FILE_CONF="50-mysql-clients.cnf"
-	DIR_CONF="etc/mysql/mariadb.conf.d"
 	
 	lib_update
+	
+	DIR_CONF="/etc/systemd/system/mariadb.service.d"
+	
+	if [ ! -d "${DIR_CONF}" ]; then
+	
+		mkdir -v ${DIR_CONF}
+	
+	fi
+	
+	FILE_CONF="unset_env_var_empty_fix.conf"
+	DIR_CONF="etc/systemd/system/mariadb.service.d"
+	
+	lib_update
+	
+	systemctl daemon-reload
+	
+	DIR_CONF="/etc/mysql/conf.d"
+	
+	if [ ! -d "${DIR_CONF}" ]; then
+	
+		mkdir -v ${DIR_CONF}
+	
+	fi
 	
 	echo "Starting mariadb..."
 	service mariadb start
@@ -144,11 +174,13 @@ mysql_update()
 mysql_uninstall()
 {
 	
+	mysql_stop
+	
 	echo "Uninstall mariadb..."
-	apt-get purge --auto-remove mariadb-server
+	apt-get -y purge --auto-remove mariadb-server
 	
 	echo "Removing mariadb..."
-	rm -rfv /var/lib/mysql/
+	rm -rfv /var/lib/mysql
 	
 }
 
@@ -181,7 +213,7 @@ case "$1" in
 	version)
 		mysql_version
 		;;
-	upgrade)
+	update)
 		mysql_update
 		;;
 	uninstall)
@@ -196,7 +228,7 @@ case "$1" in
 		mysql_version
 		;;
 	*)
-		echo "Use: $0 {all|install|secure|conf|create|delete|show|version|upgrade|uninstall}"
+		echo "Use: $0 {all|install|secure|conf|create|delete|show|version|update|uninstall}"
 		exit 1
 		;;
 esac
