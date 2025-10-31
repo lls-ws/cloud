@@ -79,6 +79,40 @@ backup_send()
 	
 }
 
+backup_copy()
+{
+	
+	HOST="$1"
+	
+	if [ -z "${HOST}" ]; then
+	
+		echo "Not found a hostname!"
+		echo "Use: $0 transfer {HOSTNAME}"
+		exit 1
+	
+	fi
+	
+	URL="${HOST}.${USER}.net.br"
+	
+	backup_create
+	
+	echo "Coping ${NAME_ZIP} to cloud: ${URL}"
+	scp -i ~/.ssh/id_rsa ${FILE_ZIP} ${USER}@${URL}:~
+	
+	RESPONSE="$?"
+	
+	if [ "${RESPONSE}" == "0" ]; then
+	
+		echo "File: ${NAME_ZIP} send to: ${URL}"
+	
+	else
+	
+		echo "Send file error!"
+	
+	fi
+	
+}
+
 loop_tables()
 {
 	
@@ -177,11 +211,14 @@ case "$1" in
 	send)
 		backup_send
 		;;
+	copy)
+		backup_copy "$2"
+		;;
 	show)
 		show_tables
 		;;
 	*)
-		echo "Use: $(basename $0) {create|restore|send|show}"
+		echo "Use: $(basename $0) {create|restore|send|copy|show}"
 		exit 1
 		;;
 esac
