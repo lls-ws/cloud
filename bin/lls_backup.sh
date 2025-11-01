@@ -3,6 +3,14 @@
 #
 # email: lls.homeoffice@gmail.com
 
+tomcat_stop()
+{
+	
+	echo "Stopping tomcat..."
+	service tomcat${TOMCAT_VERSION} stop
+	
+}
+
 backup_create()
 {
 	
@@ -42,8 +50,7 @@ backup_restore()
 	
 	fi
 	
-	echo "Stopping tomcat..."
-	service tomcat${TOMCAT_VERSION} stop
+	tomcat_stop
 	
 	du -hsc ${FILE_SQL}
 	
@@ -103,6 +110,8 @@ backup_copy()
 	fi
 	
 	URL="${HOST}.${USER}.net.br"
+	
+	tomcat_stop
 	
 	backup_create
 	
