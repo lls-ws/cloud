@@ -87,7 +87,7 @@ ssh_create_local()
 			chmod -v 400 ${KEY}
 			chown -v lls:lls ${KEY}
 			
-			ssh-keygen -f "${DIR_SSH}/known_hosts" -R ${HOST}
+			ssh_clear
 			
 		else
 		
@@ -232,6 +232,19 @@ ping_host()
 {
 	
 	ping ${HOST}
+	
+}
+
+ssh_clear()
+{
+	
+	echo "Cleanning known_hosts: ${HOST}"
+	
+	FILE_HOSTS=~/.ssh/known_hosts
+			
+	ssh-keygen -f ${FILE_HOSTS} -R ${HOST}
+			
+	chown -v ${USER}:${USER} ${FILE_HOSTS}
 	
 }
 
