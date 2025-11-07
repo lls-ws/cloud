@@ -11,6 +11,8 @@ PATH=.:$(dirname $0):$PATH
 remove_packages()
 {
 	
+	clear
+	
 	dpkg --list | grep ^rc
 	
 	PACKAGE_LIST=$(dpkg --list | grep ^rc| awk '{ print $2}')
@@ -31,6 +33,17 @@ remove_snap()
 {
 	
 	df -h /
+	
+	echo "Remove Unused Dependencies..."
+	
+	LANG=C snap list --all | 
+	while read snapname ver rev trk pub notes; do
+		if [[ $notes = disabled ]]; then
+			sudo snap remove "$snapname" --revision="$rev";
+		fi;
+	done
+	
+	echo "Remove Unused Packages..."
 	
 	snap list --all |
 	awk '/disabled/{print $1, $3}' |
