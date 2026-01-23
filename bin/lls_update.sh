@@ -9,17 +9,17 @@ show_version()
 	
 	echo "Show OS versions"
 	uname -vr
-	#lsb_release -a
+	lsb_release -a
 	
 }
 
 os_upgrade()
 {
 	
-	apt update
+	apt-get update
 	apt list --upgradable
-	apt -y upgrade
-	apt -y autoremove
+	apt-get -y upgrade
+	apt-get -y autoremove
 	
 	show_version
 	
