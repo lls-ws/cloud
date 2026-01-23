@@ -89,7 +89,7 @@ cloud_opt()
 	
 	else
 	
-		cloud_update
+		cloud_update "$1"
 	
 	fi
 	
@@ -153,7 +153,6 @@ else
 			;;
 		*)
 			echo "Use: $0 {all|version|upgrade|remove|cloud}"
-			exit 1
 			;;
 	esac
 
