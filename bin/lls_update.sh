@@ -80,7 +80,7 @@ remove_snap()
 	
 }
 
-cloud_opt()
+cloud_options()
 {
 	
 	if [ "$1" = "version" ]; then
@@ -144,7 +144,7 @@ else
 			remove_packages
 			;;
 		cloud)
-			cloud_opt "$2"
+			cloud_options "$2"
 			;;
 		all)
 			os_upgrade
