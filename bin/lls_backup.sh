@@ -11,6 +11,14 @@ tomcat_stop()
 	
 }
 
+tomcat_start()
+{
+	
+	echo "Starting tomcat..."
+	service tomcat${TOMCAT_VERSION} start
+	
+}
+
 backup_create()
 {
 	
@@ -59,8 +67,7 @@ backup_restore()
 	
 	show_tables
 	
-	echo "Starting tomcat..."
-	service tomcat${TOMCAT_VERSION} start
+	tomcat_start
 	
 }
 
@@ -130,6 +137,8 @@ backup_copy()
 	
 	fi
 	
+	tomcat_start
+	
 }
 
 loop_tables()
@@ -162,6 +171,8 @@ show_tables()
 jsp_update()
 {
 
+	tomcat_stop
+
 	HOME_JSP="/home/${USER}/jsp"
 
 	DIR_WEB="${DIR_LLS}/WEB-INF"
@@ -181,6 +192,8 @@ jsp_update()
 		exit 1
 	
 	fi
+	
+	tomcat_start
 	
 }
 

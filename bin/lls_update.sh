@@ -80,6 +80,40 @@ remove_snap()
 	
 }
 
+cloud_update()
+{
+	
+	if [ "$2" = "version" ]; then
+	
+		show_version
+		exit 1
+	
+	fi
+	
+	echo "Stopping tomcat..."
+	service tomcat9 stop
+	
+	echo "Stopping mariadb..."
+	service mariadb stop
+	
+	if [ "$2" = "upgrade" ]; then
+	
+		os_upgrade
+	
+	else
+	
+		remove_packages
+	
+	fi
+	
+	echo "Starting mariadb..."
+	service mariadb start
+	
+	echo "Starting tomcat..."
+	service tomcat9 start
+	
+}
+
 clear
 
 LOG_TOMCAT="/var/log/tomcat9"
@@ -101,13 +135,16 @@ case "$1" in
 	remove)
 		remove_packages
 		;;
+	cloud)
+		cloud_update "$2"
+		;;
 	all)
 		upgrade
 		remove_packages
 		show_version
 		;;
 	*)
-		echo "Use: $0 {all|version|upgrade|remove}"
+		echo "Use: $0 {all|version|upgrade|remove|cloud}"
 		exit 1
 		;;
 esac
