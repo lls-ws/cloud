@@ -165,16 +165,19 @@ jsp_update()
 	HOME_JSP="/home/${USER}/jsp"
 
 	DIR_WEB="${DIR_LLS}/WEB-INF"
+	DIR_JSP="${DIR_WEB}/jsp"
 
 	if [ -d "${HOME_JSP}" ]; then
 	
+		rm -rfv ${DIR_JSP}
+		
 		mv -v ${HOME_JSP} ${DIR_WEB}
 		
-		chown -Rv tomcat:tomcat ${DIR_WEB}/jsp
+		chown -Rv tomcat:tomcat ${DIR_JSP}
 		
 	else
 	
-		echo "Not found ${DIR_WEB}/jsp"
+		echo "Not found ${DIR_JSP}"
 		exit 1
 	
 	fi
