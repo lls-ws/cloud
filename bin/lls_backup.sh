@@ -169,11 +169,11 @@ jsp_update()
 
 	if [ -d "${HOME_JSP}" ]; then
 	
-		rm -rfv ${DIR_JSP}
+		rm -rf ${DIR_JSP}
 		
 		mv -v ${HOME_JSP} ${DIR_WEB}
 		
-		chown -Rv tomcat:tomcat ${DIR_JSP}
+		chown -R tomcat:tomcat ${DIR_JSP}
 		
 	else
 	
