@@ -159,6 +159,28 @@ show_tables()
 	
 }
 
+jsp_update()
+{
+
+	HOME_JSP="/home/${USER}/jsp"
+
+	DIR_WEB="${DIR_LLS}/WEB-INF"
+
+	if [ -d "${HOME_JSP}" ]; then
+	
+		mv -v ${HOME_JSP} ${DIR_WEB}
+		
+		chown -Rv tomcat:tomcat ${DIR_WEB}/jsp
+		
+	else
+	
+		echo "Not found ${DIR_WEB}/jsp"
+		exit 1
+	
+	fi
+	
+}
+
 if [ "$EUID" -ne 0 ]; then
 	echo "Run script as root!"
 	exit 1
@@ -236,8 +258,11 @@ case "$1" in
 	show)
 		show_tables
 		;;
+	jsp)
+		jsp_update
+		;;
 	*)
-		echo "Use: $(basename $0) {create|restore|send|copy|show}"
+		echo "Use: $(basename $0) {create|restore|send|copy|show|jsp}"
 		exit 1
 		;;
 esac
