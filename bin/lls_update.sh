@@ -8,7 +8,7 @@ show_version()
 {
 	
 	echo "Show OS versions"
-	uname -mrs
+	uname -vr
 	lsb_release -a
 	
 }
