@@ -128,31 +128,33 @@ LOG_TOMCAT="/var/log/tomcat9"
 CACHE_SNAPD="/var/lib/snapd/cache"
 
 if [ "$EUID" -ne 0 ]; then
-	echo "Run: sudo $(basename $0) $1"
-	exit 1
-  
-fi
 
-case "$1" in
-	version)
-		show_version
-		;;
-	upgrade)
-		os_upgrade
-		;;
-	remove)
-		remove_packages
-		;;
-	cloud)
-		cloud_opt "$2"
-		;;
-	all)
-		upgrade
-		remove_packages
-		show_version
-		;;
-	*)
-		echo "Use: $0 {all|version|upgrade|remove|cloud}"
-		exit 1
-		;;
-esac
+	echo "Run: sudo $(basename $0) $1"
+  
+else
+
+	case "$1" in
+		version)
+			show_version
+			;;
+		upgrade)
+			os_upgrade
+			;;
+		remove)
+			remove_packages
+			;;
+		cloud)
+			cloud_opt "$2"
+			;;
+		all)
+			upgrade
+			remove_packages
+			show_version
+			;;
+		*)
+			echo "Use: $0 {all|version|upgrade|remove|cloud}"
+			exit 1
+			;;
+	esac
+
+fi
