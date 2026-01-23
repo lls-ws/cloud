@@ -8,70 +8,12 @@
 PATH=.:$(dirname $0):$PATH
 . lib/cloud.lib		|| exit 1
 
-remove_packages()
-{
-	
-	clear
-	
-	dpkg --list | grep ^rc
-	
-	PACKAGE_LIST=$(dpkg --list | grep ^rc| awk '{ print $2}')
-	
-	echo "${PACKAGE_LIST}"
-	
-	apt-get -y --purge remove ${PACKAGE_LIST}
-	
-	apt -y autoremove
-
-        rm -fv /var/log/tomcat9/*
- 
-	remove_snap
-	
-}
-
-remove_snap()
-{
-	
-	df -h /
-	
-	echo "Remove Unused Dependencies..."
-	
-	LANG=C snap list --all | 
-	while read snapname ver rev trk pub notes; do
-		if [[ $notes = disabled ]]; then
-			sudo snap remove "$snapname" --revision="$rev";
-		fi;
-	done
-	
-	echo "Remove Unused Packages..."
-	
-	snap list --all |
-	awk '/disabled/{print $1, $3}' |
-	while read snapname revision; do
-        
-        sudo snap remove "$snapname" --revision="$revision"
-        
-    done
-    
-    snap set system refresh.retain=2
-    
-    rm -rfv /var/lib/snapd/cache/
-	
-	df -h /
-	
-}
-
 ubuntu_upgrade()
 {
 	
-	apt update
-	apt list --upgradable
-	apt -y upgrade
-	apt -y autoremove
+	cp -fv bin/lls_update.sh /usr/bin
 	
-	check_version
-	
-	echo "Type: sudo reboot"
+	lls_update.sh upgrade
 	
 }
 
@@ -107,15 +49,6 @@ fonts_install()
 	
 }
 
-check_version()
-{
-	
-	echo "Show OS versions"
-	uname -mrs
-	lsb_release -a
-	
-}
-
 case "$1" in
 	upgrade)
 		ubuntu_upgrade
@@ -129,9 +62,6 @@ case "$1" in
 	version)
 		check_version
 		;;
-	remove)
-		remove_packages
-		;;
 	all)
 		upgrade
 		profile_pt_BR
@@ -139,7 +69,7 @@ case "$1" in
 		check_version
 		;;
 	*)
-		echo "Use: $0 {all|remove|upgrade|profile|fonts|version}"
+		echo "Use: $0 {all|upgrade|profile|fonts|version}"
 		exit 1
 		;;
 esac

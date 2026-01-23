@@ -185,7 +185,7 @@ jsp_update()
 }
 
 if [ "$EUID" -ne 0 ]; then
-	echo "Run script as root!"
+	echo "Run: sudo $(basename $0) $1"
 	exit 1
   
 fi
