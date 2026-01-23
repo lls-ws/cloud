@@ -80,15 +80,23 @@ remove_snap()
 	
 }
 
-cloud_update()
+cloud_opt()
 {
 	
 	if [ "$1" = "version" ]; then
 	
 		show_version
-		exit 1
+	
+	else
+	
+		cloud_update
 	
 	fi
+	
+}
+
+cloud_update()
+{
 	
 	echo "Stopping tomcat..."
 	service tomcat9 stop
@@ -136,7 +144,7 @@ case "$1" in
 		remove_packages
 		;;
 	cloud)
-		cloud_update "$2"
+		cloud_opt "$2"
 		;;
 	all)
 		upgrade
