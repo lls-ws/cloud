@@ -83,7 +83,7 @@ remove_snap()
 cloud_update()
 {
 	
-	if [ "$2" = "version" ]; then
+	if [ "$1" = "version" ]; then
 	
 		show_version
 		exit 1
@@ -96,7 +96,7 @@ cloud_update()
 	echo "Stopping mariadb..."
 	service mariadb stop
 	
-	if [ "$2" = "upgrade" ]; then
+	if [ "$1" = "upgrade" ]; then
 	
 		os_upgrade
 	
