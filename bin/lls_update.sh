@@ -147,7 +147,7 @@ else
 			cloud_opt "$2"
 			;;
 		all)
-			upgrade
+			os_upgrade
 			remove_packages
 			show_version
 			;;
