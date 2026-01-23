@@ -93,6 +93,7 @@ fi
 
 FILE_BIN="/usr/bin/lls_backup"
 FILE_RULES="/etc/iptables/rules.v4"
+FILE_UPDATE="/usr/bin/lls_update.sh"
 
 TOMCAT_VERSION="9"
 

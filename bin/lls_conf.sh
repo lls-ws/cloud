@@ -165,9 +165,11 @@ lls_update()
 	
 	ln -sfv "${DIR_LLS}/bin/${ARQ_BACKUP}" ${FILE_BIN}
 	
-	du -hsc "${DIR_LLS}/sql" "${DIR_LLS}/bin/${ARQ_BACKUP}"
+	cp -fv bin/lls_update.sh ${FILE_UPDATE}
 	
-	ls -al  ${FILE_BIN}
+	du -hsc "${DIR_LLS}/sql" "${DIR_LLS}/bin/${ARQ_BACKUP}" ${FILE_UPDATE}
+	
+	ls -al ${FILE_BIN} ${FILE_UPDATE}
 	
 	lls_sudo
 	

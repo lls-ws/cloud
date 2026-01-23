@@ -11,7 +11,7 @@ PATH=.:$(dirname $0):$PATH
 ubuntu_upgrade()
 {
 	
-	cp -fv bin/lls_update.sh bin/lls_backup.sh /usr/bin
+	cp -fv bin/lls_update.sh /usr/bin
 	
 	lls_update.sh upgrade
 	
