@@ -178,7 +178,13 @@ lls_sudo()
 	
 	echo "Set sudo no password for user: ${USER}"
 	
-	echo "${USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/90-cloud-init-users
+	SUDO_FILE="/etc/sudoers.d/90-cloud-init-users"
+	
+	sed -i '/^'${USER}'/d/' ${SUDO_FILE}
+	
+	echo "${USER} ALL=(ALL) NOPASSWD:ALL" >> ${SUDO_FILE}
+	
+	cat ${SUDO_FILE} | tail -2
 	
 }
 
