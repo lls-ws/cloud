@@ -180,7 +180,7 @@ lls_sudo()
 	
 	SUDO_FILE="/etc/sudoers.d/90-cloud-init-users"
 	
-	sed -i '/^'${USER}'/d/' ${SUDO_FILE}
+	sed -i '/^'${USER}'/d' ${SUDO_FILE}
 	
 	echo "${USER} ALL=(ALL) NOPASSWD:ALL" >> ${SUDO_FILE}
 	
