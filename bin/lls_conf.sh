@@ -169,6 +169,17 @@ lls_update()
 	
 	ls -al  ${FILE_BIN}
 	
+	lls_sudo
+	
+}
+
+lls_sudo()
+{
+	
+	echo "Set sudo no password for user: ${USER}"
+	
+	echo "${USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/90-cloud-init-users
+	
 }
 
 ARQ_LLS="${USER}-${HOSTNAME}.tar.gz"
