@@ -176,7 +176,7 @@ lls_update()
 lls_sudo()
 {
 	
-	echo "Set sudo no password for user: ${USER}"
+	echo -e "\nSet sudo no password for user: ${USER}"
 	
 	SUDO_FILE="/etc/sudoers.d/90-cloud-init-users"
 	
