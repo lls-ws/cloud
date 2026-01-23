@@ -40,7 +40,7 @@ remove_packages()
 	
 	apt-get -y --purge remove ${PACKAGE_LIST}
 	
-	apt -y autoremove
+	apt-get -y autoremove
 
     rm -fv ${LOG_TOMCAT}/*
  
