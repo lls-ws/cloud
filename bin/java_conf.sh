@@ -18,9 +18,9 @@ java_install()
 	echo "Install Java: openjdk-${JAVA_VERSION}-${JAVA_OPT}"
 	apt-get -y install openjdk-${JAVA_VERSION}-${JAVA_OPT}
 	
-	java_version
-	
 	java_path
+	
+	java_version
 	
 }
 
@@ -96,6 +96,8 @@ path_remove()
 	
 	echo "Remove Java Home Path:"
 	sed -i '/JAVA_HOME/d' ${FILE_ENVIRONMENT}
+	
+	cat ${FILE_ENVIRONMENT}
 	
 }
 
