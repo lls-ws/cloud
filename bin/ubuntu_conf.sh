@@ -22,9 +22,13 @@ profile_pt_BR()
 	
 	echo "Showing locale..."
 	locale
+	date
 	
 	echo "Installing pt_BR..."
-	apt-get -y install language-pack-pt-base
+	apt-get -y install language-pack-pt language-pack-pt-base
+	
+	echo "Gere a localidade pt_BR.UTF-8"
+	sudo locale-gen pt_BR.UTF-8
 	
 	echo "Setting pt_BR..."
 	dpkg-reconfigure locales
