@@ -19,7 +19,7 @@ case "$1" in
 		java_remove
 		;;
 	install)
-		java_install
+		java_install "$2"
 		;;
 	path)
 		java_path
