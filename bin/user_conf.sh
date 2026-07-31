@@ -103,7 +103,7 @@ ssh_create_local()
 	cp -fv ${DIR_SSH}/id_rsa.pub ${DIR_SSH}/id_rsa.pub.old 2> /dev/null
 	
 	echo "Copy key pair to cloud: ${HOST}"
-	scp -i ${KEY} ${DIR_SSH}/id_rsa.pub ${USER_CLOUD}@${HOST}:~
+	scp -i ${KEY} -O ${DIR_SSH}/id_rsa.pub ${USER_CLOUD}@${HOST}:~
 	
 }
 
