@@ -43,6 +43,9 @@ remove_packages()
 	apt-get -y autoremove
 
     rm -fv ${LOG_TOMCAT}/*
+
+	echo "Limpar logs antigos do sistema"
+	sudo journalctl --vacuum-size=100M
  
 	remove_snap
 	
