@@ -59,6 +59,8 @@ mysql_conf()
 	
 	lib_update
 	
+	mysql_password
+	
 	echo "Starting mariadb..."
 	service mariadb start
 	
@@ -167,6 +169,26 @@ mysql_version()
 	
 }
 
+mysql_password()
+{
+	
+	FILE_ENVIRONMENT="/etc/environment"
+	
+	echo "Remove mySQL password:"
+	sed -i '/DB_PASSWORD/d' ${FILE_ENVIRONMENT}
+	
+	echo "Setting mySQL password:"
+	echo 'DB_PASSWORD="'${PASSWORD}'"' >> ${FILE_ENVIRONMENT}
+	
+	cat ${FILE_ENVIRONMENT} | grep "DB_PASSWORD"
+	
+	echo "Reloading Environment File..."
+	source ${FILE_ENVIRONMENT}
+	
+	echo "${DB_PASSWORD}"
+	
+}
+
 case "$1" in
 	install)
 		mysql_install
@@ -192,6 +214,9 @@ case "$1" in
 	update)
 		mysql_update
 		;;
+	password)
+		mysql_password
+		;;
 	uninstall)
 		mysql_uninstall
 		;;
@@ -204,7 +229,7 @@ case "$1" in
 		mysql_version
 		;;
 	*)
-		echo "Use: $0 {all|install|secure|conf|create|delete|show|version|update|uninstall}"
+		echo "Use: $0 {all|install|secure|conf|create|delete|show|version|update|password|uninstall}"
 		exit 1
 		;;
 esac
