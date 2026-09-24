@@ -6,7 +6,7 @@ alias tomcat-status='clear; sudo service tomcat9 status'
 alias tomcat-start='sudo service tomcat9 start; tomcat-status'
 alias tomcat-stop='sudo service tomcat9 stop; tomcat-status'
 alias tomcat-restart='tomcat-stop; tomcat-start'
-alias tomcat-log='cat /var/lib/tomcat9/logs/*.log | less'
+alias tomcat-log='sudo cat /var/lib/tomcat9/logs/*.log | less'
 
 # MariaDB
 alias maria-status='clear; sudo service mariadb status'
