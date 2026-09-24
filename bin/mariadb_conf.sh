@@ -172,20 +172,20 @@ mysql_version()
 mysql_password()
 {
 	
-	FILE_ENVIRONMENT="/etc/environment"
+	FILE_ENV="/etc/profile.d/db_env.sh"
 	
 	echo "Remove mySQL password:"
-	sed -i '/DB_PASSWORD/d' ${FILE_ENVIRONMENT}
+	rm -fv ${FILE_ENV}
 	
 	echo "Setting mySQL password:"
-	echo 'DB_PASSWORD="'${PASSWORD}'"' >> ${FILE_ENVIRONMENT}
+	echo 'export DB_PASSWORD="'${PASSWORD}'"' >> ${FILE_ENV}
 	
-	cat ${FILE_ENVIRONMENT} | grep "DB_PASSWORD"
+	cat ${FILE_ENV}
 	
-	echo "Reloading Environment File..."
-	source ${FILE_ENVIRONMENT}
+	echo "Reloading File: ${FILE_ENV}"
+	source ${FILE_ENV}
 	
-	echo "${DB_PASSWORD}"
+	echo "Show Variable: ${DB_PASSWORD}"
 	
 }
 
