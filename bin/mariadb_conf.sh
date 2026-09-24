@@ -178,7 +178,7 @@ mysql_password()
 	sed -i '/DB_PASSWORD/d' ${FILE_ENVIRONMENT}
 	
 	echo "Setting mySQL password:"
-	echo "DB_PASSWORD='"${PASSWORD}"'" >> ${FILE_ENVIRONMENT}
+	echo 'DB_PASSWORD="${PASSWORD}"' >> ${FILE_ENVIRONMENT}
 	
 	cat ${FILE_ENVIRONMENT} | grep "DB_PASSWORD"
 	
