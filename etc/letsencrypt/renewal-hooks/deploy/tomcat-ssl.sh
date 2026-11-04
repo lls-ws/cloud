@@ -1,20 +1,14 @@
 #!/bin/bash
 
+USER=`git config user.name`
 PASSWORD=`git config user.password`
 
-if [ -z "${PASSWORD}" ]; then
-	
-	echo "Not found a user password!"
-	echo "Use: git_conf.sh password {PASSWORD}"
-	exit 1
-	
-fi
-
-DOMAIN="$HOSTNAME.$USER.net.br"
+DOMAIN="$HOSTNAME.${USER}.net.br"
 TARGET_DIR="/var/tomcat/ssl"
 
+echo "DOMAIN: ${DOMAIN}"
 echo "Garante que o diretório de destino existe:"
-mkdir -p $TARGET_DIR
+mkdir -pv $TARGET_DIR
 
 echo "Converte arquivos PEM nativos do Certbot em keystore PKCS12 (.p12):"
 openssl pkcs12 -export \
