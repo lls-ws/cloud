@@ -103,9 +103,7 @@ lls_server()
 	
 	chmod -v 755 ${ARQ_CONFIG}
 	
-	sed -i '/sslProtocol="TLS"/i \	\	\keystoreFile="'${KEYSTORE}'"' ${ARQ_CONFIG}
-	sed -i '/sslProtocol="TLS"/i \	\	\keystorePass="'${PASSWORD}'"' ${ARQ_CONFIG}
-	sed -i '/sslProtocol="TLS"/i \	\	\keyAlias="'${ALIAS}'"' ${ARQ_CONFIG}
+	sed -i 's/certificateKeystorePassword="SUA_SENHA_SEGURA"/certificateKeystorePassword="'${PASSWORD}'"/g' ${ARQ_CONFIG}
 	
 	sed -i '/\/Host/i \	\	\<Context path="" docBase="'${DIR_LLS}'" debug="0"\/\>' ${ARQ_CONFIG}
 	
