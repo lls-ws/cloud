@@ -7,8 +7,10 @@
 java_install()
 {
 	
-	echo "Installing Java:"
-	apt -y install default-jre
+	java_remove
+	
+	echo "Installing Java JDK:"
+	apt -y install openjdk-11-jdk
 	
 	java_path
 	
