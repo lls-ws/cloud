@@ -21,15 +21,7 @@ snap_install()
 	
 }
 
-ssl_install()
-{
-
-	echo "Instala o Certbot Modo Standalone / Webroot:"
-	sudo apt install -y certbot
-	
-}
-
-ssl_create()
+snap_create()
 {
 	
 	ssl_clean
@@ -91,6 +83,38 @@ ssl_localhost()
 	keytool -genkey -noprompt -alias ${ALIAS} -dname "CN=${DNAME}, OU=${USER}, O=${USER}, L=Uberlandia, S=MG, C=BR" -keystore ${KEYSTORE} -storepass "${PASSWORD}" -KeySize 2048 -keypass "${PASSWORD}" -keyalg RSA -validity 360
 	
 	ssl_show
+	
+}
+
+ssl_install()
+{
+
+	echo "Instala o Certbot Modo Standalone / Webroot:"
+	sudo apt install -y certbot
+	
+}
+
+ssl_create()
+{
+	
+	tomcat_stop
+	
+	echo "Gera o certificado para o domínio: ${DNAME}"
+	sudo certbot certonly --standalone -d ${DNAME}
+	
+	echo "Certificado Original: /etc/letsencrypt/live/${DNAME}"
+	sudo ls -alh /etc/letsencrypt/live/${DNAME}
+	
+	FILE_CONF="tomcat-ssl.sh"
+	DIR_CONF="etc/letsencrypt/renewal-hooks/deploy/"
+	
+	lib_update
+	
+	echo "Torne o script executável:"
+	sudo chmod +x /${DIR_CONF}/${FILE_CONF}
+	
+	echo "Gerar o arquivo: tomcat_keystore.p12"
+	sudo /${DIR_CONF}/${FILE_CONF}
 	
 }
 

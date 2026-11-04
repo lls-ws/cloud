@@ -9,22 +9,6 @@
 PATH=.:$(dirname $0):$PATH
 . lib/cloud.lib		|| exit 1
 
-tomcat_stop()
-{
-	
-	echo "Stopping tomcat..."
-	service tomcat${TOMCAT_VERSION} stop
-	
-}
-
-tomcat_start()
-{
-	
-	echo "Starting tomcat..."
-	service tomcat${TOMCAT_VERSION} start
-	
-}
-
 lls_local()
 {
 	

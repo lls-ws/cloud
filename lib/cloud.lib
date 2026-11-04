@@ -4,6 +4,22 @@
 # Autor: Leandro Luiz
 # email: lls.homeoffice@gmail.com
 
+tomcat_stop()
+{
+	
+	echo "Stopping tomcat..."
+	service tomcat${TOMCAT_VERSION} stop
+	
+}
+
+tomcat_start()
+{
+	
+	echo "Starting tomcat..."
+	service tomcat${TOMCAT_VERSION} start
+	
+}
+
 lib_update()
 {
 	
