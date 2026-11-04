@@ -109,7 +109,17 @@ lls_server()
 	
 	cat ${ARQ_CONFIG}
 	
+	echo "Permite binário do Java escute portas privilegiadas 443:"
+	sudo setcap 'cap_net_bind_service=+ep' $(readlink -f $(which java))
+	
+	echo "Liberar a Porta 443 no Firewall:"
+	sudo ufw allow 443/tcp
+	sudo ufw reload
+	
 	tomcat_start
+	
+	echo "Tomcat na porta 443:"
+	sudo ss -tlnp | grep :443
 	
 }
 
