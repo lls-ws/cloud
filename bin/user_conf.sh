@@ -77,7 +77,7 @@ ssh_create_local()
  
 	if [ ! -f ${KEY} ]; then
 	
-		KEY_DOWNLOAD="/home/${USER}/Downloads/${USER}-${KEYNAME}-${YEAR}.pem"
+		KEY_DOWNLOAD="/home/${USER}/Downloads/${USER}-${KEYNAME}.pem"
 	
 		if [ -f ${KEY_DOWNLOAD} ]; then
 	
@@ -217,7 +217,7 @@ check_key()
 	
 	if [ "${USER_CLOUD}" != "${USER}" ]; then
 	
-		KEY="${DIR_SSH}/${USER}-${KEYNAME}-${YEAR}.pem"
+		KEY="${DIR_SSH}/${USER}-${KEYNAME}.pem"
 	
 	else
 		
@@ -260,7 +260,6 @@ USER=`sudo git config user.name`
 
 set_user
 
-YEAR=`date +%Y`
 HOSTNAME="$2"
 KEYNAME="$3"
 
