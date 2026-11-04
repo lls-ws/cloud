@@ -21,7 +21,7 @@ java_install()
 java_path()
 {	
 	
-	JAVA_VERSION=`cat ${JVM_HOME}/default-java/release | grep "JAVA_VERSION=" | cut -d '"' -f 2 | cut -d '.' -f 1`
+	JAVA_VERSION=`cat ${JVM_HOME}/java-11-openjdk-amd64/release | grep "JAVA_VERSION=" | cut -d '"' -f 2 | cut -d '.' -f 1`
 	
 	if [ -z ${JAVA_VERSION} ]; then
 	
