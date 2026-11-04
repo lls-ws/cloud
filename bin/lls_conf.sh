@@ -114,6 +114,8 @@ lls_server()
 	
 	tomcat_start
 	
+	sleep 10
+	
 	echo "Tomcat na porta 443:"
 	sudo ss -tlnp | grep "java"
 	
