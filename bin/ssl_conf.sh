@@ -100,7 +100,11 @@ ssl_create()
 	tomcat_stop
 	
 	echo "Gera o certificado para o domínio: ${DNAME}"
-	sudo certbot certonly --standalone -d ${DNAME}
+	sudo certbot certonly --standalone \
+	  -d ${DNAME} \
+	  -m ${EMAIL} \
+	  --agree-tos \
+	  --no-eff-email
 	
 	echo "Certificado Original: /etc/letsencrypt/live/${DNAME}"
 	sudo ls -alh /etc/letsencrypt/live/${DNAME}
