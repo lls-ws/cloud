@@ -8,7 +8,7 @@
 PATH=.:$(dirname $0):$PATH
 . lib/cloud.lib		|| exit 1
 
-ssl_install()
+snap_install()
 {
 
 	echo "Installing snap core..."
@@ -18,6 +18,14 @@ ssl_install()
 	echo "Installing certbot..."
 	snap install --classic certbot
 	ln -sv /snap/bin/certbot /usr/bin/certbot
+	
+}
+
+ssl_install()
+{
+
+	echo "Instala o Certbot Modo Standalone / Webroot:"
+	sudo apt install -y certbot
 	
 }
 
