@@ -99,6 +99,9 @@ ssl_create()
 	
 	tomcat_stop
 	
+	sudo rm -rf /etc/letsencrypt
+	sudo rm -rf /var/log/letsencrypt
+	
 	echo "Gera o certificado para o domínio: ${DNAME}"
 	sudo certbot certonly --standalone \
 	  -d ${DNAME} \
@@ -110,7 +113,7 @@ ssl_create()
 	sudo ls -alh /etc/letsencrypt/live/${DNAME}
 	
 	FILE_CONF="tomcat-ssl.sh"
-	DIR_CONF="etc/letsencrypt/renewal-hooks/deploy/"
+	DIR_CONF="etc/letsencrypt/renewal-hooks/deploy"
 	
 	lib_update
 	
@@ -119,6 +122,9 @@ ssl_create()
 	
 	echo "Gerar o arquivo: tomcat_keystore.p12"
 	sudo /${DIR_CONF}/${FILE_CONF}
+	
+	echo "Testando a Renovação Futura:"
+	sudo certbot renew --dry-run
 	
 }
 

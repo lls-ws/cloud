@@ -19,7 +19,7 @@ mkdir -p $TARGET_DIR
 echo "Converte arquivos PEM nativos do Certbot em keystore PKCS12 (.p12):"
 openssl pkcs12 -export \
   -in /etc/letsencrypt/live/$DOMAIN/fullchain.pem \
-  -keyin /etc/letsencrypt/live/$DOMAIN/privkey.pem \
+  -inkey /etc/letsencrypt/live/$DOMAIN/privkey.pem \
   -out $TARGET_DIR/tomcat_keystore.p12 \
   -name tomcat \
   -passout pass:$PASSWORD
